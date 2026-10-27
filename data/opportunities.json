@@ -1,1 +1,86 @@
-{"generated_at":null,"opportunities":[],"note":"First scheduled workflow run will populate this public feed. Listings are discovery leads, not verified open calls."}
+{
+  "generated_at": "2026-10-27T18:10:31+00:00",
+  "source_checks": 9,
+  "new_leads": 7,
+  "errors": [],
+  "opportunities": [
+    {
+      "id": "5785b4e28f586bc64a94",
+      "title": "Doctoral student gains auditory neuroscience training at Marine Biological Laboratory - the University of South Florida",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNemVub05MOU52WlQ1cFhCMnZRT3l1anBxaDMzSEFTa3JtSFdrMzhVQ0gyTUthck1XOW5seVFsU19kWVBreFNzcFJjNGVWNXkwdTNvZW04MndFWTItYndCXzl3N2czbzB0d3hFbkVYenNDbWRrakl2M0xpZklLSTlvMWNlYUQyZ2hiQjFFLTlMbUNzMzhnRzY1T09zSHQ5bzhZQUtraWRuaHE2dU1samVsMVFWcExjVWNDMkhaZWQwUVVwaG8?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "the University of South Florida",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "4b0969a4d07716b8925a",
+      "title": "Spotlight on Maryse Thomas, PhD Student in Neuroscience - McGill Reporter",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQQ09tR3kxckQ1ZGNwQjd6dVlmSHRwOHVrWWsyY25URnpxd3VEbkZNYk5xX0FIWFVwcGtvOHNGWHZISE1ZUWNUOV9mSGxPTFZ1cmd0eV80eVIwMFlrSmFtNTlTTzZlbURGM2ZKN0NNNng5Zm9RU2hseU0wdU1zQjlhM2Q2TzRmVnQ4cVE?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "McGill Reporter",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "8710838c34de9fe0d7eb",
+      "title": "RMIT PhD Student Honored for Cochlear Implant Research - The Hearing Review",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPRzhtSkFDaUQ5bVJNaEl3QXhMNkdGdlNfRlJoQ0xlTmRBSUwzenU0Y1pvZTR4REszN19tazlkWTdyTGNIYTFfekw3eTl0eGw4SkcxSW5HSTNPb25JdFJMZXpxeTRidXVOalZDRVJsanJkNXpuaXRPcHpwRXV6UHkyMGpJZnhyTXVjdFRPdHJzMHdtdmJrS3dFbWNKOTFpM3VfcWxXSVRRdw?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "The Hearing Review",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "bf8de99d1223d288c30e",
+      "title": "Deaf doctoral student adds new perspective to UNC Audiology program - UNC Media Hub - UNC Media Hub",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNVVdHWHNiaU5tTktqM1piRnZrbEF6TEZfXzFtLVUtSGhYVlNpY2FRdFlIN1AweDd0RjZPY29xTTNyc2hkR2dXczBtMDFPX09CZk5oQzNjRzgtVWNmeld0UHBXbWhHZGZJSWN5VG9fODlXUHo1X2xheHVKTXM2bGJJTzNwNDhEMERXRUpIaXNzbDRseUhlbHcwMA?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "UNC Media Hub",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "34de79b93261437dfb7c",
+      "title": "Psychoacoustics: Auditory Perception in Normal and Impaired Hearing: Interview with Jennifer Lentz, PhD - The Hearing Review",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQeHA4Sk5vcHNEY1J1VnVYNU05RVZmRVdtajJ6QV9BRkU0TVhYRXQzWHNJcEpmY3MwVk1BMjNSSVd1T3BUbmhHd3UtY0NpWlEwVG40MDJ4M0xhS3NLczRxc05STlY5VWFsdndfLXZzQWhuTDMwS0JfaXk2T3gteGZhTVRMOUd6QVdhTThjTzNkdjVzQnZ6cFB0eWkxS1U4UmpTYW9iT0xmd1JBRmFodzQ0MnRwUEZPaG5Ubjh5bm9TVWJnbXk1SkdHY2Y0bE1JbVZrMl9TMEVFSzk0Z012SkRCQVYxS3JNS3NlTjhza09KZ2lONVFpRHhrNDVkSWU3dw?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "The Hearing Review",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "c6b88ccaca69983cb27b",
+      "title": "auditory PhD Projects, Programmes & Scholarships - FindAPhD",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5JRmNQOGx2T1ZTV1E1a29WQTJKc0c2cDRJWFFoczZhYUpDeEF3SExyU05iQnd1emhSQTludG8ybS1VQ1FwcjZQc2p6cERXa3FvS1hpcXBmUXM4cnJl?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "FindAPhD",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    },
+    {
+      "id": "4941afa9427391b56f3d",
+      "title": "audiology PhD Projects, Programmes & Scholarships - FindAPhD",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1hcWZPa285UzM0bU91anpDVG1kVVZTZU05elRfaXpXQnhGeVYzWF9GbHZ5SDBwdjFqV254dGRKcGlQSWRlVlhvRUpBR0tLTVdkYUkyLVNNcVlERHI5Unc?oc=5",
+      "organisation": "Verify institution at original link",
+      "source": "FindAPhD",
+      "field": "Hearing & auditory research",
+      "discovered": "2026-10-27",
+      "deadline": null,
+      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+    }
+  ],
+  "note": "Discovery leads only. Deadlines and openings are not verified; do not treat feed absence as exhaustive search."
+}
