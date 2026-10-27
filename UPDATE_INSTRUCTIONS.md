@@ -1,14 +1,14 @@
-# v2.1 small diagnostic correction
+# Upgrade from PhD Research Radar 2.0 / 2.1 to 2.2
 
-The live feed confirms that all five FindAPhD requests returned HTTP 403; this cannot be solved by changing dashboard filters. FindAPhD data will require an authorized feed/API or another permitted recruitment source.
+**Important: do not overwrite `data/opportunities.json`.** The package excludes that file to preserve your currently published feed and collected leads.
 
-## Fix
-- The collector now rejects lab pages explicitly stating no positions are open, even when the page contains archived PhD titles.
-- Rejected explicitly closed labs are not automatically restored from the previous feed.
-- The `review_queue` entries for UT Dallas, Illinois and Indiana are still expected to be displayed under **Needs review** because no verified deadline was extracted.
+Upload the ZIP contents into the root of `bbkbhattarai/phd-tracker` on GitHub. This is an update, not a second nested repository.
 
-## Deploy
-Replace only `scripts/collect.py` in your GitHub repository. The rest of the ZIP is included for reference, not required for this hotfix. Run **Discover PhD opportunities**, then open the JSON feed and refresh the app. Do not reset browser storage.
+1. Export your local records from Settings first.
+2. Replace `app.js`, `index.html`, `style.css`, `sw.js`, `scripts/collect.py`, `scripts/sources.json`, and other matching included files.
+3. Check that `.github/workflows/search.yml` is present and unchanged if your current one already works. The ZIP has a working workflow with the dependency-installation step.
+4. Run **Discover PhD opportunities** manually in GitHub Actions. Do not use the Pages deployment workflow as a substitute.
+5. Open https://bbkbhattarai.github.io/phd-tracker/data/opportunities.json to inspect the new timestamp and source-health statuses.
+6. Open https://bbkbhattarai.github.io/phd-tracker/ and click **Refresh feed**. Look in both **Opportunities** and **Needs review**.
 
-## Important
-This hotfix does not add new permitted vacancy integrations. It corrects one false positive and makes the existing results more accurate.
+The search is broader but still source-limited. FindAPhD's 403 restriction is not resolved by this update. Recruitment announcements without verified deadlines stay in Needs review, not Opportunities.

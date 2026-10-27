@@ -1,39 +1,236 @@
 {
   "listing_sources": [
-    {"id":"faphd-hearing","name":"FindAPhD · Hearing","url":"https://www.findaphd.com/phds/?Keywords=hearing","adapter":"findaphd","region":"Worldwide"},
-    {"id":"faphd-audiology","name":"FindAPhD · Audiology","url":"https://www.findaphd.com/phds/audiology/?30M7Qy23","adapter":"findaphd","region":"Worldwide"},
-    {"id":"faphd-auditory","name":"FindAPhD · Auditory","url":"https://www.findaphd.com/phds/?Keywords=auditory","adapter":"findaphd","region":"Worldwide"},
-    {"id":"faphd-cochlear","name":"FindAPhD · Cochlear Implant","url":"https://www.findaphd.com/phds/?Keywords=cochlear%20implant","adapter":"findaphd","region":"Worldwide"},
-    {"id":"faphd-psycho","name":"FindAPhD · Psychoacoustics","url":"https://www.findaphd.com/phds/?Keywords=psychoacoustics","adapter":"findaphd","region":"Worldwide"}
+    {
+      "id": "faphd-hearing",
+      "name": "FindAPhD · Hearing",
+      "url": "https://www.findaphd.com/phds/?Keywords=hearing",
+      "adapter": "findaphd",
+      "region": "Worldwide"
+    },
+    {
+      "id": "faphd-audiology",
+      "name": "FindAPhD · Audiology",
+      "url": "https://www.findaphd.com/phds/audiology/?30M7Qy23",
+      "adapter": "findaphd",
+      "region": "Worldwide"
+    },
+    {
+      "id": "faphd-auditory",
+      "name": "FindAPhD · Auditory",
+      "url": "https://www.findaphd.com/phds/?Keywords=auditory",
+      "adapter": "findaphd",
+      "region": "Worldwide"
+    },
+    {
+      "id": "faphd-cochlear",
+      "name": "FindAPhD · Cochlear Implant",
+      "url": "https://www.findaphd.com/phds/?Keywords=cochlear%20implant",
+      "adapter": "findaphd",
+      "region": "Worldwide"
+    },
+    {
+      "id": "faphd-psycho",
+      "name": "FindAPhD · Psychoacoustics",
+      "url": "https://www.findaphd.com/phds/?Keywords=psychoacoustics",
+      "adapter": "findaphd",
+      "region": "Worldwide"
+    }
   ],
   "lab_sources": [
-    {"id":"auditory-list","name":"AUDITORY research announcements","url":"https://www.auditory.org/mhonarc/","region":"Worldwide","type":"specialist-archive"},
-    {"id":"utdallas-dac","name":"UT Dallas · Descending Auditory Circuits Lab","url":"https://labs.utdallas.edu/daclab/join/","region":"USA","type":"lab-recruitment"},
-    {"id":"illinois-acn","name":"Illinois · Auditory Cognitive Neuroscience Lab","url":"https://publish.illinois.edu/acnlab-shs-ahs/join-the-lab/","region":"USA","type":"lab-recruitment"},
-    {"id":"indiana-cares","name":"Indiana University · CARES Lab","url":"https://www.indianacareslab.org/","region":"USA","type":"lab-recruitment"},
-    {"id":"gottingen","name":"Göttingen · Institute for Auditory Neuroscience","url":"https://www.auditory-neuroscience.uni-goettingen.de/job.html","region":"Europe","type":"lab-recruitment"},
-    {"id":"ucl-ear","name":"UCL Ear Institute","url":"https://www.ucl.ac.uk/brain-sciences/ear/study/postgraduate-research","region":"UK","type":"programme"},
-    {"id":"aaa-directory","name":"American Academy of Audiology · PhD directory","url":"https://www.audiology.org/careers/doctoral-programs-in-audiology/phd-programs/","region":"USA","type":"directory"}
+    {
+      "id": "auditory-list",
+      "name": "AUDITORY archive (directory; monitored via announcement source)",
+      "url": "https://www.auditory.org/mhonarc/",
+      "region": "Worldwide",
+      "type": "reference"
+    },
+    {
+      "id": "utdallas-dac",
+      "name": "UT Dallas · Descending Auditory Circuits Lab",
+      "url": "https://labs.utdallas.edu/daclab/join/",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "illinois-acn",
+      "name": "Illinois · Auditory Cognitive Neuroscience Lab",
+      "url": "https://publish.illinois.edu/acnlab-shs-ahs/join-the-lab/",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "indiana-cares",
+      "name": "Indiana University · CARES Lab",
+      "url": "https://www.indianacareslab.org/",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "gottingen",
+      "name": "Göttingen · Institute for Auditory Neuroscience",
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/job.html",
+      "region": "Europe",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "ucl-ear",
+      "name": "UCL Ear Institute",
+      "url": "https://www.ucl.ac.uk/brain-sciences/ear/study/postgraduate-research",
+      "region": "UK",
+      "type": "programme"
+    },
+    {
+      "id": "aaa-directory",
+      "name": "American Academy of Audiology · PhD directory",
+      "url": "https://www.audiology.org/careers/doctoral-programs-in-audiology/phd-programs/",
+      "region": "USA",
+      "type": "directory"
+    },
+    {
+      "id": "utdallas-neuroaud",
+      "name": "UT Dallas · Neuroaudiology Lab",
+      "url": "https://labs.utdallas.edu/neuro-aud-lab/positions/",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "duke-auditory",
+      "name": "Duke · Auditory & Communication Systems Lab",
+      "url": "https://headnecksurgery.duke.edu/divisions/communication-sciences/research/research-laboratories/auditory-and-communication-systems",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "uconn-audette",
+      "name": "UConn · Audette Sensory Processing Lab",
+      "url": "https://audettelab.psychology.uconn.edu/join/",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "uic-listening",
+      "name": "UIC · Listening Technology Lab",
+      "url": "https://listeningtech.lab.uic.edu",
+      "region": "USA",
+      "type": "programme"
+    }
   ],
   "reference_sources": [
-    {"name":"jobs.ac.uk","url":"https://www.jobs.ac.uk/","region":"UK"},
-    {"name":"EURAXESS","url":"https://euraxess.ec.europa.eu/jobs","region":"Europe"},
-    {"name":"AcademicTransfer","url":"https://www.academictransfer.com/en/","region":"Europe"},
-    {"name":"Academic Positions","url":"https://academicpositions.com/","region":"Worldwide"},
-    {"name":"Nature Careers","url":"https://www.nature.com/naturecareers","region":"Worldwide"},
-    {"name":"FindAPhD","url":"https://www.findaphd.com/","region":"Worldwide"},
-    {"name":"University of Manchester","url":"https://www.manchester.ac.uk/study/postgraduate-research/","region":"UK"},
-    {"name":"University of Oldenburg","url":"https://uol.de/en/","region":"Europe"},
-    {"name":"DTU Hearing Systems","url":"https://www.dtu.dk/english","region":"Europe"},
-    {"name":"Northwestern University","url":"https://www.northwestern.edu/","region":"USA"},
-    {"name":"Vanderbilt University","url":"https://www.vanderbilt.edu/","region":"USA"},
-    {"name":"University of Iowa","url":"https://uiowa.edu/","region":"USA"},
-    {"name":"University of Pittsburgh","url":"https://www.pitt.edu/","region":"USA"},
-    {"name":"Western University Canada","url":"https://www.uwo.ca/","region":"Canada"},
-    {"name":"Macquarie University","url":"https://www.mq.edu.au/","region":"Australia"},
-    {"name":"Bionics Institute","url":"https://www.bionicsinstitute.org/","region":"Australia"},
-    {"name":"University of Auckland","url":"https://www.auckland.ac.nz/","region":"New Zealand"},
-    {"name":"Chinese University of Hong Kong","url":"https://www.cuhk.edu.hk/english/index.html","region":"Hong Kong"},
-    {"name":"National University of Singapore","url":"https://www.nus.edu.sg/","region":"Asia"}
+    {
+      "name": "jobs.ac.uk",
+      "url": "https://www.jobs.ac.uk/",
+      "region": "UK"
+    },
+    {
+      "name": "EURAXESS",
+      "url": "https://euraxess.ec.europa.eu/jobs",
+      "region": "Europe"
+    },
+    {
+      "name": "AcademicTransfer",
+      "url": "https://www.academictransfer.com/en/",
+      "region": "Europe"
+    },
+    {
+      "name": "Academic Positions",
+      "url": "https://academicpositions.com/",
+      "region": "Worldwide"
+    },
+    {
+      "name": "Nature Careers",
+      "url": "https://www.nature.com/naturecareers",
+      "region": "Worldwide"
+    },
+    {
+      "name": "FindAPhD",
+      "url": "https://www.findaphd.com/",
+      "region": "Worldwide"
+    },
+    {
+      "name": "University of Manchester",
+      "url": "https://www.manchester.ac.uk/study/postgraduate-research/",
+      "region": "UK"
+    },
+    {
+      "name": "University of Oldenburg",
+      "url": "https://uol.de/en/",
+      "region": "Europe"
+    },
+    {
+      "name": "DTU Hearing Systems",
+      "url": "https://www.dtu.dk/english",
+      "region": "Europe"
+    },
+    {
+      "name": "Northwestern University",
+      "url": "https://www.northwestern.edu/",
+      "region": "USA"
+    },
+    {
+      "name": "Vanderbilt University",
+      "url": "https://www.vanderbilt.edu/",
+      "region": "USA"
+    },
+    {
+      "name": "University of Iowa",
+      "url": "https://uiowa.edu/",
+      "region": "USA"
+    },
+    {
+      "name": "University of Pittsburgh",
+      "url": "https://www.pitt.edu/",
+      "region": "USA"
+    },
+    {
+      "name": "Western University Canada",
+      "url": "https://www.uwo.ca/",
+      "region": "Canada"
+    },
+    {
+      "name": "Macquarie University",
+      "url": "https://www.mq.edu.au/",
+      "region": "Australia"
+    },
+    {
+      "name": "Bionics Institute",
+      "url": "https://www.bionicsinstitute.org/",
+      "region": "Australia"
+    },
+    {
+      "name": "University of Auckland",
+      "url": "https://www.auckland.ac.nz/",
+      "region": "New Zealand"
+    },
+    {
+      "name": "Chinese University of Hong Kong",
+      "url": "https://www.cuhk.edu.hk/english/index.html",
+      "region": "Hong Kong"
+    },
+    {
+      "name": "National University of Singapore",
+      "url": "https://www.nus.edu.sg/",
+      "region": "Asia"
+    }
+  ],
+  "announcement_sources": [
+    {
+      "id": "auditory-archive",
+      "name": "AUDITORY research recruitment announcements",
+      "url": "https://www.auditory.org/mhonarc/2026/threads.html",
+      "adapter": "auditory_archive",
+      "region": "Worldwide",
+      "max_items": 45,
+      "max_age_days": 150,
+      "alternate_url": "https://www.auditory.org/postings/2026/"
+    }
+  ],
+  "direct_vacancies": [
+    {
+      "id": "ucl-soci",
+      "name": "UCL · Cochlear Implant Child Outcomes Studentship",
+      "url": "https://www.ucl.ac.uk/population-health-sciences/phd-studentships/improving-school-age-health-and-education-outcomes-deaf-children-cochlear-implants-soci",
+      "region": "UK",
+      "type": "direct-vacancy"
+    }
   ]
 }

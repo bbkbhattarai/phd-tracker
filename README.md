@@ -1,52 +1,50 @@
-# PhD Research Radar 2.0 (clean rebuild)
+# PhD Research Radar v2.2 | Recruitment discovery test build
 
-A GitHub Pages-ready Progressive Web App for finding **actual advertised PhD positions** and **research labs explicitly recruiting doctoral students** in hearing sciences, audiology, auditory neuroscience, psychoacoustics, electrophysiology, hearing aids and cochlear implants.
+An update to the working GitHub Pages PhD Radar 2.0, focused on **actual doctoral recruitment** in hearing sciences, audiology, auditory neuroscience, psychoacoustics, cochlear implants, and hearing technology.
 
-This is a **new codebase**, not a patch to the prior Radar versions. It uses a new localStorage key (`phdradar_clean_v2`) and **does not remove or overwrite old local data**. Old data is available via Settings → Import previous app data if you install this on the same web origin and browser. Export a backup from your old version before deployment.
+## New in v2.2
 
-## Deploy to GitHub Pages
+- **AUDITORY announcements collector:** Monitors publicly posted, dated PhD recruitment announcements in the AUDITORY archive (`mhonarc/2026/threads.html`), with a backup archive endpoint. Does not treat general mailing-list posts as vacancies.
+- **Direct studentship monitoring:** Adds a University College London studentship project in deaf children and cochlear implants, with explicit deadline extraction.
+- **More lab recruitment sources:** Adds UT Dallas Neuroaudiology, Duke Auditory & Communication Systems, and UConn Audette Lab, in addition to prior lab sources.
+- **Better cards:** Highlights recruitment evidence, intended intake, supervisor/contact where extractable, announcement date, and explicitly uncertain deadlines.
+- **Safer date handling:** Does not invent a year for an archive announcement saying only “apply by December 15.” This is shown as a note requiring confirmation.
+- **Stronger source diagnostics:** Sources blocked by HTTP 403 or failures are recorded. Existing non-expired records are retained when a source is temporarily unavailable.
+- **App data compatibility:** Continues using the `phdradar_clean_v2` browser-storage key. No migration necessary from v2.0 or v2.1.
 
-1. Back up current browser records through the existing app's Settings.
-2. Download and extract this archive; copy **all** files to the root of a GitHub repository, including `.github/workflows/search.yml` and `.nojekyll`. Remove old `app.js`, `style.css`, `sw.js` and legacy files to prevent confusion.
-3. GitHub → Settings → Pages → Deploy from branch → `main` / root.
-4. GitHub → Actions → **Discover PhD opportunities** → Run workflow. Workflow needs contents: write (set in YAML, subject to repository/organization permissions).
-5. Verify `data/opportunities.json` has a non-null `generated_at` timestamp; open the site and select **Refresh feed**.
-6. On your existing browser, Settings → **Import previous app data**, verify records and export new backup.
+## Known limitations
 
-The GitHub Action is scheduled daily at 07:17 UTC, but GitHub scheduled runs may be delayed or skipped. In-app Refresh downloads the *last published* data, not a new search.
+1. FindAPhD currently returns HTTP 403 to the GitHub Action collector. That is a **blocked source**, not zero vacancies. The app does not bypass that restriction.
+2. Not all 125 references have direct vacancy parsers. The Sources tab distinguishes monitored sources from references.
+3. A lab invitation without a future application deadline remains in **Needs review**. Funding eligibility and intake must be confirmed at the original institution.
+4. Monitoring the AUDITORY archive may be temporarily unavailable; source diagnostics will show any failure.
+5. GitHub Actions schedules are not exact, and the website Refresh button only retrieves the last published feed.
+6. Personal application history is held in the current browser. Export regular JSON backups.
 
-## What is *actually monitored* in this first release
+## Deploy to an EXISTING GitHub Pages repository
 
-- **5 FindAPhD listing search pages:** extracts individual `/phds/project/` links, opens each project's page, screens for hearing relevance and evidence of doctoral recruitment, and extracts funding/deadline when evident.
-- **4 laboratory recruiting pages:** checks recruiting-language patterns and sends promising leads to *Needs review*, not automatically confirmed. A lab page may stay online for years, so verify current recruitment and intake.
-- A worldwide **source catalogue** includes additional university/programme/directory reference URLs, but **these are not all directly scraped**. A source appearing in the catalogue does not imply scheduled monitoring.
-- **AUDITORY mailing list** is available as a reference source but archival announcements are **not automatically ingested** yet.
+1. From the running app, open **Settings** and **Export JSON backup** first.
+2. Unzip the update. Upload or replace files into the **root of your existing repository**, not a nested folder. Preserve paths under `scripts/`, `assets/`, and `.github/workflows/`.
+3. **Do not delete or replace `data/opportunities.json`.** The update ZIP intentionally excludes it. GitHub Actions will refresh it.
+4. Commit files to `main`.
+5. Open **Actions → Discover PhD opportunities → Run workflow** and verify all steps completed successfully.
+6. Open `/data/opportunities.json` on the GitHub Pages site to confirm a new `generated_at` value. Inspect `source_health` and `review_queue`.
+7. Reopen the app and select **Refresh feed**. Force-reload if your browser retains old static files.
 
-Other portals (jobs.ac.uk, EURAXESS, AcademicTransfer) are in the reference directory and require specific supported adapters before they can supply automated leads. Where a site blocks automated requests, Source Diagnostics displays the failure. Do not interpret zero accepted records as proof that no openings exist.
+## Expected test outcomes
 
-## Verified versus review
+- `opportunities`: source-confirmed deadline positions (such as UCL, if still open and accessible).
+- `review_queue`: genuine lab recruitment calls and published PhD announcements whose current availability or deadline requires confirmation.
+- `source_health`: one entry per monitored source, showing successes, 403 errors, and other failures.
+- The FindAPhD sources may continue to show 403 errors; this should not stop the other collectors.
 
-- **Opportunities**: PhD project page opened with a future deadline observed (not a guarantee that the university continues accepting applications). University project pages can contain stale data, and exact deadline/funding/eligibility should be checked before applying.
-- **Needs review**: doctoral project page without a clear deadline, older leads that could not be rechecked, or lab page explicitly claiming to recruit PhD students. Never presented as confirmed open.
-- Expired records fall out of active feeds. Saved local application records persist.
-- No fabricated projects, no news-headline ingestion, no invented dates or funding guarantees.
+The updated code was tested offline using fixtures, including an end-to-end run with source blocking, one future-deadline studentship, and two unverified recruitment records. Live GitHub Actions execution and access to remote sites must be verified after deployment.
 
-## Data privacy and limitations
+## Project files
 
-- GitHub hosts only public HTML/JS, source configuration and public results JSON.
-- Bookmarks, notes, application status, seen markers, added personal source URLs are stored only within browser localStorage. They do not sync between browsers/devices. Do not store sensitive identity documents in notes.
-- Source additions in the Sources screen do **not** automatically modify the scheduled GitHub collector. To add a scheduled source, update `scripts/sources.json` and add an appropriate parser if needed.
-- Deadline reminders display while app is open; no notification service / background push.
-- PWA static cache explicitly uses network-first asset loading and network-only (with optional existing cache fallback) for JSON feeds.
-- Permission to access sites and reliability of HTML layouts vary. Respect robots rules, rate limits and website terms when extending adapters.
-
-## Development / offline tests
-
-```sh
-python -m pip install -r scripts/requirements.txt
-python tests/test_collector.py
-python scripts/collect.py
-python -m http.server 8000
-```
-
-Open `http://localhost:8000/`. Note that running the collector requires internet access; tests use offline sample fixtures only.
+- `.github/workflows/search.yml`: scheduled and manual collector; installs dependencies.
+- `scripts/collect.py`: site monitors and eligibility / deadline parsing.
+- `scripts/sources.json`: centralized monitored and reference source configuration.
+- `app.js`, `index.html`, `style.css`: PWA interface and local application records.
+- `sw.js`: versioned service worker.
+- `tests/`: offline regression checks.
