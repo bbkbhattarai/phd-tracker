@@ -1,586 +1,131 @@
 {
-  "generated_at": "2026-10-27T18:20:16+00:00",
-  "source_checks": 36,
-  "new_leads": 48,
-  "coverage": "Worldwide (source-matched, not exhaustive)",
-  "errors": [],
-  "opportunities": [
+  "schema_version": 3,
+  "generated_at": "2026-10-27T19:13:10+00:00",
+  "coverage": "Worldwide: verified source pages only, non-exhaustive",
+  "opportunities": [],
+  "source_health": [
     {
-      "id": "5785b4e28f586bc64a94",
-      "title": "Doctoral student gains auditory neuroscience training at Marine Biological Laboratory - the University of South Florida",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNemVub05MOU52WlQ1cFhCMnZRT3l1anBxaDMzSEFTa3JtSFdrMzhVQ0gyTUthck1XOW5seVFsU19kWVBreFNzcFJjNGVWNXkwdTNvZW04MndFWTItYndCXzl3N2czbzB0d3hFbkVYenNDbWRrakl2M0xpZklLSTlvMWNlYUQyZ2hiQjFFLTlMbUNzMzhnRzY1T09zSHQ5bzhZQUtraWRuaHE2dU1samVsMVFWcExjVWNDMkhaZWQwUVVwaG8?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "the University of South Florida",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "FindAPhD - hearing",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "4b0969a4d07716b8925a",
-      "title": "Spotlight on Maryse Thomas, PhD Student in Neuroscience - McGill Reporter",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQQ09tR3kxckQ1ZGNwQjd6dVlmSHRwOHVrWWsyY25URnpxd3VEbkZNYk5xX0FIWFVwcGtvOHNGWHZISE1ZUWNUOV9mSGxPTFZ1cmd0eV80eVIwMFlrSmFtNTlTTzZlbURGM2ZKN0NNNng5Zm9RU2hseU0wdU1zQjlhM2Q2TzRmVnQ4cVE?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "McGill Reporter",
-      "region": "Canada",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "FindAPhD - auditory",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "8710838c34de9fe0d7eb",
-      "title": "RMIT PhD Student Honored for Cochlear Implant Research - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPRzhtSkFDaUQ5bVJNaEl3QXhMNkdGdlNfRlJoQ0xlTmRBSUwzenU0Y1pvZTR4REszN19tazlkWTdyTGNIYTFfekw3eTl0eGw4SkcxSW5HSTNPb25JdFJMZXpxeTRidXVOalZDRVJsanJkNXpuaXRPcHpwRXV6UHkyMGpJZnhyTXVjdFRPdHJzMHdtdmJrS3dFbWNKOTFpM3VfcWxXSVRRdw?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "FindAPhD - audiology",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "bf8de99d1223d288c30e",
-      "title": "Deaf doctoral student adds new perspective to UNC Audiology program - UNC Media Hub - UNC Media Hub",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNVVdHWHNiaU5tTktqM1piRnZrbEF6TEZfXzFtLVUtSGhYVlNpY2FRdFlIN1AweDd0RjZPY29xTTNyc2hkR2dXczBtMDFPX09CZk5oQzNjRzgtVWNmeld0UHBXbWhHZGZJSWN5VG9fODlXUHo1X2xheHVKTXM2bGJJTzNwNDhEMERXRUpIaXNzbDRseUhlbHcwMA?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "UNC Media Hub",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "FindAPhD - cochlear implants",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "34de79b93261437dfb7c",
-      "title": "Psychoacoustics: Auditory Perception in Normal and Impaired Hearing: Interview with Jennifer Lentz, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQeHA4Sk5vcHNEY1J1VnVYNU05RVZmRVdtajJ6QV9BRkU0TVhYRXQzWHNJcEpmY3MwVk1BMjNSSVd1T3BUbmhHd3UtY0NpWlEwVG40MDJ4M0xhS3NLczRxc05STlY5VWFsdndfLXZzQWhuTDMwS0JfaXk2T3gteGZhTVRMOUd6QVdhTThjTzNkdjVzQnZ6cFB0eWkxS1U4UmpTYW9iT0xmd1JBRmFodzQ0MnRwUEZPaG5Ubjh5bm9TVWJnbXk1SkdHY2Y0bE1JbVZrMl9TMEVFSzk0Z012SkRCQVYxS3JNS3NlTjhza09KZ2lONVFpRHhrNDVkSWU3dw?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "FindAPhD - psychoacoustics",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "b81fec20caacc49b104f",
-      "title": "Children and the Development of Listening and Talking Skills: An Interview with Carol Flexer, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNTjJYLUFDZmx6TUdzQ29ZQ2ZJQlk5RjRjNG1CemN5MWxWVDZYaWdHdEVsbFdpak9JZXJ1ZVB0akIxUmVXYnc4Y0pjbW1WTHJHeDRXdlhQdXVScVp5NWlHeWNWM2V2SVJxVnBCSWpsZFVobTFGOUtqSEZUWUpxLWRwNVVxeTRhcGt6MkZSeGpEUTFuMVd6VnZFRE9iNTM0M093N2FQU2FjZjkycnlMdDhBQXRqNXRKZmdiaXF5OFNPRmJKUzZNVDZJZ0VLUEljNEE?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "jobs.ac.uk - hearing",
+      "status": "ok",
+      "candidates": 24
     },
     {
-      "id": "25729563538540e6f8f1",
-      "title": "Ali A. Danesh, PhD, Named Distinguished Fellow of the American Academy of Audiology - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxORUp0aHR3S1k1YkM2ZktvZUsteDY5N3l4LW53VzhWWVV4QmJaTXVaelVJdGgxdEgxb2FLZE9KVlVqM25NZnVDWEJvV0VyUDFuQWRublRKOW5CWlNuWFZGbG1sbU04X3FXNXFnZERsZEowLVg4UElpYW9URFRRc0E4SDFwREM2dzV1QmxTdUUzek45VTdKUlJaSUFDUlpfWmZISm95bEppaEp5SVdtVHAzNUgtMUs3OTBlZXUxWFpQS2ZoaGhRUTRv?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "EURAXESS - auditory",
+      "status": "error",
+      "detail": "HTTP Error 403: Forbidden"
     },
     {
-      "id": "c6b88ccaca69983cb27b",
-      "title": "auditory PhD Projects, Programmes & Scholarships - FindAPhD",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5JRmNQOGx2T1ZTV1E1a29WQTJKc0c2cDRJWFFoczZhYUpDeEF3SExyU05iQnd1emhSQTludG8ybS1VQ1FwcjZQc2p6cERXa3FvS1hpcXBmUXM4cnJl?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "FindAPhD",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "AcademicTransfer",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "4941afa9427391b56f3d",
-      "title": "audiology PhD Projects, Programmes & Scholarships - FindAPhD",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1hcWZPa285UzM0bU91anpDVG1kVVZTZU05elRfaXpXQnhGeVYzWF9GbHZ5SDBwdjFqV254dGRKcGlQSWRlVlhvRUpBR0tLTVdkYUkyLVNNcVlERHI5Unc?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "FindAPhD",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "BCBL jobs",
+      "status": "ok",
+      "candidates": 7
     },
     {
-      "id": "5c94d2164588c47b4ff6",
-      "title": "Three-year PhD position in Human motor control / Experimental psychology / Behavioral neuroscience - Euraxess",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE54UkRJcDVPUkFaSXFhbG0yUkhoMEkwYk1vNFFYWGhVZE5jNDR2Wm02MVZDWWxrMFRMZXNHcm5YbXpSLUJhSFQ1VEkxN3AyeGFkeVlR?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Euraxess",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Göttingen auditory neuroscience jobs",
+      "status": "ok",
+      "candidates": 6
     },
     {
-      "id": "ce105e6070134d0f5bad",
-      "title": "PhD jobs in Audiology - Academic Positions",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFB1QVAzY1Zyc2pMd3FLNTkwU1BYU3VuUUpqSWlvX2RTRS0zNHJiZjUwampDeGt1UGY5d005VHV3cFVfTFVvb2kxVVRoMVU1ODg1TGFnclNvdjhzbVdLbVlUOGlLblphRnR2T2Q0MnExYl8?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Academic Positions",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"PhD\" \"auditory\" \"apply\"",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "b41601086b6934897f1f",
-      "title": "PhD research advancing objective hearing assessment and innovative middle ear surgery - Academic Positions",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNTVZLSmFFX2dNN0x5azZ3Zm1lYkRYWFlyMlNLTjRqcHpRNlZwVnFZemNCalIyWHhKWkdqbUNyZFdQQ1pySWtwaUZkXzIxUlZRVHB2azNNcS1kbC14STIycnRGeGlPQUZsY2xMX1M3UVFTcmtIakxuelJqUEdNVVJ0YXFjNmRRdlN5VE9iV2VPNk5KUHdxZTlySW1oRm82RTM3X1hNdFJDUU1reEJXLTR4NU1jVXNBQ0VMX05aaFE2T3Q1LWdBeUNpeDZLdVZJd2lXT2RlRzRRUQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Academic Positions",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"PhD studentship\" \"hearing\" \"closing\"",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "eff5d058107e6a9f3704",
-      "title": "Speech, Hearing and Phonetic Sciences MPhil/PhD - UCL | University College London",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOQ0NONFNCdEgzbzdZQ0VmeDNXbjZHRHcwdDRjSHVwY1cwTWREWU1oRWQzWFRTUFBEcXFrX2t4LTdURmstYzBsV0JMaXRNWGRVS3hpWHEzMEV0QnJ2Q19OSmdMYno3dDN0M2FZUjgzODBjRzZTY3QtcktpcV90LVlqajNKbl9RVzUwZU81Q3ZBOHhEMVdpUmlNSXB5Z1RybGpLd084T0YtbFJhVEZqTWd2bHI1WmcwWlFBbkV6Yg?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "UCL | University College London",
-      "region": "UK",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"PhD position\" \"cochlear\" \"application deadline\"",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "07b2f9119a70b33c2f4c",
-      "title": "PhD Studentship: Measuring impaired and aided loudness via simple auditory reaction times - UCL | University College London",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOdUJvaXhSeFJ3NG5sZWlrY1dLakk3ZWlaTXdyNER6OW9La3g4WV8tUThNeGk0dC02R05jRm1RRWQ0WmJBcUliWU5yX09zTWNmU3A0bUxhMWkyYllUYnBoclhkWVpjU0tpN1l5RDRSOEFfaTM5WlI3UXVCUmpRS2hwTHJqcnlkYngwUkJnc3V0M01YMTdnT0F6Ng?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "UCL | University College London",
-      "region": "UK",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"PhD\" \"psychoacoustics\" \"apply\"",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "c691ba9dab29dcbb937e",
-      "title": "PhD Audiology (2027 entry) - The University of Manchester",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPMEFSM1lwbHpTajZheW5jZU9PZUh1ZEo2SGUtRVoyX2lIby0ydFFDZmpOenlXVGdzWks4eG9Qd00tZTl2VElXbXJuR3EzNWNKckt4c3lIUkRVME1ZeXE1ODNISTJieTF5YkpneVBnWF8xOFkwUGx2TWdTTGdYTWNKTVMyZ3RDMHlHTklkMEZmS2hKcEx1c01fOQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The University of Manchester",
-      "region": "UK",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"doctoral researcher\" \"auditory neuroscience\" \"deadline\"",
+      "status": "ok",
+      "candidates": 0
     },
     {
-      "id": "71986aa1b01386f867bf",
-      "title": "Clinical Neuroscience PhD/MPhil - University of Nottingham",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1HZ1dCWmhIM3hZdWNRd2ZlTlNwN2M3NHJUNnJjUnRRX0c5ZzdFam5tU3plTTJNTW9xV19EdU9yQ1JzUUl3T0Zwb0tKaDAzOEpxa3RmeUF5STU5OVdRdUtQWWNod25kY004QkRIU2duRWRZa0d2bi1ZLUlnX3hhUQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "University of Nottingham",
-      "region": "UK",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "fd7e31eb8f78a6257a60",
-      "title": "Conversation behaviour in daily life: the effects of situation, hearing loss, and hearing-aid use ESRC DTP Collaborative Studentship University of Nottingham and Sonova AG - University of Nottingham",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOc0lIbnU2NWdFZWU1TnRhS3BGNWtONENpS0JkeEJzN05LbmJMOXBpUC0wbDlxak5vSUh0bXVDZHFMMmd5bkpoVWIySUNZeTZKb3I2NFVxNGpnVWprdWk3ZWtDQVRrZDNHRndjZVpmc0RWZzlhaDRqcFZrelFacUhlRVk3ZEhTOUxNbXVqbllBQnlTTG1VVEUtTmZjaDVYMjd6OUFzQzJnNi00cms5aTJ2dHMzSDVxd1dtcENOeHNB?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "University of Nottingham",
-      "region": "UK",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "b5c5711fb76bcfdc8523",
-      "title": "Assist. Prof. PhD Barbara Lykke Lind. Date of birth: 19th of February 1981 Married and with 2 children. - Department of Neuroscience – University of Copenhagen",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQckZOYTNFblVaMFI3cjFjTHZ3a0pYVW9ZQ003WEw1eXNXVV9yekxMdVJhamR4c1EzWFlkWGJCSmdSNXdsU0hxR0JYeVJFT2ZhWWJqeTNjOTVadmxLcS1Ja2pPTG5vZ19oTFl1N2pGRktHSWVNV1JobGphcmFZckwwRzBn?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Department of Neuroscience – University of Copenhagen",
-      "region": "Europe",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "4401639ecd64c1359708",
-      "title": "Remembering Mead C. Killion, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNdlFPQUEyNktTLTVCUUhUdm9FdEJnYnJyRllvMVViRnhNZWh2WjlOM3h4cm5qcFJSbGg1NDE1cDUycmxhREY0QVk5VVFmRjIzZnA3dml1T1I2VzNtRjdPenYwVGcxS1JzN0EwQUVEcGl6bklwV0ZwbG1fWWpJV0Fjbk5JOW0?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "9dd11e76f18dd3ef754b",
-      "title": "The Advantages of Pursuing a Doctoral Degree in Audiology - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPTXBfYy1VLU9KQlNPeFpUWVN2cENHb0NGQkY0RFN0dXA3VXpDS3N0TXdQS1BHX0F1cC05MlZzZWV4VGYzNjF0TTN1VHpZaXlHSGQtX1VTT1p5TWdOb2xyTnVWSE5MbUlaUVR0RkRMZTB5a2hBT0g4S0tqcUdfMXlLUzdYaG91RzNiNjVRdlktZWhUSnhjeEloUUhacTdkR0F0WUEyVk1yZ3hUdWc?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "70b2c44452ab41018102",
-      "title": "Tribute: Robyn M. Cox, PhD, Audiology Researcher and Co-developer of the APHAB - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPcDU5TEhWeFVIZF9EQVhaTHloaTQ0RndYWGNyWnRvUGdpUTllWFJzaGZneWtKOVN6cWxMeWc5LWtncjFBYTQ0Z2J4R1pRZWhKRF9aVDFGT3c5Qnl3Vm1nWHZ3U201VnI1NnZaX1FqQ2JrQ1FEd2YxVFpFZE5VOHFERkNZX21fbDNaWjRiVlhoSlRRZjNUZ0F0SzZtSzRydXB6TVFpUzdSMjdPSl80TTg3SXpINWtlVjJpYWprR3hrWQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "44426497bb768fa59fde",
-      "title": "Tribute: Maurice H. Miller, PhD, Audiology Educator and Pioneer of Occupational Hearing Conservation - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNWng3ZXZjb2d5Ml82R2tRc1JIZHhKOW91TFFRM0s0X1lvd2FoT1E2ZGVDMHZvYl9rX0lmY1NhWk1DcV9CSzgxcUtVanBtUTBFaXV6cjJBTWdjVy0xTnNMRUJSS29vbFd6WVE4S29DWmxRQ05HWkxsZDRpVVluQS1OeHRiMkpTTUdOempzeFpQc3Fnc1dELXBFOU1jVmtZYnlsOFlUS25ubHhsSi1FTDF3?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "ea8fd4c6bcd7b0a8a340",
-      "title": "Audiology Pioneer James Jerger, PhD, Publishes Memoir - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxORmtZazlmVGp5RDNLR1EzdlRvZjJwM2hkUWc3SmhXck1RVy1kOXNVcV90VXB5S0NjVWF5a3pHZFlJSTFGbFFFUE5FakQ3Y1lqdWZaNXZRTExzaXY2czZic0p5VllacWlUNzlJejJRMFZ4X3pOYVBtN1o0U2loZm00cTZhdnNROGNkTHFMTm9tbFljTm0yajZiaEZWNGI3c2JLRjVFYkpPaHR4ZmRtOXRLMDdR?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "f523c4b1b19633cdbc68",
-      "title": "How Might the Brain Change When We Reintroduce Sound? Interview with Anu Sharma, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQaklXNkNzVGlEVVdSUkZra0JUMElJWUx1cE9Kc1RPS3l6R0dtR1RjSUkxSkVjbGZUMm00M2o1UzB3NWNSdjgyNEtMa2ZHSzQtNENPR0NzWjBDRWZVTHBnTjNfLTQyY012WGt2WEszd1F4YkcxMGR6X1QxdWdJWmVNdWZlTmJIVC1zOFloUklBcDcxZWxUZHduSWU4VENJR0hqS056Tw?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "75ed06e000c06dfe964d",
-      "title": "Richard Danielson, PhD, to receive National Hearing Conservation Association’s Outstanding Hearing Conservationist Award - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOU0VQNFlvVDRDSE1MYXF6cjJLcG8zYlRoVTBqSW9wajU2YW56ZVc3dHVxQzZsbkM1dW01aXNRajEwRkNiLUdSUXBnSWl1T1BWampsQUJnQ3E1Rl9ncW4yVVc3cW9iaU5sczBrTzZZN0JqOUliMFc0OF85LVp6TG5raWVhZ09xRnJUTml1RHRYV2xpU3Z4OW50cGhId3JOeXZCVjMzTFpjWTJBcTdwSlRiWUZTZ1AwRUFtYzlfcVJuN2hpQTRYZFJlT09EaG4tVFUwOUZvay1nX3hzNW96dGxUQnVjNXd1cF9oekZGemtaTVdpNS0ycDFmb1NPUEJkckJJQ3VzRTJITFByZXZFYWc?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "c572c8ad5a45501ed209",
-      "title": "Teleaudiology Benefits and Barriers: An Interview with Bopanna Ballachanda, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNZFlhTEhQQnZ6Qm50dWJXMTg3QVEtalZSOHlQc2FPVEdrQlZ0MXFLbjFTcVVVaXBEM1VUbnM3NlBRNnNBVjRyOWM5M0VZaFV5a0d2MXBWYjNoWjZZUTJBc2N0TjM3aFFNZEwxNm9TNWNWTG5JMVNIZkxWS3o5aHpiVW5haFlNdFJtSG41VWZxZm95aHJZSElXTWZwSTNLamY4UzFlQmRmd1BsdE9oaFBSWXBwUUNMeXVQVHZFaFNSQnhUNTZJUzRDc2Y0TFVTLVNTU1A0MkxfRjBMSkNaN1JwVTVR?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "fc65c7d8aa534f4ec542",
-      "title": "Tribute: Neil Disarno, PhD, Educator, Advocate, and ASHA Chief of Audiology - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNWXZBOEotNVl0OFhUZGZnNVYzNEdrRl9oMkd2VXQxSzJ5UGVmQXNqVkVPOWttSFZoYUQtWFhJRWs5WXFTdkYtOWI5c3FoZkFPLXhYQWpWcC1pRjI1QjdqZ1ltbVVNU3RJWlUtNU1UeDBkLV9USHlPNFN5NFA3ek1MZ0lPbGdkdE13MGl3NkkyaE9USDlycWhQVHNFUzVmeC15VFZoajA3THliY1RpM1pYd2NKaEpUQUJsR05wM3FDQTVkUQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "a0b3a918bba4601defe6",
-      "title": "Tribute: Mark Ross, PhD, a Founding “Father of Aural Rehabilitation” - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNV3JKcjBHQU1PMjhlcVRmZ1BNcng3NnNDYU5FNTlsV3pNSVFuMmdQZC05OHYzUFdQSHFtSS1MUXUxc3NJd0FFRzFwMnBPbzlaUHFYRVZkN3RhWXozY21CeVNucVFaclRsTnBFODFkMl9hRkpVVk9CeGloc2duNGwzd3dWQmV2NEhoNlFsZlpFRXIwQk4yM2lDYTdSd2w?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "d8d97ffa81ebe849dd3b",
-      "title": "Real-ear, Cognition, Speech-in-Noise, and More: An Interview with Todd Ricketts, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOMjl1UHNYWWRONE9OdURfRHBBS1F5c0lRaFFSYnBGV1BRdVVGUnJZckFPdkhJeTlmT3Q1YlFBVV9TM1dqS3E4MGFqOEZtMzdrZVNoMzFxOXQ1N1k3Q0pqbFBWNkVFMXZqd3BYN01WYUFYZ1FlQlZMVVVxTFp6b056TkJfOHdURWY2SVhjaFcwYXV4eHVYLXpkUkNod1hQZkRnMXI5NG9IeEVVQVdkRWc?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "13dcd1eca376e8f78d3c",
-      "title": "An Interview with Michael Valente, PhD: Considerations after 45 Years in Audiology - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOM0ZhaTVzRHJKUGNaZkczQUw1amRCV2ZEUDkyMExyOHo3VmFhbW1yVFdpXy1XMEdNcmtweHA0NTNJdm4yNlZ4R1dITHRPd3NfODlTY09RVVg5VEJQZndpbkJOTThWbUtFRnM4TkxiNEJsSmdrUEMtSGV0RDNRc2VaMEtBbTJhNmp5dElLXzNudlU?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "6d948c7d0f6ffd45ecc2",
-      "title": "Best Practices in Hearing Aid Dispensing: An Interview with Michael Valente, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPVnBfOE5xd3FVYlE5bVQwNjExSTR3cW14YWZEZTZrX1V0T3owT1lGZ3o0LU1uZHQ3VHpWVzA2N2NkeW1vYzRCcjRidi1MNEhRYVVCTzlOZVVBZktGSTNZSlBueHpfVnlRM2ZsRVBtSm1zcHM1alZqaVNIV01mQ1A5NnVCZDlZT0tvVl8zS1pqUW5QYXNmcHFjZ0t2THZEQUtrZHpVekEzRy1fam96bzRjUg?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "6a2d6f7e3b3993a990ae",
-      "title": "ICRA Fellow Harvey Dillon, PhD, Named Officer of the Order of Australia - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQVGJpeVk1VlhQSGRxcE5XUHJMaXNwT3FCMXprQkQ2YmpMczB2X2xpTm5wNF9QZEl1UkNQel9CbzJZX0s4M29XMnFjZVctRHhkR2h3UG83N1FqLVhZWWV6Zi05clFUdlllQVRRZHpUb0swbmpuWGRldGg1enN2cFM5N1cyeGhHdDYwbzBpaFZvTGFka3RVYVdtYTlTN0NqSFNDeGpPTTlUSWZTZkhaWVd4R3pGTmROQjloOEIwWlgwaUpHQU92NlJyVU5lOHd5V3NvSWV3WVRxLVV4RWNpSEE?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Australia",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "a15d75fb6422fe0e0184",
-      "title": "Remembering Jack Katz, PhD – Researcher, Author, Speaker, and Clinician - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOU2taUVRHS3FsTUVYT19uZ3JZMENGX0VQeWlJRi1ETGNNY2NaMV83TVJqRTRxb3J0enB3OUpvOW5lWDVrWFUxbHUwUkoxazhYSEllSWFzbFBMblhwSHRydWthS1BOTHdaLWs3YjJlQ2RCc2QwUVNKSFh5azd4NlFrU1JjVFM1U2pKN0pkWm1DaFAwT2FLaHE1MjZsenpqUXllLVlhWjBoVDVSRTRuMDMwUWc0dw?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "13ec7a4a09ce9f16e18e",
-      "title": "HR Interviews James W. Hall III, PhD, About GSI Workshop Series on Electroacoustics/Electrophysiology - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxPOUhyLTFRbEZRZE5XTnN4bmtfUElCYUd6eEdDbjU5UDJfOU5PVkRYR0VkbnN2cXlEazNpT2NSVEZ1NkpLQWt2TzVQWk04anBkdnBHeHJFZ2M0TWhfMFp6dHhQaEpnZ2pKTXY2RVlZbFJHcnBkMW9KTGtpOUEyMzVHV0pqLVJkMG8wNUN6WEdWQWlOMjBlRzNmSGo5VjZXQXBaZWFUUzhid0hIWko3MmhmZVd1bko4MnUyREtNcUxBM01LcU4wQS05cENLZTExdUhzYk1IX3J5VmFUOGR4SDJXbFdQMGUteUd6bHhoV1Ata3lqbkQzTzZjR2dEdlZlUlo2QU1fY0I1Z0RDR1RMcXVF?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "86ca7190f87d12f09c73",
-      "title": "The LMH Pediatric Screener to Assure Appropriate Amplification: An Interview with Jane Madell, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObU1LNlF5N2haMmYwc1JtVHlmLUpROWNEaUhiaENGZ1oyclJhNUpQSnN3bDFuX1hkaXNLTWtxNm8xVEN2UUdTUkRQTjFyWnZ1RE9aM2x2WUtWZjZsNFUtbWtzN1BOa0lPTFFoWldlSW9CTFpWZ0QtT21LQkFpT2Z6WEhGT1E5NnA3aWVDMTRra1o2OEpOcExqejhxOUFwWHpWZGdoRFpsWng2M3FZOXFBYXZ6SWV1VTRuU0tua1Q5TnZQeDBReW9JMQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "46937ee483f1ff1c06c6",
-      "title": "Outcome Measures, Wireless Technologies, and More: An Interview with Jason Galster, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOMHdtSVF0dzczT000N3hXMzNnQnVZWW16Xy1ZYjlZODNVbTRxZFYyR3FCX01zMG1lM19uNm93Ul9OQXA2QkJrSG03R19jem9hNWpoYVdxaWh0WEpoeEZVT2FfcHZBYkx1Yk0xSjNUaElCOTI3U21PTWtLVHhMYTZGcXJXX0JVdzhfRV84U3hpX2xDQ3lTc0M4RU02dHc3VHh5M29UUDVUYk90WXBaakRWTlJ6b2szTHM?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "01b4252d00787a349bb5",
-      "title": "Tribute: Mary Beth Jennings, PhD, Educator and Researcher - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQMl9qaTRXcFB1c1BDSkQ0eTE2V1FMZ2RvYWU5d2NoVVN2RlJhRG50RVZwWm5iS0xlT2wtbDAzaENTTmFpeGNkN2R2Y2lTTzVEX2hWUW9MYzRoaEZtR1Y5aUdSdWtYdmlHSGhMUmtYY3lUb0dmZDVBb0QteFA2Wi1rcjR1NURQMzhqLTJWdW1IWTNHeFdpN0tJaWxkTXpPNHE5M0VjTQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "095701c88debe43f1181",
-      "title": "Clinical Aspects of Tinnitus: An Interview with David Baguley, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNc0xWLTllYXJqYzlNXy1kdFdtVUsyVjlsUWJ4Z0xPRGpMamFYXzFKamt3TWZ5aW1yWGlrSHBSSURscHhUckl4UWE2a19SUnhmZjdLeXFmc0FCV2loSVFrM0x4al9QV1ppWDFLSzM4Z1NCRTlaSEFDZXNob0xhRjhNVng0bEI2WlhJRFMwRXZMNWpGdUhwcVBEdTNMb0FLcTZCd3RUS01B?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "de8dcfbec36c58968989",
-      "title": "The Audiology Behind the Oticon Polaris Platform: Q&A with Virginia Ramachandran, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNbG5PNlRzWDVtVzBiUERSTk5pTVEwaE5tb3lheEFZaVNsb0xDRmhCNXBPcTYtN3VJNHI2LVZ1ZjdjY1lwTFJoWTVNM2VITzd0NnU3QjFXQXV0bjdfdEFGd3h3SzVsdzJ6UWxjSkhuTTJrTlRCU2pDZm91VG9wRC1RYzNWNG1rSU5QS2lINTl2blhIXzBsTmU1bFR4RGVrYXotYkJDUXZUcjlRNG9YWXU3UnNJajk?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "9e77a10edf7c0186144b",
-      "title": "Cochlear Dead Regions and Hearing Aid Fittings: An Interview with Kevin Munro, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNUTM5a1FtZHN3Qy1Sb1dXWHA1MTVSYy1qY2h2a2g4YkJnMG81YzVEZ2ZjZHpYLWNtMGM1VHdEeHBMeGNCbEJoOTZSRDFORTZmTGFZd2NvUnFlMGlIUVhBc2oxcWMzZEVUeUNSZ3NtVTV5dXVSNnRZY3N4Z3pmbVEwRnB4OUxpMElSbnU2V01VcVdjcmFHdWxEVXVuTzBsX3o2TXhwZ05GRE1GYnpoV0NHWWg4ZGFlbkVIRG4tNncxaGdBem1OQ0tTVFQ5aFF0VVowWDFN?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "b43acd006f4200724123",
-      "title": "Aging, Hearing, Cognition, and Neuropsychology: Interview with Boaz M. Ben-David, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE04SnVtcjRHOVZmUmJNMVBnQnNjUTB6YTBuYUFyVW9Yc3hiTmRVTjRBamYtelFEdGZNdV95OG4xc1J5YnQ4dmJEQ2RwR0dEQVYzZFh1aEsxSDRYaUJHRG1oVTJtLVdUY29iSWc?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "1e9af2f71a85f7d32525",
-      "title": "Pediatrics, the LMH Test, and Hearing Care in Hospice: An Interview with Jane Madell, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPOG40MTY4UF9XYVUwUzR3Wks2eUxmUmhHQndOWFhWdnloM2pZdFE0c2FXZzlKYmJoWDFtT1c0MmtiNDRVMlVoejNfTVFDM2VRdW5oTkxLUnd2bDZLWmVISWpqNlNydnltS3FtY0JHaURlMEZXbWVFSHVRX2hSY1RSaksyWEJ6a294bE9Fc21CRlVjRzhBMXc4WVpqb0ZESm5LOHd4eTBEYXB0WXJCc1ltSDBZY3FOZW9lV0hLQ09seTVpUThfVDdZLVF6TnpxWGNEdVJ4eFZaWVhJd1c1S1Fqclhn?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "b3989e3617d51ac6feca",
-      "title": "Speech, Language & Hearing Sciences PhD Candidate Defne Abur Awarded NIH Grant - Boston University",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNeGFHd0lGNWVNcUp2ZFlPR0RUMzd5U2t1WFBCeUctVm5ucC1JSUhkUDQ3VFlXdEFleHV0dFFhdkluTkdNZ05uX0dHRGhHN3hFMnpLUnNBa2ZwdHplTHNrWXNldHlyMFlBSXhwTFEtenlPT25MRE94TEJBa0R4bm42VnBtMkR6NWpvdVdCV1QwSGJSOHFXMnZCQVBR?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Boston University",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "c1e45ab9d26dca59e1f8",
-      "title": "Western PhD candidate advocates for hearing loss awareness in primary care - Western University",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9ISmJIVWdleEIyY0ZXR1REaEEyRGVPLUdqYjV2Y3lESXZhUXByX2ZuX0FLeEZZWmVfWElKV3l5ZVhjeDFCcnQyMUY5M2hDVGxTQ1c3LWNPY0VzVEY0MEdFTzBraUUzR2I5VVFOSlpaR3FaaWEtNG1lckln?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Western University",
-      "region": "Canada",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "882020518b96cfbf59ef",
-      "title": "NAL, CAEPs, OTC Hearing Aids, and More: An Interview with Brent Edwards, PhD - The Hearing Review",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbVN3MDFXdjVKaHNaaFdhZGJWUHFPMWFySEQ4a0J6SVVHWEZRSjF6cGR2cmFwVUFDcU5tS2F4SE1iTnFOdmt3WXlYZU5vTFlXNnRqNV8za1NqRmVYWmdLM0VHZnp0a0FnQzB1RHFUOFAtYm9CS2F4aGpEOXdlZHN1ZzRwT0VmcElCd053WWhDXzBJbEh0dzZpVjJzWnNTNmd0OEJoSTRqUQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "The Hearing Review",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "57699e58c68f719fc893",
-      "title": "Doctoral graduate championing Pacific families in hearing health - University of Auckland",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSzBlbzJKUktWdGx3T0FGbnRFVzhkVlNjYlRGRTlQUWJWYnFDaU52WmZld19zMjNRc1R6SGRWNEdsMzdUNzBYSHRHMnJXNmo2dVhGdGZVX1hrX05ZSGY0R0JaUDctNXNxZVRLd1ozWERWM2Fia28zT2hOdkx1U01Ha19JRjRUdmZBaHNSaURfa1ZTWmkxSnN2NTdtWlJJeFVkRVpxalM4UlRLdGpxRkVQZGxhSFhYMHJmWVNfZ3NuamM?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "University of Auckland",
-      "region": "New Zealand",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "26b5fad00a79973a3a9a",
-      "title": "Daily briefing: 14 things PhD students liked hearing from their supervisors - Nature",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1SVWJlbzFoMU8xZHMwclo1enhITmlMX25aREhSMnlBQ25tSjJWM1c5enVwUFVvZEtLcUNLd1gzMlZtUzZhZnZwOG9nbjFOOWZ4OVhHT2dHSmhHNUx0Z21F?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Nature",
-      "region": "Unspecified",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
-    },
-    {
-      "id": "26d5f1fba38dbc57b7ee",
-      "title": "Appeal hearing held for York University PhD student convicted of sexual assault - Global News",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQWHZ0QUF1UUtqMmwzblhLWVpwMnFjSkYzcFpraUZpYkxBMEZxWjRDUGdpYlpKRTR1WGxFdmNjNnZpQjg1dThndGVJRGVXWXl1Vi1BWHYwc0FTTnhFX3NVb1VCTlU0OW52WEdXaG00anhHTTN2SlZPdFVzdHNlMDEwcTVrR24yby1MdkZ5TjI3SW9KU0NMZmtPMVlZVTYyRWtXdTNCcnFvTjR5eVB0eUY5aVJzT2h1QQ?oc=5",
-      "organisation": "Verify institution at original link",
-      "source": "Global News",
-      "region": "Canada",
-      "field": "Hearing & auditory research",
-      "discovered": "2026-10-27",
-      "deadline": null,
-      "summary": "Unverified discovery lead. Check funding, PhD status, deadline and availability on the institution website."
+      "source": "Web vacancy discovery: \"PhD\" \"audiology\" \"funded\" \"deadline\"",
+      "status": "ok",
+      "candidates": 0
     }
   ],
-  "note": "Discovery leads only. Deadlines and openings are not verified; do not treat feed absence as exhaustive search."
+  "rejected_reasons": {
+    "conflicting_deadlines_review": 1,
+    "not_doctoral_vacancy": 25,
+    "not_auditory_research": 2,
+    "deadline_or_rolling_intake_unverified": 1
+  },
+  "page_errors": [
+    {
+      "url": "https://www.bcbl.eu/en/join-us/job-offers/phd-position-auditory-processing-l2",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.bcbl.eu/en/join-us/job-offers/phd-position-3dtechsign-bc",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/TA_Vierock.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/PhD_student_Vierock.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/CRC1690_B01_Postdoc.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/260715_Software_Elektronik-Ingenieur.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/260715_PhD_student_Otof.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    },
+    {
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/dl/job/250324_PhD_student_Experimental_Otology.pdf",
+      "error": "PDF unsupported by lightweight extractor"
+    }
+  ],
+  "candidate_pages": 37,
+  "pages_attempted": 37,
+  "note": "Only PhD vacancy pages with an explicit future deadline or rolling applications are displayed. Funding may remain unspecified. Conflicting or missing deadlines are withheld. This feed is not exhaustive."
 }
