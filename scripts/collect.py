@@ -135,12 +135,15 @@ def institution_links(html,base,adapter):
         elif adapter=='ucl_studentships':
             if not ('/phd-studentships/' in path and ('hearing' in slug or 'cochlear' in slug or 'deaf' in slug or 'auditory' in slug)):
                 continue
+        elif adapter=='southampton_projects':
+            if not ('/study/postgraduate-research/projects/' in path and HEARING.search(title+' '+label)):
+                continue
         elif adapter=='macquarie_scholarships':
             if not ('/scholarship-search/' in path and ('hearing' in slug or 'cochlear' in slug or 'auditory' in slug or 'listening' in slug)):
                 continue
         else:continue
         if not HEARING.search(slug+' '+block):continue
-        if not (PHD.search(slug+' '+block) or adapter=='macquarie_scholarships'):continue
+        if not (PHD.search(slug+' '+block) or adapter in ('macquarie_scholarships','southampton_projects')):continue
         if len(title)<12 or title.lower() in ('more information','read more','apply now'):
             title=label if len(label)>12 else path.rstrip('/').split('/')[-1].replace('-',' ').title()
         key=stable_id(url)

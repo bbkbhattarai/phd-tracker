@@ -474,6 +474,14 @@
       "url": "https://www.bcbl.eu/eu/phd-position-making-sense-sensory-world-perceptual-learning-human-brain",
       "region": "Europe",
       "type": "direct-vacancy"
+    },
+    {
+      "id": "southampton-attentive-ear",
+      "name": "Southampton · The Attentive Ear: Listening Fatigue (Official PhD Advert)",
+      "title": "The attentive ear: AI to decode listening fatigue from wearables",
+      "url": "https://www.southampton.ac.uk/study/postgraduate-research/projects/the-attentive-ear-ai-to-decode-listening-fatigue-from",
+      "region": "UK",
+      "type": "direct-vacancy"
     }
   ],
   "institution_indexes": [
@@ -500,6 +508,14 @@
       "adapter": "macquarie_scholarships",
       "region": "Australia",
       "max_links": 12
+    },
+    {
+      "id": "southampton-engineering-listings",
+      "name": "University of Southampton · Engineering PhD advertised projects",
+      "url": "https://www.southampton.ac.uk/study/postgraduate-research/engineering",
+      "adapter": "southampton_projects",
+      "region": "UK",
+      "max_links": 20
     }
   ]
 }

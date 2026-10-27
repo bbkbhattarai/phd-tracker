@@ -1,46 +1,13 @@
-# PhD Research Radar v2.4: Worldwide vacancy and lab expansion
+# PhD Research Radar v2.5: Source Diagnostics + UK University Monitoring
 
-This is a **targeted update** for your existing GitHub Pages repository:
-`https://github.com/bbkbhattarai/phd-tracker`
+Incremental update to the working v2.4 GitHub Pages app. It leaves `data/opportunities.json` and all browser storage intact.
 
-## Replace these files
+New: a dashboard **View source errors** button with detailed failed-source messages and links, full source health diagnostics, rejection statistics, JSON diagnostics export, and **Add an advert URL** on Needs review for blocked listings such as FindAPhD. The manually added records stay local to this browser.
 
-- `scripts/collect.py`
-- `scripts/sources.json`
-- `app.js`
-- `index.html`
-- `style.css`
-- `sw.js`
+Direct monitoring now includes the official Southampton *Attentive Ear* research studentship and a Southampton engineering PhD projects listing connector. Source: https://www.southampton.ac.uk/study/postgraduate-research/projects/the-attentive-ear-ai-to-decode-listening-fatigue-from .
 
-Upload folder contents to the **repository root**, preserving the `scripts` directory.
+FindAPhD is still returning HTTP 403 for automated GitHub Actions requests. This update does not circumvent access restrictions or pretend an unmonitored source has been searched. Instead, it adds direct original-university-page monitoring and a manual fallback.
 
-**Do NOT delete or replace `data/opportunities.json`.** This ZIP intentionally excludes the feed. The GitHub Actions collector updates it on the next run.
+**To deploy:** Export Settings backup. Replace `index.html`, `app.js`, `style.css`, `sw.js`, `scripts/collect.py`, and `scripts/sources.json` with these versions, preserving their paths. Keep your existing `data/opportunities.json` and working `.github/workflows/search.yml`. Commit to main, check site, run the Discover PhD opportunities workflow, and Refresh feed.
 
-**Do NOT replace `.github/workflows/search.yml`.** Your existing working **Discover PhD opportunities** workflow can continue to run `python scripts/collect.py` and commit the updated feed. The Python requirements are unchanged.
-
-## Steps
-
-1. In the current app, open Settings and export a JSON backup of your local application data.
-2. Replace the six files listed above in the existing repository and commit to `main`.
-3. In Actions, manually run **Discover PhD opportunities** once to generate an updated feed.
-4. Check `data/opportunities.json`: `generated_at`, `opportunities`, `review_queue` and `source_health`.
-5. Open `https://bbkbhattarai.github.io/phd-tracker/` and select **Refresh feed**. A hard refresh may be needed on a previously installed PWA.
-6. Check both **Opportunities** (future deadlines) and **Needs review** (recruitment leads or adverts with unconfirmed deadlines), and use the regional dropdown in each view.
-
-## Monitoring and limitations
-
-- 31 configured scheduled discovery sources, including **5 FindAPhD URLs known to return HTTP 403 from GitHub Actions**. These blocked sources are *not* claimed as searched successfully.
-- 8 direct individual advertised PhD pages, 3 institutional vacancy indexes, 14 recruiting laboratory pages and the AUDITORY recruitment archive.
-- 46 research / programme reference pages. Reference listings are useful links, but they are not individually scanned for vacancies.
-- Geographical coverage of directly monitored pages: UK, continental Europe, USA, Canada, Australia, New Zealand and Hong Kong. The wider Asian research directory is reference-only until audited vacancy connectors are built.
-- No new listings are fabricated or manually hardcoded into the feed. Every displayed record must come from an accessible original page during a successful collection, or be a previously collected record carried forward as needing recheck.
-- The collector can misinterpret complex website layouts and date statements. Check the original vacancy before applying, especially funding terms and eligibility. A blocked page means **unknown**, never “no vacancies”.
-- In-app custom source links are private local settings; adding them **does not** automatically schedule GitHub Actions crawling. For scheduled monitoring, add an appropriate adapter to `scripts/sources.json` and collector logic.
-- Your saved applications and notes remain in local browser storage under the **same key** used by v2.3. GitHub hosts only public feed data and app code. Back up periodically, especially before browser resets.
-
-## Validation
-
-- Collector Python syntax compiles.
-- 21 offline pytest cases pass, including UK/EU/Australian dates, Canadian/NZ/HK lab recruitment, index parsing, closed lab rejection and mock end-to-end pipeline.
-- JavaScript syntax checks pass.
-- **Live GitHub Actions checks have not been run in this environment.** Some institutional sites may return 403, 404, timeouts or unfamiliar layouts; review source diagnostics after deployment.
+**Caution:** A direct vacancy listing can be accessible in a browser but blocked for GitHub Actions. Error diagnostics will reveal this; the source will not be silently treated as zero vacancies. The official Southampton listing says 'competition funded'; this is not guaranteed full funding.
