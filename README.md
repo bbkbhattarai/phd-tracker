@@ -1,38 +1,42 @@
-# PhD Research Radar | GitHub Pages PWA
+# PhD Research Radar v1.3: Vacancy-First Collector
 
-A personal PhD lead discovery and application tracker for hearing sciences. **Private records are stored only in the browser localStorage**; they are not sent to GitHub. The public discovery feed is committed to the repository.
+This is a drop-in update for `bbkbhattarai/phd-tracker` hosted on GitHub Pages. **Do not clear browser local storage.** The local application database key is unchanged. Export a backup in Settings before updating.
 
-## Publish on GitHub Pages
+## What changed
 
-1. Create a **public** GitHub repository named `phd-radar`.
-2. Upload **all contents of this folder**, including `.github/workflows/search.yml` (GitHub's upload web interface can handle nested folders when dragging folder contents, but check hidden files; Git command line or GitHub Desktop is more reliable).
-3. In repository **Settings > Pages**, set **Build and deployment > Deploy from a branch**, select `main` and `/ (root)`, and Save.
-4. In **Actions > Refresh PhD opportunity leads > Run workflow**, start the first collection. If prompted, enable workflows.
-5. Visit `https://YOUR-GITHUB-USERNAME.github.io/phd-radar/`. To install on mobile, use Safari Share > Add to Home Screen (iOS), or browser menu > Install app / Add to Home Screen (Android). Desktop install availability varies by browser.
-6. If Actions cannot push, check repository **Settings > Actions > General > Workflow permissions** and enable read/write permissions (subject to your repo/org policies).
+- Removes Google News RSS headline discovery. Searches the ordinary web index and **directly reads public vacancy listing pages**, then checks candidate original pages before publication.
+- Prioritises actual advertised PhD studentships, doctoral researcher positions and applications over generic articles/programme descriptions. Postdocs, news, expired adverts and missing/ambiguous deadlines are excluded from the active feed.
+- Accepts adverts with a clearly dated future application deadline or explicitly stated rolling intake. Does **not** infer funding or eligibility from a university's reputation.
+- Extracts explicit deadlines, funding status, a region, original URL and last verification date. Rejects conflicting deadline information rather than guessing which applies.
+- Reports `source_health`, `rejected_reasons`, `page_errors` and candidate totals in `data/opportunities.json`. Sources that block automated access remain visible as failed checks.
+- Existing unverified Google News results are **not carried forward** into the refreshed public feed. Previously saved personal applications remain in browser storage.
 
-## Add more search sources
+## Important limitations
 
-- **App > Sources > Add a source** stores a private local bookmark plus a one-click targeted web search.
-- For automatic daily searches, add query phrases or custom domain names in `scripts/sources.json` **in the GitHub repository**, then commit. E.g. `"custom_sites":["ucl.ac.uk","nottingham.ac.uk"]`.
-- The app cannot automatically write to your GitHub repository from a static webpage. The configuration is deliberately separate for privacy and security.
+This is a **conservative beta**, not a guaranteed comprehensive live university vacancy database. HTML vacancy extraction can miss legitimate positions, websites may restrict bots, Bing RSS can rate-limit or fail, and multiple date formats may be ambiguous. No real-time live-source test was possible in this build environment. Always confirm vacancy status, funding eligibility and application deadline on the institution's own site. Direct source lists are selected high-value pages, not all 125 institutions; the full institution directory remains a reference catalogue. The collector does not directly scrape every institution.
 
-## Important boundaries
+## Installation
 
-- Search uses Google News public RSS as an initial discovery mechanism, not direct scraping of all PhD portals. This is incomplete, and some sources block indexing or never appear in news results. The workflow reports errors and can be extended with source-specific permitted APIs/feeds.
-- A 'lead' is **not a verified open PhD position**; funding and closing dates must be verified at the linked institution. Unknown dates are not removed as 'expired'. Leads older than 120 days are removed from the **public feed**, but local saved application records are not exported to GitHub. To retain past feed items offline, export local backups.
-- In-app deadline reminders show while the app is open, not push notifications while it is closed. Scheduled GitHub Action runs may be delayed or skipped.
-- Data does **not** automatically sync across browsers, devices or private/incognito sessions. Clear-site-data actions may wipe local records. Export a JSON backup regularly.
-- Google News result URLs may point to secondary articles and may not resolve directly to a university listing.
-- GitHub Pages hosts public static files. Never commit application notes, personal information or exported backup files.
+1. From your running app, **Settings → Export backup**.
+2. Upload this package's files to the **root** of your existing GitHub repository, including `.github/workflows/search.yml`, `scripts/collect.py`, `scripts/sources.json`, `app.js`, and `sw.js`.
+3. Do **not** upload or overwrite `data/opportunities.json` from an older ZIP. Leave the current public feed in place until the next workflow run overwrites it. The new collector will intentionally rebuild the feed from newly verified pages, removing old unverified/news results.
+4. Commit to `main`.
+5. **Actions → Refresh PhD opportunity leads → Run workflow**. Look for green collection and commit steps.
+6. Open `https://bbkbhattarai.github.io/phd-tracker/data/opportunities.json`; check `schema_version: 3`, `source_health`, `rejected_reasons`, and `opportunities`. Then refresh the app. A short or empty feed is possible because strict verification rejects unconfirmed candidates.
 
+## Adding directly monitored pages
 
-## Worldwide geography update
-The scheduled collector now uses worldwide search queries and additional regional institutional searches. The user interface shows a region selector only for regions represented in the currently displayed results. Unknown institutions appear as **Location unspecified** rather than being assigned incorrectly. Google News RSS cannot guarantee comprehensive worldwide monitoring or reliable live vacancy status. Additional universities in the Sources tab are reference links; to add domains to the scheduled worldwide collector, edit `scripts/sources.json` in GitHub.
+Edit `scripts/sources.json`. Use `direct_sources` for public, accessible *listing pages* that link to individual current vacancies; `custom_vacancy_urls` for exact advertised vacancy URLs. Source pages recorded in the 125-institution directory are not automatically monitored. An entry saved in the app's Sources tab is local to that browser until also added to the JSON file. `max_candidate_pages` and `max_search_queries` control GitHub Actions resource usage.
 
-### Upgrade existing GitHub Pages site
-Upload these files in place of the originals, preserving their paths, including the hidden `.github` directory. Your personal applications and seen/saved state use the existing `phdradar-state-v2` browser storage key and are not reset. Before upgrading, use Settings > Export backup. After uploading, run the Refresh PhD opportunity leads workflow once, then reload the web app (a hard reload may help).
+## Test locally
 
+```bash
+python -m unittest discover -s tests -v
+python scripts/collect.py
+```
 
-## Version 1.2: International research directory
-The Resources page reads `data/source_catalog.json`, with a catalogue derived partly from the American Academy of Audiology US PhD directory and curated international research programme pages. Entries represent potential doctoral research institutions, NOT confirmed current openings. The daily search script includes 14 rotating catalogue site-scoped Google News searches in addition to core worldwide searches; this does NOT directly crawl each lab or guarantee that openings are indexed. App user-added sites stay in browser storage and do not automatically enroll in the scheduled workflow. **Keep your existing `data/opportunities.json`** when deploying this update and export your personal backup from Settings first. Replace app.js, style.css, sw.js, scripts/collect.py, scripts/sources.json, and add data/source_catalog.json. Your search.yml is unchanged and its corrected `fi` must remain intact.
+The second command requires internet access. The first uses built-in fixtures and does not.
+
+## Data preservation and privacy
+
+Personal tracked projects and notes stay in your browser's local storage. They are not committed by GitHub Actions. The public results feed in your repository is visible to anyone visiting the site. Different browsers/devices do not synchronize local records.

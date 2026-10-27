@@ -1,25 +1,76 @@
 {
-  "queries": [
-    "PhD studentship auditory neuroscience hearing",
-    "PhD cochlear implant research studentship",
-    "PhD audiology electrophysiology ABR EEG",
-    "PhD psychoacoustics hearing speech perception",
-    "PhD hearing aids signal processing funded",
-    "PhD hearing impairment auditory brainstem research",
-    "PhD otoacoustic emissions auditory evoked potentials",
-    "PhD vestibular auditory neuroscience studentship",
-    "hearing PhD site:findaphd.com",
-    "audiology PhD site:jobs.ac.uk",
-    "PhD auditory neuroscience site:euraxess.ec.europa.eu",
-    "PhD hearing site:academicpositions.com",
-    "PhD auditory neuroscience site:academictransfer.com",
-    "PhD auditory site:ucl.ac.uk",
-    "funded PhD hearing site:euraxess.ec.europa.eu",
-    "funded PhD auditory site:findaphd.com",
-    "PhD cochlear auditory hearing studentship worldwide"
+  "search_queries": [
+    "\"PhD\" \"auditory\" \"apply\"",
+    "\"PhD studentship\" \"hearing\" \"closing\"",
+    "\"PhD position\" \"cochlear\" \"application deadline\"",
+    "\"PhD\" \"psychoacoustics\" \"apply\"",
+    "\"doctoral researcher\" \"auditory neuroscience\" \"deadline\"",
+    "\"PhD\" \"audiology\" \"funded\" \"deadline\""
   ],
-  "custom_sites": [],
-  "note": "Catalogued programmes are reference sites, not guaranteed openings. Collector checks 14 rotating site-scoped research queries daily in addition to global queries; site search depends on Google News indexing.",
-  "catalog_file": "data/source_catalog.json",
-  "daily_catalog_batch": 14
+  "direct_sources": [
+    {
+      "name": "FindAPhD - hearing",
+      "url": "https://www.findaphd.com/phds/?Keywords=hearing",
+      "kind": "listing",
+      "region": "Worldwide"
+    },
+    {
+      "name": "FindAPhD - auditory",
+      "url": "https://www.findaphd.com/phds/?Keywords=auditory",
+      "kind": "listing",
+      "region": "Worldwide"
+    },
+    {
+      "name": "FindAPhD - audiology",
+      "url": "https://www.findaphd.com/phds/?Keywords=audiology",
+      "kind": "listing",
+      "region": "Worldwide"
+    },
+    {
+      "name": "FindAPhD - cochlear implants",
+      "url": "https://www.findaphd.com/phds/?Keywords=cochlear%20implant",
+      "kind": "listing",
+      "region": "Worldwide"
+    },
+    {
+      "name": "FindAPhD - psychoacoustics",
+      "url": "https://www.findaphd.com/phds/?Keywords=psychoacoustics",
+      "kind": "listing",
+      "region": "Worldwide"
+    },
+    {
+      "name": "jobs.ac.uk - hearing",
+      "url": "https://www.jobs.ac.uk/search/?keywords=hearing+PhD",
+      "kind": "listing",
+      "region": "UK"
+    },
+    {
+      "name": "EURAXESS - auditory",
+      "url": "https://euraxess.ec.europa.eu/jobs/search?keywords=auditory",
+      "kind": "listing",
+      "region": "Europe"
+    },
+    {
+      "name": "AcademicTransfer",
+      "url": "https://www.academictransfer.com/en/jobs/?q=auditory",
+      "kind": "listing",
+      "region": "Europe"
+    },
+    {
+      "name": "BCBL jobs",
+      "url": "https://www.bcbl.eu/en/join-us/job-offers",
+      "kind": "listing",
+      "region": "Europe"
+    },
+    {
+      "name": "G\u00f6ttingen auditory neuroscience jobs",
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/job.html",
+      "kind": "listing",
+      "region": "Europe"
+    }
+  ],
+  "custom_vacancy_urls": [],
+  "max_candidate_pages": 55,
+  "max_search_queries": 6,
+  "note": "Only original vacancy pages with explicit live deadlines/rolling admissions and PhD evidence qualify. Search is not guaranteed exhaustive; failed sources are reported."
 }
