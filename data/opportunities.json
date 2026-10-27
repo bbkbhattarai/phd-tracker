@@ -1,11 +1,30 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-27T21:14:26.928011+00:00",
+  "generated_at": "2026-10-27T21:42:04.710723+00:00",
   "opportunities": [
     {
       "category": "advertised_phd",
-      "deadline": "2026-12-11",
+      "deadline": "2026-11-08",
       "funding": "Funding mentioned (details unverified)",
+      "region": "Europe",
+      "verification": "deadline_verified",
+      "summary": "PhD position - AUDITORY PROCESSING L2 (A.S.) at the BCBL- Basque Center on Cognition Brain and Language (San Sebastián, Basque Country, Spain) www.bcbl.eu The Basque Center on Cognition Brain and Language (BCBL) in San Sebastian (Basque Country, Spain) is looking for a PhD student to join its team. 1. INFORMATION ABOUT THE POSITION Position: PhD student Researcher Profile: First Stage Researcher (R1- up to the point of PhD) Number of vacancies: 1 Project: Foreign Language Learning and Auditory Processing Precision (FLLAPP; PID2025-170588NB-I00) Funding sources: Spanish Ministry of Science, Innovation and Universities Location: Spain > San Sebastian Research Field: Psychology > Cognition and ",
+      "id": "5444a4afd6b60e652084",
+      "title": "PhD position - AUDITORY PROCESSING L2 (A.S.)",
+      "url": "https://www.bcbl.eu/en/join-us/job-offers/phd-position-auditory-processing-l2",
+      "source": "BCBL · European auditory and neuroscience PhD vacancies",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "research assistant, representing six nationalities",
+      "intake": null,
+      "supervisor": "Dr Antje Stoehr",
+      "deadline_note": null
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2026-12-11",
+      "funding": "Not specified",
       "region": "UK",
       "verification": "deadline_verified",
       "summary": "Project title Improving the school-age health and education outcomes of deaf children living with cochlear implants (SOCI) Supervisors Dr Rachel Knowles Professor Leah Li Dr Joachim Tan Background Approximately 1 in every 1000 children born in England each year has permanent bilateral hearing loss, with lifelong impact on speech, language, cognitive and social development, literacy, and social-emotional wellbeing.1 Around 40% of deaf children have non-hearing health conditions making their needs more complex.2 Most (78%) deaf children in the UK attend mainstream schools, however they often lag behind their peers.3 Moreover healthcare visits disrupt school attendance and exacerbate poor educa",
@@ -15,18 +34,137 @@
       "source": "UCL · Cochlear Implant Child Outcomes Studentship",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "PhD Studentships Application Process page, which contains important information about the application process, key dates and FAQs",
       "intake": null,
       "supervisor": "Dr Rachel Knowles Professor",
+      "deadline_note": null
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2026-11-08",
+      "funding": "Funding mentioned (details unverified)",
+      "region": "Europe",
+      "verification": "deadline_verified",
+      "summary": "PhD position - AUDITORY PROCESSING L2 (A.S.) at the BCBL- Basque Center on Cognition Brain and Language (San Sebastián, Basque Country, Spain) www.bcbl.eu The Basque Center on Cognition Brain and Language (BCBL) in San Sebastian (Basque Country, Spain) is looking for a PhD student to join its team. 1. INFORMATION ABOUT THE POSITION Position: PhD student Researcher Profile: First Stage Researcher (R1- up to the point of PhD) Number of vacancies: 1 Project: Foreign Language Learning and Auditory Processing Precision (FLLAPP; PID2025-170588NB-I00) Funding sources: Spanish Ministry of Science, Innovation and Universities Location: Spain > San Sebastian Research Field: Psychology > Cognition and ",
+      "id": "c72d71267f4fbe3b26a0",
+      "title": "PhD position - Auditory Processing L2",
+      "url": "https://www.bcbl.eu/eu/phd-position-auditory-processing-l2",
+      "source": "BCBL Spain · PhD in Auditory Processing and EEG",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "research assistant, representing six nationalities",
+      "intake": null,
+      "supervisor": "Dr Antje Stoehr",
+      "deadline_note": null
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2027-03-01",
+      "funding": "Funding mentioned (details unverified)",
+      "region": "Australia",
+      "verification": "deadline_verified",
+      "summary": "National cochlear implantation guidelines This project offers an opportunity to contribute to a nationally significant initiative focused on improving access to high-quality cochlear implant care across Australia. An NHMRC partnership project to implement and evaluate Australia’s National Living Guidelines for Adult Cochlear Implantation. Co-design solutions to improve access, referral pathways, service delivery, uptake and outcomes nationwide. Key details 20268958 PhD Applications close on 1 March 2027 Domestic, International Language and linguistics, medicine and health, science $40,900 p.a. (2027 rate) About the scholarship The PhD project provides hands-on experience in: implementation s",
+      "id": "99fd916159e6e0d867f5",
+      "title": "National cochlear implantation guidelines PhD scholarship",
+      "url": "https://www.mq.edu.au/research/phd-and-research-degrees/how-to-apply/scholarship-opportunities/scholarship-search/national-cochlear-implantation-guidelines",
+      "source": "Macquarie · National Cochlear Implantation Guidelines PhD",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "National cochlear implantation guidelines This project offers an opportunity to contribute to a nationally significant initiative focused on improving access to high-quality cochlear implant care across Australia. An NHMRC partnership project to implement and evaluate Australia’s",
+      "intake": null,
+      "supervisor": "Dr Bamini Gopinath",
+      "deadline_note": null,
+      "eligibility_note": "International applicants mentioned: verify funding eligibility",
+      "funding_note": "$40,900 p.a."
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2026-12-01",
+      "funding": "Funding mentioned (details unverified)",
+      "region": "UK",
+      "verification": "deadline_verified",
+      "summary": "Image × × PhD Studentships at the Brain Network Dynamics Unit A brief introduction The Unit hosts PhD students for research projects aligned to empirical neuroscience, computational neuroscience, biomedical engineering, and experimental medicine with a focus on neurological and psychiatric brain conditions. We aim to empower future generations of researchers, technologists and clinicians to draw on their learning and experience of transdisciplinary research to tackle important unmet challenges in discovery and translational neuroscience. We offer exceptional opportunities for students wishing to pursue neuroscience research across species at multiple scales and within an in vivo context. PhD",
+      "id": "fb7aff867f759696e364",
+      "title": "DPhil studentship in closed-loop auditory stimulation during sleep",
+      "url": "https://www.bndu.ox.ac.uk/phd",
+      "source": "Oxford · Closed-loop Auditory Stimulation DPhil",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "PhD Studentships at the Brain Network Dynamics Unit A brief introduction The Unit hosts PhD students for research projects aligned to empirical neuroscience, computational neuroscience, biomedical engineering, and experimental medicine with a focus on neurological a",
+      "intake": null,
+      "supervisor": "Dr Benoit Duchet",
+      "deadline_note": null
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2026-11-08",
+      "funding": "Funding mentioned (details unverified)",
+      "region": "Europe",
+      "verification": "deadline_verified",
+      "summary": "PhD position - Making sense of the sensory world: perceptual learning in the human brain (A.T.) at the BCBL- Basque Center on Cognition Brain and Language (San Sebastián, Basque Country, Spain) www.bcbl.eu The Basque Center on Cognition Brain and Language (BCBL) in San Sebastian (Basque Country, Spain) is looking for a PhD student to join its team. 1. INFORMATION ABOUT THE POSITION Position: PhD student Researcher Profile: First Stage Researcher (R1- up to the point of PhD) Number of vacancies: 1 Project: Making sense of the sensory world: perceptual learning in the human brain Funding sources: Spanish Ministry of Science, Innovation and University (202 PID2025-169017NA-I00) Location: Spain ",
+      "id": "d235664aa079369665fb",
+      "title": "PhD in perceptual learning in the human brain",
+      "url": "https://www.bcbl.eu/eu/phd-position-making-sense-sensory-world-perceptual-learning-human-brain",
+      "source": "BCBL Spain · PhD in Multisensory Perceptual Learning",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Application deadline: 08/11/2026 Information about the project: Perception is extraordinary",
+      "intake": null,
+      "supervisor": null,
       "deadline_note": null
     }
   ],
   "review_queue": [
     {
+      "category": "advertised_phd",
+      "deadline": null,
+      "funding": "Funding mentioned (details unverified)",
+      "region": "Australia",
+      "verification": "review_required",
+      "summary": "Skip to Main Content Type in a search term Search Follow Follow LinkedIn Facebook Instagram TikTok YouTube Wearable AI for Intelligent Listening UNSW Scientia PhD Project This project is part of the UNSW Scientia PhD Scholarship Scheme Successful applicants will receive an annual stipend and a one-off Global Mobility Grant to conduct international engagement activities. Learn about UNSW Scientia PhDs This project will develop multimodal artificial intelligence that enables wearable systems to understand what a user intends to listen to in complex, dynamic environments. Current hearing and wearable assistive technologies mainly process acoustic signals, but do not explicitly model listening i",
+      "id": "32d9a500d5032247ae93",
+      "title": "PhD: Wearable AI for Intelligent Listening",
+      "url": "https://www.unsw.edu.au/research/hdr/our-projects/wearable-ai-for-intelligent-listening",
+      "source": "UNSW · Wearable AI for Intelligent Listening",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Skip to Main Content Type in a search term Search Follow Follow LinkedIn Facebook Instagram TikTok YouTube Wearable AI for Intelligent Listening UNSW Scientia PhD Project This project is part of the UNSW Scientia PhD Scholarship Scheme Successful applicants will receive an annual",
+      "intake": null,
+      "supervisor": "Dr Mahbub Hassan",
+      "deadline_note": null,
+      "eligibility_note": "Domestic/home applicants only: check eligibility",
+      "funding_note": "$39,991 per annum"
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": null,
+      "funding": "Funding described (verify eligibility)",
+      "region": "UK",
+      "verification": "review_required",
+      "summary": "Remote Media URL Opportunity The UCL Deafness, Cognition and Language Research Centre invites expressions of interest from highly motivated students who wish to undertake a PhD project through one of its associated degree programmes. DCAL brings together linguists, psychologists and neuroscientists studying language, cognition and the brain from the perspectives of deafness and deaf ways of communicating. Funding and Science Communication Officer role The funding package is expected to cover a stipend and tuition fees for four years, subject to final confirmation by UCL. It includes 180 hours of work each year as DCAL Science Communication Officer, equivalent to roughly half a day each week.",
+      "id": "e9eba916a0a2ccf3c14a",
+      "title": "DCAL PhD Funding and Demonstratorship 2027",
+      "url": "https://www.ucl.ac.uk/brain-sciences/deafness-cognition-and-language-research-centre-dcal/dcal-phd-funding-and-demonstratorship-science-communication-officer-2027",
+      "source": "UCL · Deafness, Cognition and Language PhD Funding",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Remote Media URL Opportunity The UCL Deafness, Cognition and Language Research Centre invites expressions of interest from highly motivated students who wish to undertake a PhD project through one of its associated degree programmes. DCAL brings together linguists, psychologists ",
+      "intake": null,
+      "supervisor": "Dr Kearsy Cormier",
+      "deadline_note": null,
+      "funding_note": "$250,000 "
+    },
+    {
       "category": "lab_recruiting",
       "deadline": null,
-      "funding": "Not specified",
+      "funding": "Student funding not confirmed",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "The lab is always interested in hearing from motivated individuals passionate about auditory neuroscience. Students and postdocs interested in basic scientific research are encouraged to reach out to Dr Kirupa Suthakar to inquire about opportunities to contribute. Postdoctoral Fellows We do not currently have any open postdoctoral positions in the lab. Check back in the future! Lab Manager/Research Technicians We do not currently have any open lab manager/research technician positions in the lab. Check back soon! Graduate Students We are currently accepting graduate students. Prospective students should email Dr Suthakar with a copy of their CV, academic transcript and one-page cover letter ",
@@ -36,7 +174,7 @@
       "source": "UT Dallas · Descending Auditory Circuits Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "accepting graduate students. Prospective students should email Dr Suthakar with a copy of their CV, academic transcript and one-page cover letter describing research interest and relevant previous",
       "intake": null,
       "supervisor": "Dr Kirupa Suthakar",
@@ -45,7 +183,7 @@
     {
       "category": "lab_recruiting",
       "deadline": null,
-      "funding": "Funding mentioned (details unverified)",
+      "funding": "Student funding mentioned; verify terms",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "PhD Opportunities Within Our Lab The Auditory Cognitive Neuroscience Lab is seeking candidates for a PhD program who are interested in auditory processing, specifically related to hearing impairment, aging, tinnitus, hyperacusis and misophonia. The PhD may be obtained in the Department of Speech and Hearing Science or from the Graduate Program in Neuroscience, University of Illinois at Urbana-Champaign. Dr. Husain can mentor PhD students in either program. Our lab has been continuously funded to conduct brain imaging and behavioral research on hearing loss, tinnitus, and misophonia for the past 10 years. Over the past year, our exciting new findings have been published in publications such a",
@@ -55,7 +193,7 @@
       "source": "Illinois · Auditory Cognitive Neuroscience Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "PhD Opportunities Within Our Lab The Auditory Cognitive Neuroscience Lab is seeking candidates for a PhD program who are interested in auditory processing, specifically related to hearing impairment, aging, tinnitus, hyperacusis and misophonia",
       "intake": null,
       "supervisor": "Dr Fatima Husain",
@@ -64,7 +202,7 @@
     {
       "category": "lab_recruiting",
       "deadline": null,
-      "funding": "Not specified",
+      "funding": "Student funding not confirmed",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "Children’s Auditory Research for Educational Success Our research seeks to improve the lives of school-age children with hearing differences. Who We Are The CARES lab is run by Dr. Samantha Gustafson, an Assistant Professor at Indiana University. Our research aims to understand how we can better support school-age children with hearing differences. Learn more Dr. Gustafson is recruiting PhD students for Fall 2027! Check out Indiana University’s PhD Program SLHS PhD Program Reach out to Dr. Gustafson to show your interest Email Dr. Gustafson Interested in participating? Some families participate in our research by coming to our lab at IU Bloomington and others participate virtually. Participa",
@@ -74,7 +212,7 @@
       "source": "Indiana University · CARES Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "recruiting PhD students for Fall 2027! Check out Indiana University’s PhD Program SLHS PhD Program Reach out to Dr. Gustafson to show your interest Email Dr. Gustafson Interested in participati",
       "intake": "Fall 2027",
       "supervisor": "Dr Samantha Gustafson",
@@ -83,7 +221,7 @@
     {
       "category": "lab_recruiting",
       "deadline": null,
-      "funding": "Not specified",
+      "funding": "Student funding not confirmed",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "Auditory and Communication Systems Laboratory Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Professor of Biomedical Engineering Expand information Hide information Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Professor of Biomedical Engineering Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Profes",
@@ -93,10 +231,86 @@
       "source": "Duke · Auditory & Communication Systems Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "seeking graduate students interested in studying auditory physiology, animal behavior, neural computation, or cochlear implants. We have openings of undergraduate students interested in getting i",
       "intake": null,
       "supervisor": "Dr Steven Elia",
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
+      "region": "Canada",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "Alexandre Lehmann (PhD) | Surgical and Interventional Sciences - McGill University McGill University Department of Surgery Surgical and Interventional Sciences Enter your keywords Main navigation Home About SIS Programs Admissions & Applying Faculty Research News & Events Students Staff Resources Contact Us Home Alexandre Lehmann (PhD) Academic title(s): Associate Professor Principal Investigator at the Brain Repair and Integrative Neuroscience Program (BRaIN) at the Research Institute of McGill University Health Centre (MUHC) Principal Investigator at McGill’s Cochlear Implant Research Program Principal Investigator at the Centre for Research on Brain Language and Music (CRBLM) Contact Info",
+      "id": "a41ca828ee5e6fe2f299",
+      "title": "McGill · Cochlear Implant & Auditory Neuroscience Lab",
+      "url": "https://www.mcgill.ca/surgicalandinterventionalsciences/alexandre-lehmann-phd",
+      "source": "McGill · Cochlear Implant & Auditory Neuroscience Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Alexandre Lehmann (PhD) | Surgical and Interventional Sciences - McGill University McGill University Department of Surgery Surgical and Interventional Sciences Enter your keywords Main navigation Home About SIS Programs Admissions & Applying Faculty Research News & Events Student",
+      "intake": null,
+      "supervisor": "Dr Principal Investigator",
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
+      "region": "New Zealand",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "Opportunities Positions are available for talented students to pursue postgraduate degrees, namely Master's of Engineering (ME) and Doctor of Philosophy (PhD). The Communication Acoustics Lab (CAL) is seeking motivated students with strong academic background having interests in the field of digital signal processing, acoustics, the science of hearing, linguistics and psychology. Applicants should hold or be studying towards relevant engineering/science degrees such as Electrical/Electronics/Computer Engineering, Mechatronics Engineering and Computer Science. Applications from non-engineering (e.g. psychology and linguistics) may also be considered for some multi-disciplinary research projec",
+      "id": "f8f79be83124a54f2db8",
+      "title": "University of Auckland · Communication Acoustics Lab",
+      "url": "https://www.cal.auckland.ac.nz/opportunities/",
+      "source": "University of Auckland · Communication Acoustics Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Opportunities Positions are available for talented students to pursue postgraduate degrees, namely Master's of Engineering (ME) and Doctor of Philosophy (PhD). The Communication Acoustics Lab (CAL) is seeking motivated students with strong academic background having interests in ",
+      "intake": null,
+      "supervisor": "Dr Yusuke Hioka",
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
+      "region": "Hong Kong",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "The Laboratory for Language, Learning, and the Brain | The Department of Linguistics and Modern Languages, CUHK | Jobs Home Announcements Publications Media MRI People Current Lab alumni Join Us Baby Lab Contact us Join Us Thank you for your interest in joining our lab! See our lab alumni PhD Studies | Postdocs | Others PhD Studies We are accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept MPhil students into the lab. The application deadline is around Nov. Please also apply for the Hong Kong PhD Fellowship Scheme and list CUHK as your first choice for full ",
+      "id": "9615099d4799f39461d7",
+      "title": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "url": "https://brain.cuhk.edu.hk/joinus.html",
+      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept",
+      "intake": null,
+      "supervisor": null,
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
+      "region": "USA",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For students who are already on campus, filling out this unofficial information form will help me learn more about your background and research goals. PhD students can join the Heinz Lab by applying through the Weldon School of Biomedical Engineering , the Department of Speech, Language, and Hearing Sciences , or through the Integrative Neuroscience track of the PULSe program . Once at Purdue, NIH T32 funding is availab",
+      "id": "1a19971544d73fea1b2f",
+      "title": "Purdue · Auditory Neurophysiology and Modeling Lab",
+      "url": "https://engineering.purdue.edu/HeinzLab/jointhelab",
+      "source": "Purdue · Auditory Neurophysiology and Modeling Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For",
+      "intake": null,
+      "supervisor": null,
       "deadline_note": null
     }
   ],
@@ -137,7 +351,71 @@
       "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=psychoacoustics"
     },
     {
+      "source": "BCBL · European auditory and neuroscience PhD vacancies",
+      "status": "ok",
+      "found": 1,
+      "checked": 1,
+      "message": ""
+    },
+    {
+      "source": "UCL · Direct PhD studentship listing",
+      "status": "no_vacancies_parsed",
+      "found": 0,
+      "checked": 0,
+      "message": "No relevant project links found; check institution page structure"
+    },
+    {
+      "source": "Macquarie · Research Scholarship listings",
+      "status": "no_vacancies_parsed",
+      "found": 0,
+      "checked": 0,
+      "message": "No relevant project links found; check institution page structure"
+    },
+    {
       "source": "UCL · Cochlear Implant Child Outcomes Studentship",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "BCBL Spain · PhD in Auditory Processing and EEG",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "KU Leuven · PhD Objective Hearing Assessment",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://euraxess.ec.europa.eu/jobs/462153"
+    },
+    {
+      "source": "Macquarie · National Cochlear Implantation Guidelines PhD",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "UNSW · Wearable AI for Intelligent Listening",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "UCL · Deafness, Cognition and Language PhD Funding",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "Oxford · Closed-loop Auditory Stimulation DPhil",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "BCBL Spain · PhD in Multisensory Perceptual Learning",
       "status": "verified",
       "found": 1,
       "checked": 1
@@ -221,14 +499,69 @@
       "found": 0,
       "checked": 0,
       "message": "Directory/archive; not used to manufacture vacancies"
+    },
+    {
+      "source": "McGill · Cochlear Implant & Auditory Neuroscience Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "McGill · Music Perception and Cognition Lab",
+      "status": "no_confirmed_opening",
+      "found": 0,
+      "checked": 1,
+      "message": "not hearing-related"
+    },
+    {
+      "source": "University of Auckland · Communication Acoustics Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "CUHK · Auditory Neuroscience Group",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "HTTPSConnectionPool(host='www.auditoryneuroscience.org', port=443): Max retries exceeded with url: /JoinPhD (Caused by SSLError(SSLCertVerificationError(1, \"[SS"
+    },
+    {
+      "source": "Purdue · Auditory Neurophysiology and Modeling Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "University of Sussex · Auditory Cognition Group",
+      "status": "no_confirmed_opening",
+      "found": 0,
+      "checked": 1,
+      "message": "no recruitment evidence"
     }
   ],
   "rejected_reasons": {
     "announcement date missing": 42,
     "lab explicitly reports no open positions": 1,
     "no explicit lab recruitment": 1,
-    "not hearing-related": 1
+    "not hearing-related": 2,
+    "no recruitment evidence": 1
   },
   "page_errors": [],
-  "sources_checked": 50
+  "sources_checked": 63,
+  "regional_counts": {
+    "Europe": 3,
+    "UK": 3,
+    "Australia": 2,
+    "USA": 5,
+    "Canada": 1,
+    "New Zealand": 1,
+    "Hong Kong": 1
+  }
 }
