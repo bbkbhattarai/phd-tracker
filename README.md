@@ -1,42 +1,41 @@
-# PhD Research Radar v1.3: Vacancy-First Collector
+# PhD Research Radar v1.4: Global Monitoring + Application Reminders
 
-This is a drop-in update for `bbkbhattarai/phd-tracker` hosted on GitHub Pages. **Do not clear browser local storage.** The local application database key is unchanged. Export a backup in Settings before updating.
+**Drop-in update for `bbkbhattarai/phd-tracker`.** Keep your existing `data/opportunities.json` and any browser storage. Export a backup in the app first.
 
-## What changed
+## Fix for empty dashboard while feed is populated
 
-- Removes Google News RSS headline discovery. Searches the ordinary web index and **directly reads public vacancy listing pages**, then checks candidate original pages before publication.
-- Prioritises actual advertised PhD studentships, doctoral researcher positions and applications over generic articles/programme descriptions. Postdocs, news, expired adverts and missing/ambiguous deadlines are excluded from the active feed.
-- Accepts adverts with a clearly dated future application deadline or explicitly stated rolling intake. Does **not** infer funding or eligibility from a university's reputation.
-- Extracts explicit deadlines, funding status, a region, original URL and last verification date. Rejects conflicting deadline information rather than guessing which applies.
-- Reports `source_health`, `rejected_reasons`, `page_errors` and candidate totals in `data/opportunities.json`. Sources that block automated access remain visible as failed checks.
-- Existing unverified Google News results are **not carried forward** into the refreshed public feed. Previously saved personal applications remain in browser storage.
+The app now has an **Active Feed** view showing *all current feed records*, not only never-reviewed leads. **New** displays only never-reviewed opportunities. A feed diagnostic above the results confirms count and publication date. The client accepts the `opportunities` array regardless of `schema_version`, and does not exclude entries solely because of a missing `verification` marker. A record in the feed is **not thereby confirmed open**: verify the university vacancy page before applying.
 
-## Important limitations
+The app fetches `data/opportunities.json` when opened and via **Check for new leads**. A PWA cache version change makes the browser update its old code. If an old install persists, close all app tabs and reload twice.
 
-This is a **conservative beta**, not a guaranteed comprehensive live university vacancy database. HTML vacancy extraction can miss legitimate positions, websites may restrict bots, Bing RSS can rate-limit or fail, and multiple date formats may be ambiguous. No real-time live-source test was possible in this build environment. Always confirm vacancy status, funding eligibility and application deadline on the institution's own site. Direct source lists are selected high-value pages, not all 125 institutions; the full institution directory remains a reference catalogue. The collector does not directly scrape every institution.
+## Phase 3: Global research monitoring
 
-## Installation
+- Existing direct job listing pages still checked and verified through `scripts/collect.py`.
+- Rotating site-index queries check 12 non-portal institutions from the 125-source global catalogue per daily run, in addition to topic-based discovery. These are **search-engine indexed discovery checks, not dedicated direct integrations**. Site-index queries may miss ads, especially where university sites restrict bots.
+- Direct vacancy URLs can be specified in `scripts/sources.json` under `custom_vacancy_urls`.
+- Sources remain browseable and user-added sources remain local to the device; to include them in scheduled GitHub Actions searches, add them to the repo config/catalogue.
+- The resulting public feed reports `source_health`, `institution_sources_checked`, `candidate_pages`, `rejected_reasons`, and `page_errors`. Failed searches cannot support a claim of no open vacancies.
 
-1. From your running app, **Settings → Export backup**.
-2. Upload this package's files to the **root** of your existing GitHub repository, including `.github/workflows/search.yml`, `scripts/collect.py`, `scripts/sources.json`, `app.js`, and `sw.js`.
-3. Do **not** upload or overwrite `data/opportunities.json` from an older ZIP. Leave the current public feed in place until the next workflow run overwrites it. The new collector will intentionally rebuild the feed from newly verified pages, removing old unverified/news results.
-4. Commit to `main`.
-5. **Actions → Refresh PhD opportunity leads → Run workflow**. Look for green collection and commit steps.
-6. Open `https://bbkbhattarai.github.io/phd-tracker/data/opportunities.json`; check `schema_version: 3`, `source_health`, `rejected_reasons`, and `opportunities`. Then refresh the app. A short or empty feed is possible because strict verification rejects unconfirmed candidates.
+## Phase 4: Deadline / application management
 
-## Adding directly monitored pages
+- Upcoming deadlines shown at top of listings for saved or active applications. Settings lets you choose 3/7/14/30-day reminder windows.
+- Closing dates remove expired opportunities from **Active Feed** and **New**, while saved/tracked opportunities remain in **Saved/Applications** for historical follow-up.
+- Application stages and user-entered verified deadline overrides stay in local browser storage; not synced to GitHub.
+- **Notifications are in-app only while you are using the browser app**. No push notifications when closed, no cross-device sync.
 
-Edit `scripts/sources.json`. Use `direct_sources` for public, accessible *listing pages* that link to individual current vacancies; `custom_vacancy_urls` for exact advertised vacancy URLs. Source pages recorded in the 125-institution directory are not automatically monitored. An entry saved in the app's Sources tab is local to that browser until also added to the JSON file. `max_candidate_pages` and `max_search_queries` control GitHub Actions resource usage.
+## Publish to GitHub Pages
 
-## Test locally
+1. Open the existing app and **Settings → Export backup**.
+2. Upload this ZIP's extracted files to repo `bbkbhattarai/phd-tracker` root, including hidden `.github` workflow directory. Preserve the existing `data/opportunities.json` (not shipped in ZIP).
+3. Commit to `main`. Wait until Pages deployment finishes.
+4. Open the app and use **Active Feed**. It should load the *currently published* JSON even before running the collector.
+5. Go to GitHub **Actions → Refresh PhD opportunity leads → Run workflow** to refresh worldwide results, then return to the app and click **Check for new leads**.
+6. Open the feed URL to verify the `opportunities` array and diagnostics. If the list appears in JSON but not the app, check the app's Feed Status banner, browser console and service worker cache.
 
-```bash
-python -m unittest discover -s tests -v
-python scripts/collect.py
-```
+## Constraints
 
-The second command requires internet access. The first uses built-in fixtures and does not.
+No guaranteed scraping for all 125 institutions. Full direct connectors are not yet present for every university, and the Bing RSS/site discovery can miss valid openings. Funding text is extracted heuristically and deadlines from page text; they require manual confirmation at the application source. Deployment to the GitHub account is not performed by creating this ZIP.
 
-## Data preservation and privacy
+## Tests
 
-Personal tracked projects and notes stay in your browser's local storage. They are not committed by GitHub Actions. The public results feed in your repository is visible to anyone visiting the site. Different browsers/devices do not synchronize local records.
+Run `python -m unittest discover -s tests -v` and `node --check app.js`. Live scraping wasn't validated in this environment.

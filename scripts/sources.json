@@ -70,7 +70,8 @@
     }
   ],
   "custom_vacancy_urls": [],
-  "max_candidate_pages": 55,
+  "max_candidate_pages": 80,
   "max_search_queries": 6,
-  "note": "Only original vacancy pages with explicit live deadlines/rolling admissions and PhD evidence qualify. Search is not guaranteed exhaustive; failed sources are reported."
+  "note": "Vacancy-first direct listing pages plus rotating site-index queries against global research directory; not guaranteed direct monitoring of all institutions.",
+  "institution_queries_per_run": 12
 }

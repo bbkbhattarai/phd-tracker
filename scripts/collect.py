@@ -18,11 +18,12 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).resolve().parents[1]
+CATALOG=json.loads((ROOT/'data/source_catalog.json').read_text())
 TODAY=dt.datetime.now(dt.timezone.utc).date()
 CFG=json.loads((ROOT/'scripts/sources.json').read_text())
 OUT=ROOT/'data/opportunities.json'
 OLD=json.loads(OUT.read_text()) if OUT.exists() else {}
-UA={'User-Agent':'Mozilla/5.0 (compatible; PhDResearchRadar/1.3; public vacancy validation)'}
+UA={'User-Agent':'Mozilla/5.0 (compatible; PhDResearchRadar/1.4; public vacancy validation)'}
 HEARING=re.compile(r'\b(auditory|audiolog\w*|hearing|cochlear|psychoacoustic\w*|speech.in.noise|speech perception|auditory processing|sound localisation|sound localization|vestibular|otoacoustic|electrophysiolog\w*|auditory neuroscience|hearing aid\w*)\b',re.I)
 PHD=re.compile(r'\b(ph\.?d\.?|doctoral (?:candidate|student|researcher|position|studentship|programme|program)|doctorate|dphil|doctoral degree|funded studentship)\b',re.I)
 TITLE_PHD=re.compile(r'\b(ph\.?d\.?|doctoral (?:candidate|researcher|student|position)|studentship|dphil)\b',re.I)
@@ -143,6 +144,29 @@ def qualify(url,html_text,source):
  # avoid misleading 'verified' about availability: deadline evidence only
  return {'id':uid,'title':title,'url':canonical,'organisation':source_host,'source':source,'region':region_from(title+' '+body[:3000],canonical),'field':'Audiology / auditory / hearing research','discovered':TODAY.isoformat(),'deadline':deadline,'deadline_status':'stated_on_source' if deadline else 'rolling_as_stated','funding':funding,'funding_status':confidence,'verification':'original_page_checked','last_verified':TODAY.isoformat(),'summary':snippet,'vacancy_type':'doctoral_position'},None
 
+def institution_candidates():
+ """Rotating targeted discovery, not direct guaranteed monitoring of all institutions."""
+ pool=[s for s in CATALOG.get('sources',[]) if s.get('kind') not in ('portal',) and urllib.parse.urlparse(s.get('url','')).hostname]
+ batch=int(CFG.get('institution_queries_per_run',12))
+ if not pool:return [],[]
+ offset=(TODAY.toordinal()*batch)%len(pool)
+ chosen=[pool[(offset+i)%len(pool)] for i in range(min(batch,len(pool)))]
+ results=[];health=[]
+ for s in chosen:
+  host=urllib.parse.urlparse(s['url']).hostname
+  q=f'site:{host} ("PhD position" OR "PhD studentship" OR "doctoral researcher") (auditory OR audiology OR hearing OR cochlear OR psychoacoustics) (apply OR deadline)'
+  try:
+   xml=ET.fromstring(fetch('https://www.bing.com/search?'+urllib.parse.urlencode({'q':q,'format':'rss'})))
+   count=0
+   for node in xml.findall('.//item'):
+    link=(node.findtext('link') or '').strip();title=node.findtext('title') or ''
+    if not link.startswith('http') or 'bing.com' in (urllib.parse.urlparse(link).hostname or ''):continue
+    if (PHD.search(title) or re.search(r'/(job|vacancy|position|studentship)/',link,re.I)) and (HEARING.search(title) or HEARING.search(q)):
+     results.append((link,s['name']));count+=1
+   health.append({'source':s['name'],'method':'site-index','status':'ok','candidates':count})
+  except Exception as ex:health.append({'source':s['name'],'method':'site-index','status':'error','detail':str(ex)[:160]})
+ return results,health
+
 def search_candidates():
  """Search ordinary web index, not news indexing, then VERIFY the original vacancy page."""
  candidates=[];diagnostics=[]
@@ -184,6 +208,7 @@ def direct_candidates():
 def collect():
  candidates,health=direct_candidates()
  more,diag=search_candidates();candidates.extend(more);health.extend(diag)
+ institutions,inst_health=institution_candidates();candidates.extend(institutions);health.extend(inst_health)
  for link in CFG.get('custom_vacancy_urls',[]):candidates.append((link,'Configured vacancy URL'))
  unique={}
  for url,src in candidates:
@@ -210,7 +235,7 @@ def collect():
     fresh['discovered']=old.get('discovered',TODAY.isoformat());accepted[fresh['id']]=fresh
    else:rejected['previous_'+str(why)]=rejected.get('previous_'+str(why),0)+1
   except Exception as err:errors.append({'url':url,'error':'revalidation: '+str(err)[:130]})
- out={'schema_version':3,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'coverage':'Worldwide: verified source pages only, non-exhaustive','opportunities':sorted(accepted.values(),key=lambda x:(x['deadline'] or '9999-12-31',x['title']))[:500],'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60],'candidate_pages':len(unique),'pages_attempted':min(len(unique),limit),'note':'Only PhD vacancy pages with an explicit future deadline or rolling applications are displayed. Funding may remain unspecified. Conflicting or missing deadlines are withheld. This feed is not exhaustive.'}
+ out={'schema_version':3,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'coverage':'Worldwide: verified source pages only, non-exhaustive','opportunities':sorted(accepted.values(),key=lambda x:(x['deadline'] or '9999-12-31',x['title']))[:500],'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60],'candidate_pages':len(unique),'pages_attempted':min(len(unique),limit),'institution_sources_total':len([s for s in CATALOG.get('sources',[]) if s.get('kind')!='portal']),'institution_sources_checked':len(inst_health),'total_sources_checked':len(health),'note':'Only PhD vacancy pages with an explicit future deadline or rolling applications are displayed. Funding may remain unspecified. Conflicting or missing deadlines are withheld. This feed is not exhaustive.'}
  OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n')
  print('Candidates:',len(unique),'verified open:',len(accepted),'rejected:',rejected,'errors:',len(errors))

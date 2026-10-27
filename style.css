@@ -3,3 +3,5 @@
 .region-label{display:inline-block;margin:0;font-size:12px;color:#536e77}.filterbar select{width:auto;min-width:175px;max-width:100%}.tag.location{background:#eef2fa;color:#3b567a;margin-top:8px}.filterbar .muted{white-space:nowrap}
 
 .source-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px}.source-grid .source{min-width:0}.source-grid .source small{overflow-wrap:anywhere}
+
+.feed-health{margin-bottom:14px;font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.feed-health button{padding:6px 10px}.reminder-list p{font-size:13px;margin:6px 0}.source-grid .source{border:1px solid #e2eaeb;border-radius:10px;padding:12px}.source-grid{margin-top:12px}
