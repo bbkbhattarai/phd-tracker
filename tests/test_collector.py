@@ -19,6 +19,11 @@ def test_lab_needs_recruiting():
     rec,why=c.classify('Auditory neuroscience lab','We are recruiting PhD students in auditory neuroscience to join our lab.',origin='lab')
     assert rec and rec['category']=='lab_recruiting'
 
+def test_explicit_closed_lab():
+    t='Institute for Auditory Neuroscience Jobs PhD Student Position. There are currently no open positions at the Institute for Auditory Neuroscience.'
+    rec,why=c.classify('Göttingen Auditory Neuroscience',t,origin='lab')
+    assert rec is None and why=='lab explicitly reports no open positions'
+
 def test_exclusion():
     rec,why=c.classify('Postdoctoral Fellow in Auditory Neuroscience','Applications open for PhD work on hearing.')
     assert rec is None

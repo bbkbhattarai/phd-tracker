@@ -21,6 +21,7 @@ TIMEOUT=18
 HEARING=re.compile(r'\b(hearing|auditor(?:y|ily)|audiolog(?:y|ical)|cochlear|psychoacoustics?|speech[- ]in[- ]noise|listening|binaural|spatial hearing|tinnitus|vestibular|implantable hearing|evoked potentials|ABR|ASSR|CAEP)\b',re.I)
 PHD=re.compile(r'\b(ph\.?d\.?|doctoral|doctorate|studentship|graduate student|research student)\b',re.I)
 EXCLUDE=re.compile(r'\b(postdoc(?:toral)?|research fellow|faculty position|assistant professor|masters? degree|MSc|AuD only)\b',re.I)
+CLOSED_LAB=re.compile(r'\b(?:there are currently no open positions|no (?:current|open|available) (?:phd|doctoral|graduate|student|research) positions|not (?:currently )?(?:accepting|recruiting) (?:new )?(?:phd|graduate|doctoral) students)\b',re.I)
 RECRUIT=re.compile(r'\b(apply|applications? (?:are )?(?:open|invited|welcome)|recruiting|seeking|looking for|studentship|funded position|graduate assistantship|doctoral researcher|join (?:the|our) lab|prospective students?|available position|closing date)\b',re.I)
 
 COUNTRY_PATTERNS=[('Hong Kong',r'\bHong Kong\b'),('New Zealand',r'\bNew Zealand\b'),('Australia',r'\bAustralia\b'),('Canada',r'\bCanada\b'),('USA',r'\b(?:USA|United States|U\.S\.A\.|US university|Texas|Illinois|Indiana|California|Maryland|New York|Massachusetts|Pittsburgh|Vanderbilt|Northwestern)\b'),('UK',r'\b(?:United Kingdom|\bUK\b|England|Scotland|Wales|Northern Ireland|Southampton|Leicester|Edinburgh|London|Nottingham|Manchester|Sheffield|Birmingham|Bristol|Oxford|Cambridge)\b'),('Europe',r'\b(?:Germany|Netherlands|Denmark|Sweden|Norway|Finland|Belgium|France|Spain|Italy|Austria|Switzerland|Portugal|Ireland|Göttingen|Oldenburg|Leuven)\b'),('Asia',r'\b(?:Singapore|Japan|China|India|South Korea|Taiwan|Malaysia|Nepal)\b')]
@@ -102,6 +103,7 @@ def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=F
     if EXCLUDE.search(title):return None,'non-doctoral role'
     if not HEARING.search(short):return None,'not hearing-related'
     if not PHD.search(short):return None,'not doctoral'
+    if origin=='lab' and CLOSED_LAB.search(short):return None,'lab explicitly reports no open positions'
     if not RECRUIT.search(short):return None,'no recruitment evidence'
     dl=deadline(short) or (fallback_findaphd_date(short) if is_findaphd else None)
     if dl and dl<TODAY.isoformat():return None,'deadline passed'
@@ -135,7 +137,7 @@ def run():
     feedfile=ROOT/'data/opportunities.json'
     prior=json.loads(feedfile.read_text()) if feedfile.exists() else {}
     previous={x['id']:x for x in prior.get('opportunities',[])+prior.get('review_queue',[]) if x.get('id')}
-    accepted={}; review={}; health=[]; rejected={}; errors=[]
+    accepted={}; review={}; health=[]; rejected={}; errors=[]; verified_closed=set()
     def reject(why):rejected[why]=rejected.get(why,0)+1
     # listing extractor: each source's search page is parsed for actual individual projects
     for source in config['listing_sources']:
@@ -173,12 +175,13 @@ def run():
                 health.append({'source':source['name'],'status':'review_lead','found':1,'checked':1})
             else:
                 reject(why)
+                if why=='lab explicitly reports no open positions':verified_closed.add(stable_id(source['url']))
                 health.append({'source':source['name'],'status':'no_confirmed_opening','found':0,'checked':1,'message':why})
         except Exception as e:
             health.append({'source':source['name'],'status':'error','found':0,'checked':0,'message':str(e)[:160]})
     # Preserve older records where the currently running collector couldn't recheck them. Exclude expired.
     for id,old in previous.items():
-        if id in accepted or id in review:continue
+        if id in accepted or id in review or id in verified_closed:continue
         if old.get('deadline') and old['deadline']<TODAY.isoformat():continue
         old=dict(old);old['verification']='recheck_required'
         review[id]=old
