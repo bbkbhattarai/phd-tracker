@@ -113,6 +113,55 @@
       "url": "https://listeningtech.lab.uic.edu",
       "region": "USA",
       "type": "programme"
+    },
+    {
+      "id": "mcgill-lehmann",
+      "name": "McGill · Cochlear Implant & Auditory Neuroscience Lab",
+      "url": "https://www.mcgill.ca/surgicalandinterventionalsciences/alexandre-lehmann-phd",
+      "region": "Canada",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "mcgill-mpcl",
+      "name": "McGill · Music Perception and Cognition Lab",
+      "url": "https://www.mcgill.ca/mpcl/opportunities",
+      "region": "Canada",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "auckland-cal",
+      "name": "University of Auckland · Communication Acoustics Lab",
+      "url": "https://www.cal.auckland.ac.nz/opportunities/",
+      "region": "New Zealand",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "cuhk-language-brain",
+      "name": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "url": "https://brain.cuhk.edu.hk/joinus.html",
+      "region": "Hong Kong",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "cuhk-auditory-neuro",
+      "name": "CUHK · Auditory Neuroscience Group",
+      "url": "https://www.auditoryneuroscience.org/JoinPhD",
+      "region": "Hong Kong",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "purdue-heinz",
+      "name": "Purdue · Auditory Neurophysiology and Modeling Lab",
+      "url": "https://engineering.purdue.edu/HeinzLab/jointhelab",
+      "region": "USA",
+      "type": "lab-recruitment"
+    },
+    {
+      "id": "sussex-auditory",
+      "name": "University of Sussex · Auditory Cognition Group",
+      "url": "https://www.sussex.ac.uk/research/labs/auditory-cognition-group/people",
+      "region": "UK",
+      "type": "lab-recruitment"
     }
   ],
   "reference_sources": [
@@ -210,6 +259,144 @@
       "name": "National University of Singapore",
       "url": "https://www.nus.edu.sg/",
       "region": "Asia"
+    },
+    {
+      "name": "Sheffield · Hearing & Balance Research Opportunities",
+      "url": "https://sheffield.ac.uk/hearing/opportunities",
+      "region": "UK",
+      "type": "reference"
+    },
+    {
+      "name": "University of Auckland · Doctoral Audiology",
+      "url": "https://www.auckland.ac.nz/en/study/study-options/find-a-study-option/audiology/doctoral.html",
+      "region": "New Zealand",
+      "type": "reference"
+    },
+    {
+      "name": "University of Auckland · Doctoral Speech Science",
+      "url": "https://www.auckland.ac.nz/en/study/study-options/find-a-study-option/speech-science/doctoral.html",
+      "region": "New Zealand",
+      "type": "reference"
+    },
+    {
+      "name": "Macquarie · Hearing Research Scholarships",
+      "url": "https://www.mq.edu.au/research/phd-and-research-degrees/how-to-apply/scholarship-opportunities",
+      "region": "Australia",
+      "type": "reference"
+    },
+    {
+      "name": "UNSW · Higher Degree Research Projects",
+      "url": "https://www.unsw.edu.au/research/hdr/our-projects",
+      "region": "Australia",
+      "type": "reference"
+    },
+    {
+      "name": "UNSW · HDR Scholarships",
+      "url": "https://www.unsw.edu.au/research/hdr/scholarships",
+      "region": "Australia",
+      "type": "reference"
+    },
+    {
+      "name": "University of Melbourne · Audiology and Hearing Research",
+      "url": "https://www.unimelb.edu.au/",
+      "region": "Australia",
+      "type": "reference"
+    },
+    {
+      "name": "UCL · Ear Institute",
+      "url": "https://www.ucl.ac.uk/brain-sciences/ear",
+      "region": "UK",
+      "type": "reference"
+    },
+    {
+      "name": "BCBL · PhD Job Offers",
+      "url": "https://www.bcbl.eu/en/join-us/job-offers",
+      "region": "Europe",
+      "type": "reference"
+    },
+    {
+      "name": "University of Western Ontario · Communication Sciences",
+      "url": "https://www.uwo.ca/fhs/csd/",
+      "region": "Canada",
+      "type": "reference"
+    },
+    {
+      "name": "UBC · School of Audiology and Speech Sciences",
+      "url": "https://audiospeech.ubc.ca/",
+      "region": "Canada",
+      "type": "reference"
+    },
+    {
+      "name": "McGill · Auditory Neuroscience Research",
+      "url": "https://www.mcgill.ca/",
+      "region": "Canada",
+      "type": "reference"
+    },
+    {
+      "name": "University of Otago · Postgraduate research",
+      "url": "https://www.otago.ac.nz/postgraduate",
+      "region": "New Zealand",
+      "type": "reference"
+    },
+    {
+      "name": "CUHK · Language and Brain Laboratory",
+      "url": "https://brain.cuhk.edu.hk/",
+      "region": "Hong Kong",
+      "type": "reference"
+    },
+    {
+      "name": "Hong Kong PolyU · Speech Therapy research",
+      "url": "https://www.polyu.edu.hk/",
+      "region": "Hong Kong",
+      "type": "reference"
+    },
+    {
+      "name": "National University of Singapore · Graduate Research",
+      "url": "https://nus.edu.sg/",
+      "region": "Asia",
+      "type": "reference"
+    },
+    {
+      "name": "NUS · Graduate Programme in Neuroscience",
+      "url": "https://medicine.nus.edu.sg/",
+      "region": "Asia",
+      "type": "reference"
+    },
+    {
+      "name": "University of Tokyo · Graduate Research",
+      "url": "https://www.u-tokyo.ac.jp/en/",
+      "region": "Asia",
+      "type": "reference"
+    },
+    {
+      "name": "University of Hong Kong · Graduate School",
+      "url": "https://gradsch.hku.hk/",
+      "region": "Hong Kong",
+      "type": "reference"
+    },
+    {
+      "name": "National Taiwan University · Research Programs",
+      "url": "https://www.ntu.edu.tw/english/",
+      "region": "Asia",
+      "type": "reference"
+    },
+    {
+      "name": "Maastricht University · Neuroscience PhDs",
+      "url": "https://www.maastrichtuniversity.nl/",
+      "region": "Europe",
+      "type": "reference"
+    },
+    {
+      "name": "KU Leuven · PhD research vacancies",
+      "url": "https://www.kuleuven.be/english/research/phd",
+      "region": "Europe",
+      "type": "reference"
+    },
+    {
+      "name": "Radboud University · Research Positions",
+      "url": "https://www.ru.nl/en",
+      "region": "Europe",
+      "type": "reference"
     }
   ],
   "announcement_sources": [
@@ -231,6 +418,88 @@
       "url": "https://www.ucl.ac.uk/population-health-sciences/phd-studentships/improving-school-age-health-and-education-outcomes-deaf-children-cochlear-implants-soci",
       "region": "UK",
       "type": "direct-vacancy"
+    },
+    {
+      "id": "bcbl-auditory",
+      "name": "BCBL Spain · PhD in Auditory Processing and EEG",
+      "title": "PhD position - Auditory Processing L2",
+      "url": "https://www.bcbl.eu/eu/phd-position-auditory-processing-l2",
+      "region": "Europe",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "ku-leuven-middle-ear",
+      "name": "KU Leuven · PhD Objective Hearing Assessment",
+      "title": "PhD research advancing objective hearing assessment and innovative middle ear surgery",
+      "url": "https://euraxess.ec.europa.eu/jobs/462153",
+      "region": "Europe",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "macquarie-ci",
+      "name": "Macquarie · National Cochlear Implantation Guidelines PhD",
+      "title": "National cochlear implantation guidelines PhD scholarship",
+      "url": "https://www.mq.edu.au/research/phd-and-research-degrees/how-to-apply/scholarship-opportunities/scholarship-search/national-cochlear-implantation-guidelines",
+      "region": "Australia",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "unsw-listening-ai",
+      "name": "UNSW · Wearable AI for Intelligent Listening",
+      "title": "PhD: Wearable AI for Intelligent Listening",
+      "url": "https://www.unsw.edu.au/research/hdr/our-projects/wearable-ai-for-intelligent-listening",
+      "region": "Australia",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "ucl-dcal",
+      "name": "UCL · Deafness, Cognition and Language PhD Funding",
+      "title": "DCAL PhD Funding and Demonstratorship 2027",
+      "url": "https://www.ucl.ac.uk/brain-sciences/deafness-cognition-and-language-research-centre-dcal/dcal-phd-funding-and-demonstratorship-science-communication-officer-2027",
+      "region": "UK",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "oxford-auditory",
+      "name": "Oxford · Closed-loop Auditory Stimulation DPhil",
+      "title": "DPhil studentship in closed-loop auditory stimulation during sleep",
+      "url": "https://www.bndu.ox.ac.uk/phd",
+      "region": "UK",
+      "type": "direct-vacancy"
+    },
+    {
+      "id": "bcbl-sensory",
+      "name": "BCBL Spain · PhD in Multisensory Perceptual Learning",
+      "title": "PhD in perceptual learning in the human brain",
+      "url": "https://www.bcbl.eu/eu/phd-position-making-sense-sensory-world-perceptual-learning-human-brain",
+      "region": "Europe",
+      "type": "direct-vacancy"
+    }
+  ],
+  "institution_indexes": [
+    {
+      "id": "bcbl-job-index",
+      "name": "BCBL · European auditory and neuroscience PhD vacancies",
+      "url": "https://www.bcbl.eu/en/join-us/job-offers",
+      "adapter": "bcbl_jobs",
+      "region": "Europe",
+      "max_links": 15
+    },
+    {
+      "id": "ucl-studentships-index",
+      "name": "UCL · Direct PhD studentship listing",
+      "url": "https://www.ucl.ac.uk/population-health-sciences/phd-studentships",
+      "adapter": "ucl_studentships",
+      "region": "UK",
+      "max_links": 12
+    },
+    {
+      "id": "macquarie-scholarships",
+      "name": "Macquarie · Research Scholarship listings",
+      "url": "https://www.mq.edu.au/research/phd-and-research-degrees/how-to-apply/scholarship-opportunities/scholarship-search",
+      "adapter": "macquarie_scholarships",
+      "region": "Australia",
+      "max_links": 12
     }
   ]
 }

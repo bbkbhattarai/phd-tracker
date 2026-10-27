@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vacancy-first collector v2.2. No synthetic opportunities. Missing deadlines stay unverified.
+"""Vacancy-first collector v2.4 worldwide. No synthetic opportunities. Missing deadlines stay unverified.
 Runs in GitHub Actions; archives source-health and previously discovered records.
 """
 import datetime as dt
@@ -21,30 +21,41 @@ SESSION.headers.update({'User-Agent':'PhDRadarResearchMonitor/2.0 (+public resea
 TIMEOUT=18
 MAX_ARCHIVE_PAGES=45
 HEARING=re.compile(r'\b(hearing|auditor(?:y|ily)|audiolog(?:y|ical)|cochlear|psychoacoustics?|speech[- ]in[- ]noise|listening|binaural|spatial hearing|tinnitus|vestibular|implantable hearing|evoked potentials|ABR|ASSR|CAEP|sound perception|speech perception|hearing technology|audio signal processing|acoustic signal processing)\b',re.I)
-PHD=re.compile(r'\b(ph\.?d\.?|doctoral|doctorate|studentship|graduate student|research student)\b',re.I)
+PHD=re.compile(r'\b(ph\.?d\.?|d\.?phil\.?|doctoral|doctorate|studentship|graduate student|research student)\b',re.I)
 EXCLUDE=re.compile(r'\b(postdoc(?:toral)?|research fellow|faculty position|assistant professor|masters? degree|MSc|AuD only)\b',re.I)
 CLOSED_LAB=re.compile(r'\b(?:there are currently no open positions|no (?:current|open|available) (?:phd|doctoral|graduate|student|research) positions|not (?:currently )?(?:accepting|recruiting) (?:new )?(?:phd|graduate|doctoral) students)\b',re.I)
-RECRUIT=re.compile(r'\b(apply|applications? (?:are )?(?:open|invited|welcome)|recruiting|seeking|looking for|studentship|funded position|graduate assistantship|doctoral researcher|join (?:the|our) lab|prospective students?|available position|closing date)\b',re.I)
+RECRUIT=re.compile(r'\b(apply|applications? (?:are )?(?:open|invited|welcome)|applications? (?:close|are closing|due)|recruiting|seeking|looking for|studentship|funded position|graduate assistantship|doctoral researcher|join (?:the|our) lab|prospective students?|available position|positions? are available|accepting ph\.?d\.? students?|closing date|application deadline)\b',re.I)
 
 COUNTRY_PATTERNS=[('Hong Kong',r'\bHong Kong\b'),('New Zealand',r'\bNew Zealand\b'),('Australia',r'\bAustralia\b'),('Canada',r'\bCanada\b'),('USA',r'\b(?:USA|United States|U\.S\.A\.|US university|Texas|Illinois|Indiana|California|Maryland|New York|Massachusetts|Pittsburgh|Vanderbilt|Northwestern|Chicago|Dallas|UConn|Duke|UT Dallas|UIC)\b'),('UK',r'\b(?:United Kingdom|\bUK\b|England|Scotland|Wales|Northern Ireland|Southampton|Leicester|Edinburgh|London|Nottingham|Manchester|Sheffield|Birmingham|Bristol|Oxford|Cambridge)\b'),('Europe',r'\b(?:Germany|Netherlands|Denmark|Sweden|Norway|Finland|Belgium|France|Spain|Italy|Austria|Switzerland|Portugal|Ireland|Göttingen|Oldenburg|Leuven|Ghent|Lyon|Brussels)\b'),('Asia',r'\b(?:Singapore|Japan|China|India|South Korea|Taiwan|Malaysia|Nepal)\b')]
 MONTHS='January February March April May June July August September October November December'.split()
-DATE_RX=re.compile(r'\b(?:\d{1,2}\s+(?:'+ '|'.join(MONTHS) + r')\s+20\d{2}|(?:'+ '|'.join(MONTHS) + r')\s+\d{1,2},?\s+20\d{2}|20\d{2}-\d{2}-\d{2})\b', re.I)
-DEADLINE_RX=re.compile(r'(?:application (?:deadline|closing date)|closing date|deadline|apply by|applications? (?:close|due))\s*[:\-]?\s*(?:on\s+)?(.{0,55})',re.I)
+MONTH_TOKEN='(?:'+'|'.join(MONTHS)+'|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)'
+DATE_RX=re.compile(r'\b(?:\d{1,2}(?:st|nd|rd|th)?\s+'+MONTH_TOKEN+r'\s+20\d{2}|'+MONTH_TOKEN+r'\s+\d{1,2}(?:st|nd|rd|th)?,?\s+20\d{2}|20\d{2}-\d{2}-\d{2}|\d{1,2}[/-]\d{1,2}[/-]20\d{2})\b',re.I)
+DEADLINE_RX=re.compile(r'(?:application (?:deadline|closing date)|closing date(?: for applications)?|final date for applications|deadline(?: for application)?|apply by|applications? (?:close|due)|expressions? of interest.*?(?:by|before))\s*(?:is|:|\-|on|by|at|the)?\s*(.{0,125})',re.I)
+# A deadline may occur after intermediary time/date text, but only in a short neighbourhood.
 
-def parse_date(s):
-    s=s.strip().replace(',','')
-    for fmt in ('%d %B %Y','%B %d %Y','%Y-%m-%d'):
+
+def parse_date(s,source_region='Unspecified'):
+    s=re.sub(r'(\d{1,2})(?:st|nd|rd|th)\b',r'\1',s.strip(),flags=re.I).replace(',','')
+    # Deliberately do not guess DD/MM versus MM/DD for unspecified locations.
+    formats=['%d %B %Y','%B %d %Y','%d %b %Y','%b %d %Y','%Y-%m-%d']
+    if source_region in ('UK','Europe','Australia','New Zealand','Hong Kong','Asia','Canada'):
+        formats+=['%d/%m/%Y','%d-%m-%Y']
+    elif source_region=='USA':
+        formats+=['%m/%d/%Y','%m-%d-%Y']
+    for fmt in formats:
         try:return dt.datetime.strptime(s,fmt).date()
         except ValueError:pass
     return None
 
-def deadline(text):
-    for match in DEADLINE_RX.finditer(text[:18000]):
-        d=DATE_RX.search(match.group(1))
-        if d:
-            parsed=parse_date(d.group(0))
-            if parsed:return parsed.isoformat()
-    return None
+def deadline(text,source_region='Unspecified'):
+    found=[]
+    for match in DEADLINE_RX.finditer(text[:22000]):
+        for d in DATE_RX.finditer(match.group(1)):
+            parsed=parse_date(d.group(0),source_region)
+            if parsed:found.append(parsed)
+            break
+    # Earliest closing date is safer where application instructions disagree.
+    return min(found).isoformat() if found else None
 
 def fallback_findaphd_date(text):
     # FindAPhD project pages often display dates next to the institution, without the word deadline.
@@ -59,7 +70,9 @@ def funding(text):
     if re.search(r'\bself[- ]funded|self[- ]funding\b',t):return 'Self-funded / funding not guaranteed'
     if re.search(r'fully funded|tuition (?:fees? )?(?:covered|waived)|stipend (?:and|plus) (?:tuition|fees)',t):return 'Funding described (verify eligibility)'
     if re.search(r'competition funded|competitive funding',t):return 'Competition-funded'
-    if re.search(r'funded|studentship|scholarship|assistantship|stipend',t):return 'Funding mentioned (details unverified)'
+    # This EURAXESS field does NOT mean a doctoral position is unfunded.
+    t=re.sub(r'(?:not funded by (?:an? )?(?:eu|european|horizon)[^.]{0,65}|is (?:it|the job) funded through [^?]{0,90}\?)',' ',t)
+    if re.search(r'\b(?:scholarship|assistantship|stipend|salary|funding (?:provided|available)|funding sources|funded (?:phd|doctoral|studentship|position))\b',t):return 'Funding mentioned (details unverified)'
     return 'Not specified'
 
 def region(text,default='Unspecified'):
@@ -99,6 +112,41 @@ def extract_findaphd_links(html,base):
             result[key]={'url':url,'title':title[:240],'summary':context[:1400]}
     return list(result.values())
 
+def institution_links(html,base,adapter):
+    """Follow only individual project advertisements on supported public index pages.
+    Never equate a generic degree programme or the index itself with a vacancy.
+    """
+    soup=BeautifulSoup(html,'html.parser')
+    links={}
+    basehost=urlparse(base).hostname
+    for a in soup.select('a[href]'):
+        url=urljoin(base,a.get('href',''))
+        parsed=urlparse(url)
+        if parsed.hostname!=basehost:continue
+        path=parsed.path.lower()
+        label=a.get_text(' ',strip=True)
+        parent=a.find_parent(['article','li','section','div'])
+        block=parent.get_text(' ',strip=True)[:750] if parent else label
+        heading=parent.find(['h2','h3','h4']) if parent else None
+        title=heading.get_text(' ',strip=True) if heading else label
+        slug=(path+' '+title+' '+label).lower()
+        if adapter=='bcbl_jobs':
+            if not ('phd-position-' in path or 'phd_' in path):continue
+        elif adapter=='ucl_studentships':
+            if not ('/phd-studentships/' in path and ('hearing' in slug or 'cochlear' in slug or 'deaf' in slug or 'auditory' in slug)):
+                continue
+        elif adapter=='macquarie_scholarships':
+            if not ('/scholarship-search/' in path and ('hearing' in slug or 'cochlear' in slug or 'auditory' in slug or 'listening' in slug)):
+                continue
+        else:continue
+        if not HEARING.search(slug+' '+block):continue
+        if not (PHD.search(slug+' '+block) or adapter=='macquarie_scholarships'):continue
+        if len(title)<12 or title.lower() in ('more information','read more','apply now'):
+            title=label if len(label)>12 else path.rstrip('/').split('/')[-1].replace('-',' ').title()
+        key=stable_id(url)
+        links[key]={'url':url,'title':title[:220],'summary':block[:500]}
+    return list(links.values())
+
 def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=False):
     text=(title+' '+content).strip()
     short=text[:18000]
@@ -106,17 +154,20 @@ def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=F
     if not HEARING.search(short):return None,'not hearing-related'
     if not PHD.search(short):return None,'not doctoral'
     if origin=='lab' and CLOSED_LAB.search(short):return None,'lab explicitly reports no open positions'
+    if origin!='lab' and re.search(r'\b(?:applications? (?:are )?closed|this position has been filled|studentship (?:is )?closed)\b',short[:3500],re.I):return None,'vacancy explicitly closed'
     if not RECRUIT.search(short):return None,'no recruitment evidence'
-    dl=deadline(short) or (fallback_findaphd_date(short) if is_findaphd else None)
+    dl=deadline(short,fallback) or (fallback_findaphd_date(short) if is_findaphd else None)
     if dl and dl<TODAY.isoformat():return None,'deadline passed'
     if origin=='lab':
         category='lab_recruiting'
         # Require stronger explicit phrasing for labs, not simply a generic graduate study page.
-        if not re.search(r'\b(recruiting|seeking|looking for|positions? available|join (?:the|our) lab|accepting (?:new )?(?:graduate|phd)|graduate students? (?:are )?welcome)\b',short,re.I):
+        if not re.search(r'\b(recruiting|seeking|looking for|positions? (?:are )?available|join (?:the|our) lab|accepting (?:new )?(?:graduate|phd)|graduate students? (?:are )?welcome|currently recruiting|currently emphasizing recruitment|open to consider applications from prospective ph\.?d\.? students|ph\.?d\.? students?\b.{0,45}currently recruiting)\b',short,re.I):
             return None,'no explicit lab recruitment'
     else: category='advertised_phd'
     status='deadline_verified' if dl else 'review_required'
-    return {'category':category,'deadline':dl,'funding':funding(short),'region':region(short,fallback),'verification':status,'summary':re.sub(r'\s+',' ',content)[:700]},None
+    # Lab research grants are not proof a graduate student has funded support.
+    fund=funding(short) if origin!='lab' else ('Student funding mentioned; verify terms' if re.search(r'(?:ph\.?d\.?|graduate (?:student|assistant)).{0,80}(?:funded|funding|stipend|scholarship|assistantship)',short,re.I) else 'Student funding not confirmed')
+    return {'category':category,'deadline':dl,'funding':fund,'region':fallback if fallback not in ('Unspecified','Worldwide') else region(short),'verification':status,'summary':re.sub(r'\s+',' ',content)[:700]},None
 
 
 # The research-list archive is independent of FindAPhD and has public, individually
@@ -196,11 +247,17 @@ def check_candidate(item,source,kind='listing'):
     for x in soup(['script','style','nav','footer','header']):x.decompose()
     main=soup.find('main') or soup.find('article') or soup
     body=main.get_text(' ',strip=True)[:20000]
-    title=item.get('title') or (soup.title.get_text(' ',strip=True) if soup.title else '')
+    title=item.get('title') or source.get('title') or (soup.title.get_text(' ',strip=True) if soup.title else '')
     if not title:title=(main.find('h1').get_text(' ',strip=True) if main.find('h1') else url)
     detail,why=classify(title,body,'lab' if kind=='lab' else 'listing',source.get('region','Unspecified'),is_findaphd_project(final))
     if not detail:return None,why
-    detail.update({'id':stable_id(final),'title':title[:230],'url':final,'source':source['name'],'last_checked':TODAY.isoformat(),'first_seen':TODAY.isoformat(),'evidence':'Source page checked; always confirm status and eligibility with the university', 'recruitment_evidence':excerpt(body),**extraction_details(body)})
+    detail.update({'id':stable_id(final),'title':title[:230],'url':final,'source':source['name'],'last_checked':TODAY.isoformat(),'first_seen':TODAY.isoformat(),'evidence':'Original institutional page checked; always confirm status and funding with the university', 'recruitment_evidence':excerpt(body),**extraction_details(body)})
+    if re.search(r'\b(?:domestic (?:applicants|students|only)|domestic applicants only|UK students only|home (?:students|applicants) only)\b',body,re.I):
+        detail['eligibility_note']='Domestic/home applicants only: check eligibility'
+    elif re.search(r'\b(?:domestic,? international|domestic and international|home and international students|international applicants (?:are )?(?:welcome|eligible))\b',body,re.I):
+        detail['eligibility_note']='International applicants mentioned: verify funding eligibility'
+    stipend=re.search(r'(?:\$|£|€)\s*[\d,.]+\s*(?:p\.?a\.?|per annum|annually|a year|gross annual salary)?',body,re.I)
+    if stipend: detail['funding_note']=stipend.group(0)[:90]
     if kind=='lab':detail['verification']='recruitment_claim_needs_confirmation'
     return detail,None
 
@@ -233,10 +290,34 @@ def run():
                 time.sleep(0.12)
         except Exception as e:state='error';detail=str(e)[:200]
         health.append({'source':source['name'],'status':state,'found':found,'checked':checked,'message':detail})
+    # Direct research vacancy indexes from institutional sites. No general articles,
+    # degree-directory pages or third-party crawler workarounds.
+    for source in config.get('institution_indexes',[]):
+        found=checked=0;state='ok';message=''
+        try:
+            html,real=fetch(source['url'])
+            links=institution_links(html,real,source['adapter'])
+            found=len(links)
+            if not links:
+                state='no_vacancies_parsed';message='No relevant project links found; check institution page structure'
+            for item in links[:min(25,int(source.get('max_links',12)))]:
+                checked+=1
+                try:
+                    rec,why=check_candidate(item,source)
+                    if rec:
+                        old=previous.get(rec['id'],{})
+                        rec['first_seen']=old.get('first_seen',rec['first_seen'])
+                        (accepted if rec['verification']=='deadline_verified' else review)[rec['id']]=rec
+                    else:reject(why)
+                except Exception as e:
+                    errors.append({'source':source['name'],'url':item['url'],'error':str(e)[:180]})
+                time.sleep(0.08)
+        except Exception as e:state='error';message=str(e)[:190]
+        health.append({'source':source['name'],'status':state,'found':found,'checked':checked,'message':message})
     # Direct doctoral vacancy pages published by the original institutions.
     for source in config.get('direct_vacancies',[]):
         try:
-            rec,why=check_candidate({'url':source['url'],'title':source['name']},source)
+            rec,why=check_candidate({'url':source['url'],'title':source.get('title',source['name'])},source)
             if rec:
                 old=previous.get(rec['id'],{})
                 rec['first_seen']=old.get('first_seen',rec['first_seen'])
@@ -324,7 +405,12 @@ def run():
             except ValueError:pass
         old=dict(old);old['verification']='recheck_required'
         review[id]=old
-    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health)}
+    # Show regional availability and exact source outcomes without exaggerating coverage.
+    regional={}
+    for rec in list(accepted.values())+list(review.values()):
+        key=rec.get('region') or 'Unspecified'
+        regional[key]=regional.get(key,0)+1
+    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health),'regional_counts':regional}
     feedfile.parent.mkdir(parents=True,exist_ok=True)
     feedfile.write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n')
     print(f"Verified {len(accepted)}, review {len(review)}, failed sources {sum(x['status']=='error' for x in health)}")

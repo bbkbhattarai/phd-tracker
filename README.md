@@ -1,23 +1,9 @@
-# PhD Research Radar 2.3 (navigation and McGill-origin AUDITORY source clarification)
+# PhD Research Radar v2.4
 
-This is a UI-only update built on the working 2.2 collector. No collector settings or previously saved browser data are reset.
+International expansion for the **existing** GitHub Pages PhD Research Radar web app. It monitors genuine doctoral vacancy adverts and laboratories explicitly recruiting PhD students in hearing and auditory sciences, with a separate review queue for unverified recruitment.
 
-## Why the review leads were hard to see
+There are 31 configured monitored sources (including known-blocked FindAPhD search URLs), and 46 reference sources. The new monitored sources include individual university PhD adverts in the UK, Spain/Belgium, and Australia, and lab recruitment pages in Canada, New Zealand and Hong Kong. Additional international research pages are available as a *reference directory only*, not falsely labelled as monitored.
 
-The old dashboard showed `Opportunities 0` even though it mixed some laboratory review leads into the opportunities panel. Version 2.3 fixes this:
+See `UPDATE_INSTRUCTIONS.md` for precise deployment instructions. This is an incremental update that preserves the existing GitHub Actions workflow, previously published JSON feed, and browser storage key.
 
-- **Opportunities** displays only `opportunities[]`, and its count matches that list.
-- **Needs review** displays `review_queue[]`, and its count matches that list.
-- When a refreshed feed has zero confirmed opportunities but one or more review leads, the app opens **Needs review** automatically.
-- A prominent **View leads needing review** button appears whenever there are review leads.
-- AUDITORY is already represented in the source catalogue and collection workflow. Its mailing list was founded by Professor Albert Bregman at McGill University. Non-recruitment posts (workshops, conferences, etc.) should not appear as opportunities.
-
-## Deploy to the same GitHub Pages repository
-
-1. Export your local data backup using the app's Settings tab.
-2. Upload replacement files `index.html`, `app.js`, `style.css`, `sw.js` to the repository root. The other files in this ZIP are unchanged, and may be left as they are.
-3. Do **not** replace `data/opportunities.json`. It is not included in this ZIP.
-4. Let GitHub Pages publish the update and reload the app. If the old UI persists, do a hard refresh or open a private tab.
-5. The 3 lab leads should be visible under **Needs review** without running the search again.
-
-This patch does not fix the five FindAPhD 403 errors or add an independent second McGill listserv. If a different list is intended, its exact archive URL/name is needed.
+No server installs are needed for normal app use. The GitHub Actions collector requires Python `requests` and `beautifulsoup4`, as already installed by the existing workflow.
