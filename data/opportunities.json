@@ -1,7 +1,27 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-27T20:22:11.137768+00:00",
-  "opportunities": [],
+  "generated_at": "2026-10-27T21:14:26.928011+00:00",
+  "opportunities": [
+    {
+      "category": "advertised_phd",
+      "deadline": "2026-12-11",
+      "funding": "Funding mentioned (details unverified)",
+      "region": "UK",
+      "verification": "deadline_verified",
+      "summary": "Project title Improving the school-age health and education outcomes of deaf children living with cochlear implants (SOCI) Supervisors Dr Rachel Knowles Professor Leah Li Dr Joachim Tan Background Approximately 1 in every 1000 children born in England each year has permanent bilateral hearing loss, with lifelong impact on speech, language, cognitive and social development, literacy, and social-emotional wellbeing.1 Around 40% of deaf children have non-hearing health conditions making their needs more complex.2 Most (78%) deaf children in the UK attend mainstream schools, however they often lag behind their peers.3 Moreover healthcare visits disrupt school attendance and exacerbate poor educa",
+      "id": "cd48bc096bece1f475fa",
+      "title": "UCL · Cochlear Implant Child Outcomes Studentship",
+      "url": "https://www.ucl.ac.uk/population-health-sciences/phd-studentships/improving-school-age-health-and-education-outcomes-deaf-children-cochlear-implants-soci",
+      "source": "UCL · Cochlear Implant Child Outcomes Studentship",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "recruitment_evidence": "PhD Studentships Application Process page, which contains important information about the application process, key dates and FAQs",
+      "intake": null,
+      "supervisor": "Dr Rachel Knowles Professor",
+      "deadline_note": null
+    }
+  ],
   "review_queue": [
     {
       "category": "lab_recruiting",
@@ -16,7 +36,11 @@
       "source": "UT Dallas · Descending Auditory Circuits Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "recruitment_evidence": "accepting graduate students. Prospective students should email Dr Suthakar with a copy of their CV, academic transcript and one-page cover letter describing research interest and relevant previous",
+      "intake": null,
+      "supervisor": "Dr Kirupa Suthakar",
+      "deadline_note": null
     },
     {
       "category": "lab_recruiting",
@@ -31,7 +55,11 @@
       "source": "Illinois · Auditory Cognitive Neuroscience Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "recruitment_evidence": "PhD Opportunities Within Our Lab The Auditory Cognitive Neuroscience Lab is seeking candidates for a PhD program who are interested in auditory processing, specifically related to hearing impairment, aging, tinnitus, hyperacusis and misophonia",
+      "intake": null,
+      "supervisor": "Dr Fatima Husain",
+      "deadline_note": null
     },
     {
       "category": "lab_recruiting",
@@ -46,7 +74,30 @@
       "source": "Indiana University · CARES Lab",
       "last_checked": "2026-10-27",
       "first_seen": "2026-10-27",
-      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "recruitment_evidence": "recruiting PhD students for Fall 2027! Check out Indiana University’s PhD Program SLHS PhD Program Reach out to Dr. Gustafson to show your interest Email Dr. Gustafson Interested in participati",
+      "intake": "Fall 2027",
+      "supervisor": "Dr Samantha Gustafson",
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Not specified",
+      "region": "USA",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "Auditory and Communication Systems Laboratory Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Professor of Biomedical Engineering Expand information Hide information Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Professor of Biomedical Engineering Principal Investigator Steven Jeffrey Eliades Associate Professor of Head and Neck Surgery & Communication Sciences Associate Research Professor of Neurobiology Associate Research Profes",
+      "id": "83aa98bdd993bf077244",
+      "title": "Duke · Auditory & Communication Systems Lab",
+      "url": "https://headnecksurgery.duke.edu/divisions/communication-sciences/research/research-laboratories/auditory-and-communication-systems",
+      "source": "Duke · Auditory & Communication Systems Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Source page checked; always confirm status and eligibility with the university",
+      "recruitment_evidence": "seeking graduate students interested in studying auditory physiology, animal behavior, neural computation, or cochlear implants. We have openings of undergraduate students interested in getting i",
+      "intake": null,
+      "supervisor": "Dr Steven Elia",
+      "deadline_note": null
     }
   ],
   "source_health": [
@@ -86,7 +137,20 @@
       "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=psychoacoustics"
     },
     {
-      "source": "AUDITORY research announcements",
+      "source": "UCL · Cochlear Implant Child Outcomes Studentship",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "AUDITORY research recruitment announcements",
+      "status": "ok",
+      "found": 42,
+      "checked": 42,
+      "message": ""
+    },
+    {
+      "source": "AUDITORY archive (directory; monitored via announcement source)",
       "status": "reference_only",
       "found": 0,
       "checked": 0,
@@ -130,11 +194,41 @@
       "found": 0,
       "checked": 0,
       "message": "Directory/archive; not used to manufacture vacancies"
+    },
+    {
+      "source": "UT Dallas · Neuroaudiology Lab",
+      "status": "no_confirmed_opening",
+      "found": 0,
+      "checked": 1,
+      "message": "no explicit lab recruitment"
+    },
+    {
+      "source": "Duke · Auditory & Communication Systems Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "UConn · Audette Sensory Processing Lab",
+      "status": "no_confirmed_opening",
+      "found": 0,
+      "checked": 1,
+      "message": "not hearing-related"
+    },
+    {
+      "source": "UIC · Listening Technology Lab",
+      "status": "reference_only",
+      "found": 0,
+      "checked": 0,
+      "message": "Directory/archive; not used to manufacture vacancies"
     }
   ],
   "rejected_reasons": {
-    "lab explicitly reports no open positions": 1
+    "announcement date missing": 42,
+    "lab explicitly reports no open positions": 1,
+    "no explicit lab recruitment": 1,
+    "not hearing-related": 1
   },
   "page_errors": [],
-  "sources_checked": 4
+  "sources_checked": 50
 }
