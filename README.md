@@ -1,55 +1,52 @@
-# PhD Research Radar v1.5: diagnostic repair
+# PhD Research Radar 2.0 (clean rebuild)
 
-The previous collector rejected every candidate with missing or conflicting deadlines and discarded all old feed entries if they were not revisited. This version:
+A GitHub Pages-ready Progressive Web App for finding **actual advertised PhD positions** and **research labs explicitly recruiting doctoral students** in hearing sciences, audiology, auditory neuroscience, psychoacoustics, electrophysiology, hearing aids and cochlear implants.
 
-- Displays verified opportunities in Active Feed.
-- Places plausible original PhD vacancy pages missing a reliable deadline into Review Queue. These are NOT confirmed open and must be checked manually.
-- Retains previously verified unexpired opportunities, visibly marked as needing recheck, rather than silently deleting them on a single unsuccessful discovery run.
-- Continues excluding news, generic degree lists, expired positions, and postdocs.
-- Preserves local application data storage key and sources.
+This is a **new codebase**, not a patch to the prior Radar versions. It uses a new localStorage key (`phdradar_clean_v2`) and **does not remove or overwrite old local data**. Old data is available via Settings → Import previous app data if you install this on the same web origin and browser. Export a backup from your old version before deployment.
 
-**Deploy:** backup using Settings, replace project files except existing `data/opportunities.json`, commit changes, manually run GitHub Action, and hard refresh the website. The workflow will populate `review_candidates` in addition to `opportunities`. Do not upload an empty JSON file over your live feed.
+## Deploy to GitHub Pages
 
-**Important:** This improves visibility and diagnostics, not coverage guarantees. If `candidate_pages` remains 0, the issue is discovery/blocked search services and the next step is dedicated feeds and parsers.
+1. Back up current browser records through the existing app's Settings.
+2. Download and extract this archive; copy **all** files to the root of a GitHub repository, including `.github/workflows/search.yml` and `.nojekyll`. Remove old `app.js`, `style.css`, `sw.js` and legacy files to prevent confusion.
+3. GitHub → Settings → Pages → Deploy from branch → `main` / root.
+4. GitHub → Actions → **Discover PhD opportunities** → Run workflow. Workflow needs contents: write (set in YAML, subject to repository/organization permissions).
+5. Verify `data/opportunities.json` has a non-null `generated_at` timestamp; open the site and select **Refresh feed**.
+6. On your existing browser, Settings → **Import previous app data**, verify records and export new backup.
 
-# PhD Research Radar v1.4: Global Monitoring + Application Reminders
+The GitHub Action is scheduled daily at 07:17 UTC, but GitHub scheduled runs may be delayed or skipped. In-app Refresh downloads the *last published* data, not a new search.
 
-**Drop-in update for `bbkbhattarai/phd-tracker`.** Keep your existing `data/opportunities.json` and any browser storage. Export a backup in the app first.
+## What is *actually monitored* in this first release
 
-## Fix for empty dashboard while feed is populated
+- **5 FindAPhD listing search pages:** extracts individual `/phds/project/` links, opens each project's page, screens for hearing relevance and evidence of doctoral recruitment, and extracts funding/deadline when evident.
+- **4 laboratory recruiting pages:** checks recruiting-language patterns and sends promising leads to *Needs review*, not automatically confirmed. A lab page may stay online for years, so verify current recruitment and intake.
+- A worldwide **source catalogue** includes additional university/programme/directory reference URLs, but **these are not all directly scraped**. A source appearing in the catalogue does not imply scheduled monitoring.
+- **AUDITORY mailing list** is available as a reference source but archival announcements are **not automatically ingested** yet.
 
-The app now has an **Active Feed** view showing *all current feed records*, not only never-reviewed leads. **New** displays only never-reviewed opportunities. A feed diagnostic above the results confirms count and publication date. The client accepts the `opportunities` array regardless of `schema_version`, and does not exclude entries solely because of a missing `verification` marker. A record in the feed is **not thereby confirmed open**: verify the university vacancy page before applying.
+Other portals (jobs.ac.uk, EURAXESS, AcademicTransfer) are in the reference directory and require specific supported adapters before they can supply automated leads. Where a site blocks automated requests, Source Diagnostics displays the failure. Do not interpret zero accepted records as proof that no openings exist.
 
-The app fetches `data/opportunities.json` when opened and via **Check for new leads**. A PWA cache version change makes the browser update its old code. If an old install persists, close all app tabs and reload twice.
+## Verified versus review
 
-## Phase 3: Global research monitoring
+- **Opportunities**: PhD project page opened with a future deadline observed (not a guarantee that the university continues accepting applications). University project pages can contain stale data, and exact deadline/funding/eligibility should be checked before applying.
+- **Needs review**: doctoral project page without a clear deadline, older leads that could not be rechecked, or lab page explicitly claiming to recruit PhD students. Never presented as confirmed open.
+- Expired records fall out of active feeds. Saved local application records persist.
+- No fabricated projects, no news-headline ingestion, no invented dates or funding guarantees.
 
-- Existing direct job listing pages still checked and verified through `scripts/collect.py`.
-- Rotating site-index queries check 12 non-portal institutions from the 125-source global catalogue per daily run, in addition to topic-based discovery. These are **search-engine indexed discovery checks, not dedicated direct integrations**. Site-index queries may miss ads, especially where university sites restrict bots.
-- Direct vacancy URLs can be specified in `scripts/sources.json` under `custom_vacancy_urls`.
-- Sources remain browseable and user-added sources remain local to the device; to include them in scheduled GitHub Actions searches, add them to the repo config/catalogue.
-- The resulting public feed reports `source_health`, `institution_sources_checked`, `candidate_pages`, `rejected_reasons`, and `page_errors`. Failed searches cannot support a claim of no open vacancies.
+## Data privacy and limitations
 
-## Phase 4: Deadline / application management
+- GitHub hosts only public HTML/JS, source configuration and public results JSON.
+- Bookmarks, notes, application status, seen markers, added personal source URLs are stored only within browser localStorage. They do not sync between browsers/devices. Do not store sensitive identity documents in notes.
+- Source additions in the Sources screen do **not** automatically modify the scheduled GitHub collector. To add a scheduled source, update `scripts/sources.json` and add an appropriate parser if needed.
+- Deadline reminders display while app is open; no notification service / background push.
+- PWA static cache explicitly uses network-first asset loading and network-only (with optional existing cache fallback) for JSON feeds.
+- Permission to access sites and reliability of HTML layouts vary. Respect robots rules, rate limits and website terms when extending adapters.
 
-- Upcoming deadlines shown at top of listings for saved or active applications. Settings lets you choose 3/7/14/30-day reminder windows.
-- Closing dates remove expired opportunities from **Active Feed** and **New**, while saved/tracked opportunities remain in **Saved/Applications** for historical follow-up.
-- Application stages and user-entered verified deadline overrides stay in local browser storage; not synced to GitHub.
-- **Notifications are in-app only while you are using the browser app**. No push notifications when closed, no cross-device sync.
+## Development / offline tests
 
-## Publish to GitHub Pages
+```sh
+python -m pip install -r scripts/requirements.txt
+python tests/test_collector.py
+python scripts/collect.py
+python -m http.server 8000
+```
 
-1. Open the existing app and **Settings → Export backup**.
-2. Upload this ZIP's extracted files to repo `bbkbhattarai/phd-tracker` root, including hidden `.github` workflow directory. Preserve the existing `data/opportunities.json` (not shipped in ZIP).
-3. Commit to `main`. Wait until Pages deployment finishes.
-4. Open the app and use **Active Feed**. It should load the *currently published* JSON even before running the collector.
-5. Go to GitHub **Actions → Refresh PhD opportunity leads → Run workflow** to refresh worldwide results, then return to the app and click **Check for new leads**.
-6. Open the feed URL to verify the `opportunities` array and diagnostics. If the list appears in JSON but not the app, check the app's Feed Status banner, browser console and service worker cache.
-
-## Constraints
-
-No guaranteed scraping for all 125 institutions. Full direct connectors are not yet present for every university, and the Bing RSS/site discovery can miss valid openings. Funding text is extracted heuristically and deadlines from page text; they require manual confirmation at the application source. Deployment to the GitHub account is not performed by creating this ZIP.
-
-## Tests
-
-Run `python -m unittest discover -s tests -v` and `node --check app.js`. Live scraping wasn't validated in this environment.
+Open `http://localhost:8000/`. Note that running the collector requires internet access; tests use offline sample fixtures only.
