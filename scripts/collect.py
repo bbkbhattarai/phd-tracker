@@ -6,6 +6,17 @@ config=json.loads((ROOT/'scripts/sources.json').read_text())
 existing=json.loads(output.read_text()) if output.exists() else {'opportunities':[]}
 items={x['id']:x for x in existing.get('opportunities',[]) if x.get('id') and x.get('url')}
 queries=list(config.get('queries',[]))
+# Stagger site-scoped queries across days to reduce throttling and avoid implying
+# every university website was searched on every run.
+catalog=json.loads((ROOT/config.get('catalog_file','data/source_catalog.json')).read_text()).get('sources',[])
+programmes=[s for s in catalog if s.get('kind')=='institution']
+slot=dt.datetime.now(dt.timezone.utc).date().toordinal()
+batch=min(max(int(config.get('daily_catalog_batch',14)),1),25)
+selected=[programmes[(slot*batch+i)%len(programmes)] for i in range(min(batch,len(programmes)))] if programmes else []
+for s in selected:
+    hostname=urllib.parse.urlsplit(s['url']).hostname
+    if hostname: queries.append('site:'+hostname+' PhD (auditory OR hearing OR audiology OR cochlear OR psychoacoustic)')
+
 for site in config.get('custom_sites',[]):
     if re.fullmatch(r'[a-zA-Z0-9.-]+',site): queries.append('site:'+site+' PhD (auditory OR hearing OR audiology OR cochlear)')
 # Use explicit geographic signals only; a globally indexed result is not necessarily
@@ -57,7 +68,7 @@ for query in queries:
     except Exception as exc:errors.append({'query':query,'error':str(exc)[:180]})
 cutoff=(dt.datetime.now(dt.timezone.utc).date()-dt.timedelta(days=120)).isoformat()
 items={k:v for k,v in items.items() if v.get('discovered','')>=cutoff}
-result={'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'source_checks':checked,'new_leads':found,'coverage':'Worldwide (source-matched, not exhaustive)','errors':errors,'opportunities':sorted(items.values(),key=lambda x:x['discovered'],reverse=True)[:500],'note':'Discovery leads only. Deadlines and openings are not verified; do not treat feed absence as exhaustive search.'}
+result={'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'catalog_sources':len(catalog),'catalog_sources_queried_today':len(selected),'source_checks':checked,'new_leads':found,'coverage':'Worldwide (source-matched, not exhaustive)','errors':errors,'opportunities':sorted(items.values(),key=lambda x:x['discovered'],reverse=True)[:500],'note':'Discovery leads only. Deadlines and openings are not verified; do not treat feed absence as exhaustive search.'}
 output.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
 print(f'checked={checked} new={found} errors={len(errors)} retained={len(result["opportunities"])}')
 if queries and checked==0: raise SystemExit('All searches failed. Existing feed was preserved but workflow will fail.')

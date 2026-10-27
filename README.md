@@ -32,3 +32,7 @@ The scheduled collector now uses worldwide search queries and additional regiona
 
 ### Upgrade existing GitHub Pages site
 Upload these files in place of the originals, preserving their paths, including the hidden `.github` directory. Your personal applications and seen/saved state use the existing `phdradar-state-v2` browser storage key and are not reset. Before upgrading, use Settings > Export backup. After uploading, run the Refresh PhD opportunity leads workflow once, then reload the web app (a hard reload may help).
+
+
+## Version 1.2: International research directory
+The Resources page reads `data/source_catalog.json`, with a catalogue derived partly from the American Academy of Audiology US PhD directory and curated international research programme pages. Entries represent potential doctoral research institutions, NOT confirmed current openings. The daily search script includes 14 rotating catalogue site-scoped Google News searches in addition to core worldwide searches; this does NOT directly crawl each lab or guarantee that openings are indexed. App user-added sites stay in browser storage and do not automatically enroll in the scheduled workflow. **Keep your existing `data/opportunities.json`** when deploying this update and export your personal backup from Settings first. Replace app.js, style.css, sw.js, scripts/collect.py, scripts/sources.json, and add data/source_catalog.json. Your search.yml is unchanged and its corrected `fi` must remain intact.

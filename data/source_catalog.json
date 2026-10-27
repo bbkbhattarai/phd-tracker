@@ -1,0 +1,1006 @@
+{
+  "version": "1.2",
+  "description": "Research-programme directory; institutions are not verified current vacancies. Rotating site-scoped news searches are not direct page monitoring.",
+  "sources": [
+    {
+      "name": "American Academy of Audiology PhD directory",
+      "url": "https://www.audiology.org/careers/doctoral-programs-in-audiology/phd-programs/",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "FindAPhD",
+      "url": "https://www.findaphd.com",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "jobs.ac.uk",
+      "url": "https://www.jobs.ac.uk",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "EURAXESS",
+      "url": "https://euraxess.ec.europa.eu/jobs",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "AcademicTransfer",
+      "url": "https://www.academictransfer.com/en/",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Academic Positions",
+      "url": "https://academicpositions.com",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "PhDportal",
+      "url": "https://www.phdportal.com",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Nature Careers",
+      "url": "https://www.nature.com/naturecareers",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "RNID PhD studentships",
+      "url": "https://rnid.org.uk/what-we-do/biomedical-research/apply-for-funding/phd-studentships/",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "British Academy of Audiology",
+      "url": "https://baaudiology.org",
+      "region": "Worldwide",
+      "kind": "portal",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of South Alabama",
+      "url": "https://www.southalabama.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Arizona",
+      "url": "https://www.arizona.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Arkansas for Medical Sciences",
+      "url": "https://uams.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Colorado Boulder",
+      "url": "https://www.colorado.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Connecticut",
+      "url": "https://uconn.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Gallaudet University",
+      "url": "https://gallaudet.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of South Florida",
+      "url": "https://www.usf.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Florida",
+      "url": "https://www.ufl.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Northwestern University",
+      "url": "https://www.northwestern.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Indiana University Bloomington",
+      "url": "https://www.indiana.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Purdue University",
+      "url": "https://www.purdue.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Iowa",
+      "url": "https://uiowa.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Kansas",
+      "url": "https://ku.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Wichita State University",
+      "url": "https://www.wichita.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Maryland College Park",
+      "url": "https://umd.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Boston University",
+      "url": "https://www.bu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Harvard-MIT Health Sciences and Technology",
+      "url": "https://hst.mit.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Massachusetts Amherst",
+      "url": "https://www.umass.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Wayne State University",
+      "url": "https://wayne.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Minnesota",
+      "url": "https://twin-cities.umn.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Washington University in St. Louis",
+      "url": "https://wustl.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Nebraska Lincoln",
+      "url": "https://www.unl.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University at Buffalo SUNY",
+      "url": "https://www.buffalo.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Syracuse University",
+      "url": "https://www.syracuse.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "CUNY Graduate Center",
+      "url": "https://www.gc.cuny.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "East Carolina University",
+      "url": "https://www.ecu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of North Carolina Chapel Hill",
+      "url": "https://www.unc.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of North Dakota",
+      "url": "https://und.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Kent State University",
+      "url": "https://www.kent.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Ohio State University",
+      "url": "https://www.osu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Ohio University",
+      "url": "https://www.ohio.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Cincinnati",
+      "url": "https://www.uc.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Oklahoma",
+      "url": "https://www.ou.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Penn State University",
+      "url": "https://www.psu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Pittsburgh",
+      "url": "https://www.pitt.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of South Carolina",
+      "url": "https://sc.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Memphis",
+      "url": "https://www.memphis.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Tennessee Knoxville",
+      "url": "https://www.utk.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Vanderbilt University",
+      "url": "https://www.vanderbilt.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Texas Tech University Health Sciences Center",
+      "url": "https://www.ttuhsc.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Texas at Austin",
+      "url": "https://www.utexas.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Texas at Dallas",
+      "url": "https://www.utdallas.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Utah",
+      "url": "https://www.utah.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Utah State University",
+      "url": "https://www.usu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "James Madison University",
+      "url": "https://www.jmu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Washington",
+      "url": "https://www.washington.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "West Virginia University",
+      "url": "https://www.wvu.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Wisconsin Madison",
+      "url": "https://www.wisc.edu",
+      "region": "USA",
+      "kind": "institution",
+      "basis": "AAA PhD directory",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "UCL Ear Institute",
+      "url": "https://www.ucl.ac.uk/study/prospective-students/graduate/courses/ear-institute-mphilphd",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Manchester Centre for Audiology and Deafness",
+      "url": "https://www.manchester.ac.uk/study/postgraduate-research/programmes/list/11032/phd-audiology/programme-details/",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Nottingham Hearing Research",
+      "url": "https://www.nottingham.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Southampton",
+      "url": "https://www.southampton.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Sheffield",
+      "url": "https://www.sheffield.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Cambridge",
+      "url": "https://www.cam.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Oxford",
+      "url": "https://www.ox.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Anglia Ruskin University Hearing Research",
+      "url": "https://www.aru.ac.uk/study/postgraduate/audiology-and-hearing-disability-research",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Salford Acoustics Institute",
+      "url": "https://acoustics.salford.ac.uk/study/acoustic-phd-opportunities/",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Strathclyde",
+      "url": "https://www.strath.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Edinburgh",
+      "url": "https://www.ed.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of East Anglia",
+      "url": "https://www.uea.ac.uk",
+      "region": "UK",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Oldenburg Hearing4all",
+      "url": "https://uol.de/en",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Göttingen Institute for Auditory Neuroscience",
+      "url": "https://www.auditory-neuroscience.uni-goettingen.de/job.html",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Hannover Medical School Auditory Sciences",
+      "url": "https://www.neuroprostheses.com/AuditorySciences/Main.html",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Technical University of Denmark",
+      "url": "https://www.dtu.dk/english",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "KU Leuven",
+      "url": "https://www.kuleuven.be/english",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Radboud University",
+      "url": "https://www.ru.nl/en",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Maastricht University",
+      "url": "https://www.maastrichtuniversity.nl",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Tübingen",
+      "url": "https://uni-tuebingen.de/en/",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Karolinska Institutet",
+      "url": "https://ki.se/en",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Helsinki",
+      "url": "https://www.helsinki.fi/en",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Oslo",
+      "url": "https://www.uio.no/english",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Zurich",
+      "url": "https://www.uzh.ch/en.html",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Basel",
+      "url": "https://www.unibas.ch/en.html",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Antwerp",
+      "url": "https://www.uantwerpen.be/en/",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Groningen",
+      "url": "https://www.rug.nl",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Linköping University",
+      "url": "https://liu.se/en",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Aarhus University",
+      "url": "https://international.au.dk",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Université Paris Cité",
+      "url": "https://u-paris.fr/en/",
+      "region": "Europe",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Western University National Centre for Audiology",
+      "url": "https://www.uwo.ca/nca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Toronto",
+      "url": "https://www.utoronto.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "McGill University",
+      "url": "https://www.mcgill.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of British Columbia",
+      "url": "https://www.ubc.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Alberta",
+      "url": "https://www.ualberta.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Ottawa",
+      "url": "https://www.uottawa.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Université de Montréal",
+      "url": "https://www.umontreal.ca",
+      "region": "Canada",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Macquarie University",
+      "url": "https://www.mq.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Melbourne",
+      "url": "https://www.unimelb.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Bionics Institute",
+      "url": "https://www.bionicsinstitute.org",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Queensland",
+      "url": "https://www.uq.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Sydney",
+      "url": "https://www.sydney.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of New South Wales",
+      "url": "https://www.unsw.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Flinders University",
+      "url": "https://www.flinders.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Adelaide",
+      "url": "https://www.adelaide.edu.au",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Monash University",
+      "url": "https://www.monash.edu",
+      "region": "Australia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Auckland Doctoral Audiology",
+      "url": "https://www.auckland.ac.nz/en/study/study-options/find-a-study-option/audiology/doctoral.html",
+      "region": "New Zealand",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Otago",
+      "url": "https://www.otago.ac.nz",
+      "region": "New Zealand",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Canterbury",
+      "url": "https://www.canterbury.ac.nz",
+      "region": "New Zealand",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "CUHK Auditory Neuroscience Laboratory",
+      "url": "https://www.auditoryneuroscience.org/JoinPhD",
+      "region": "Hong Kong",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Hong Kong",
+      "url": "https://www.hku.hk",
+      "region": "Hong Kong",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Chinese University of Hong Kong",
+      "url": "https://www.cuhk.edu.hk",
+      "region": "Hong Kong",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Hong Kong Polytechnic University",
+      "url": "https://www.polyu.edu.hk",
+      "region": "Hong Kong",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Hong Kong University of Science and Technology",
+      "url": "https://hkust.edu.hk",
+      "region": "Hong Kong",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "National University of Singapore",
+      "url": "https://www.nus.edu.sg",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Nanyang Technological University Singapore",
+      "url": "https://www.ntu.edu.sg",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Duke-NUS Medical School",
+      "url": "https://www.duke-nus.edu.sg",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Tokyo",
+      "url": "https://www.u-tokyo.ac.jp/en/",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Kyoto University",
+      "url": "https://www.kyoto-u.ac.jp/en",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Osaka University",
+      "url": "https://www.osaka-u.ac.jp/en",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "Seoul National University",
+      "url": "https://en.snu.ac.kr",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "KAIST",
+      "url": "https://www.kaist.ac.kr/en/",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "National Taiwan University",
+      "url": "https://www.ntu.edu.tw/english",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "National Cheng Kung University",
+      "url": "https://web.ncku.edu.tw",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "All India Institute of Medical Sciences",
+      "url": "https://www.aiims.edu",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "National Institute of Mental Health and Neurosciences",
+      "url": "https://nimhans.ac.in",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    },
+    {
+      "name": "University of Malaya",
+      "url": "https://um.edu.my",
+      "region": "Asia",
+      "kind": "institution",
+      "basis": "curated",
+      "monitor": "discovery query (rotating); not direct scraping"
+    }
+  ]
+}
