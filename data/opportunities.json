@@ -1,1 +1,140 @@
-{"schema_version":2,"generated_at":null,"opportunities":[],"review_queue":[],"source_health":[],"rejected_reasons":{},"page_errors":[],"sources_checked":0}
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-27T20:22:11.137768+00:00",
+  "opportunities": [],
+  "review_queue": [
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Not specified",
+      "region": "USA",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "The lab is always interested in hearing from motivated individuals passionate about auditory neuroscience. Students and postdocs interested in basic scientific research are encouraged to reach out to Dr Kirupa Suthakar to inquire about opportunities to contribute. Postdoctoral Fellows We do not currently have any open postdoctoral positions in the lab. Check back in the future! Lab Manager/Research Technicians We do not currently have any open lab manager/research technician positions in the lab. Check back soon! Graduate Students We are currently accepting graduate students. Prospective students should email Dr Suthakar with a copy of their CV, academic transcript and one-page cover letter ",
+      "id": "1480689a6a83bea0d64d",
+      "title": "UT Dallas · Descending Auditory Circuits Lab",
+      "url": "https://labs.utdallas.edu/daclab/join/",
+      "source": "UT Dallas · Descending Auditory Circuits Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Funding mentioned (details unverified)",
+      "region": "USA",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "PhD Opportunities Within Our Lab The Auditory Cognitive Neuroscience Lab is seeking candidates for a PhD program who are interested in auditory processing, specifically related to hearing impairment, aging, tinnitus, hyperacusis and misophonia. The PhD may be obtained in the Department of Speech and Hearing Science or from the Graduate Program in Neuroscience, University of Illinois at Urbana-Champaign. Dr. Husain can mentor PhD students in either program. Our lab has been continuously funded to conduct brain imaging and behavioral research on hearing loss, tinnitus, and misophonia for the past 10 years. Over the past year, our exciting new findings have been published in publications such a",
+      "id": "6a43b978606b75a4ec02",
+      "title": "Illinois · Auditory Cognitive Neuroscience Lab",
+      "url": "https://publish.illinois.edu/acnlab-shs-ahs/join-the-lab/",
+      "source": "Illinois · Auditory Cognitive Neuroscience Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Not specified",
+      "region": "USA",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "Children’s Auditory Research for Educational Success Our research seeks to improve the lives of school-age children with hearing differences. Who We Are The CARES lab is run by Dr. Samantha Gustafson, an Assistant Professor at Indiana University. Our research aims to understand how we can better support school-age children with hearing differences. Learn more Dr. Gustafson is recruiting PhD students for Fall 2027! Check out Indiana University’s PhD Program SLHS PhD Program Reach out to Dr. Gustafson to show your interest Email Dr. Gustafson Interested in participating? Some families participate in our research by coming to our lab at IU Bloomington and others participate virtually. Participa",
+      "id": "66af0cf60698d0030082",
+      "title": "Indiana University · CARES Lab",
+      "url": "https://www.indianacareslab.org/",
+      "source": "Indiana University · CARES Lab",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Page content checked; application status and funding should be confirmed with institution"
+    }
+  ],
+  "source_health": [
+    {
+      "source": "FindAPhD · Hearing",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=hearing"
+    },
+    {
+      "source": "FindAPhD · Audiology",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/audiology/?30M7Qy23"
+    },
+    {
+      "source": "FindAPhD · Auditory",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=auditory"
+    },
+    {
+      "source": "FindAPhD · Cochlear Implant",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=cochlear%20implant"
+    },
+    {
+      "source": "FindAPhD · Psychoacoustics",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "403 Client Error: Forbidden for url: https://www.findaphd.com/phds/?Keywords=psychoacoustics"
+    },
+    {
+      "source": "AUDITORY research announcements",
+      "status": "reference_only",
+      "found": 0,
+      "checked": 0,
+      "message": "Directory/archive; not used to manufacture vacancies"
+    },
+    {
+      "source": "UT Dallas · Descending Auditory Circuits Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "Illinois · Auditory Cognitive Neuroscience Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "Indiana University · CARES Lab",
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "Göttingen · Institute for Auditory Neuroscience",
+      "status": "no_confirmed_opening",
+      "found": 0,
+      "checked": 1,
+      "message": "lab explicitly reports no open positions"
+    },
+    {
+      "source": "UCL Ear Institute",
+      "status": "reference_only",
+      "found": 0,
+      "checked": 0,
+      "message": "Directory/archive; not used to manufacture vacancies"
+    },
+    {
+      "source": "American Academy of Audiology · PhD directory",
+      "status": "reference_only",
+      "found": 0,
+      "checked": 0,
+      "message": "Directory/archive; not used to manufacture vacancies"
+    }
+  ],
+  "rejected_reasons": {
+    "lab explicitly reports no open positions": 1
+  },
+  "page_errors": [],
+  "sources_checked": 4
+}
