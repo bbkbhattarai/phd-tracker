@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-27T21:42:04.710723+00:00",
+  "generated_at": "2026-10-27T22:01:00.870417+00:00",
   "opportunities": [
     {
       "category": "advertised_phd",
@@ -19,6 +19,25 @@
       "recruitment_evidence": "research assistant, representing six nationalities",
       "intake": null,
       "supervisor": "Dr Antje Stoehr",
+      "deadline_note": null
+    },
+    {
+      "category": "advertised_phd",
+      "deadline": "2027-01-31",
+      "funding": "Competition-funded",
+      "region": "UK",
+      "verification": "deadline_verified",
+      "summary": "Study View all courses Taught postgraduate study Postgraduate taught degree courses Online master's degrees Postgraduate taught tuition fees Funding your postgraduate taught studies Pre-masters for international students How to apply for a postgraduate taught degree Postgraduate offer holders - prepare for your studies Pre-sessional English courses Subjects PhDs and research degrees Create your own research project Inaccessible Find a PhD project Funding your research degree How to apply for a PhD or research degree How to make a PhD enquiry Support while studying your PhD or research degree Exchanges and studying abroad Undergraduate study Undergraduate degree courses Foundation year progra",
+      "id": "90e8c1b810768d4961c9",
+      "title": "The attentive ear: AI to decode listening fatigue from wearables",
+      "url": "https://www.southampton.ac.uk/study/postgraduate-research/projects/the-attentive-ear-ai-to-decode-listening-fatigue-from",
+      "source": "Southampton · The Attentive Ear: Listening Fatigue (Official PhD Advert)",
+      "last_checked": "2026-10-27",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "Study View all courses Taught postgraduate study Postgraduate taught degree courses Online master's degrees Postgraduate taught tuition fees Funding your postgraduate taught studies Pre-masters for international students How to apply for a postgraduate taught degree Postgraduate ",
+      "intake": null,
+      "supervisor": "Dr Stefan Bleeck Professor",
       "deadline_note": null
     },
     {
@@ -372,6 +391,13 @@
       "message": "No relevant project links found; check institution page structure"
     },
     {
+      "source": "University of Southampton · Engineering PhD advertised projects",
+      "status": "ok",
+      "found": 1,
+      "checked": 1,
+      "message": ""
+    },
+    {
       "source": "UCL · Cochlear Implant Child Outcomes Studentship",
       "status": "verified",
       "found": 1,
@@ -416,6 +442,12 @@
     },
     {
       "source": "BCBL Spain · PhD in Multisensory Perceptual Learning",
+      "status": "verified",
+      "found": 1,
+      "checked": 1
+    },
+    {
+      "source": "Southampton · The Attentive Ear: Listening Fatigue (Official PhD Advert)",
       "status": "verified",
       "found": 1,
       "checked": 1
@@ -554,10 +586,10 @@
     "no recruitment evidence": 1
   },
   "page_errors": [],
-  "sources_checked": 63,
+  "sources_checked": 65,
   "regional_counts": {
     "Europe": 3,
-    "UK": 3,
+    "UK": 4,
     "Australia": 2,
     "USA": 5,
     "Canada": 1,
