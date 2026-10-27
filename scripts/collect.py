@@ -141,8 +141,35 @@ def qualify(url,html_text,source):
  if 'news.google.com' in source_host:return None,'news_not_original_vacancy'
  uid=hashlib.sha256(canonical.split('?')[0].rstrip('/').encode()).hexdigest()[:20]
  snippet=re.sub(r'\s+',' ',body)[:450]
- # avoid misleading 'verified' about availability: deadline evidence only
+ # Page checked does not guarantee applications are still accepted
  return {'id':uid,'title':title,'url':canonical,'organisation':source_host,'source':source,'region':region_from(title+' '+body[:3000],canonical),'field':'Audiology / auditory / hearing research','discovered':TODAY.isoformat(),'deadline':deadline,'deadline_status':'stated_on_source' if deadline else 'rolling_as_stated','funding':funding,'funding_status':confidence,'verification':'original_page_checked','last_verified':TODAY.isoformat(),'summary':snippet,'vacancy_type':'doctoral_position'},None
+
+def review_candidate(url, html_text, source, reason):
+ """Keep plausible original doctoral vacancy pages in a separate review queue.
+ Never turn news/articles, expired, or generic degree pages into application leads.
+ """
+ if reason not in ('deadline_or_rolling_intake_unverified','conflicting_deadlines_review'):
+  return None
+ page=Page();page.feed(html_text)
+ title=html.unescape((' '.join(page.h1) or ' '.join(page.title)).strip())[:240]
+ body=page.text()[:28000]
+ path=urllib.parse.urlsplit(url).path.lower()
+ if not TITLE_PHD.search(title) or EXCLUDE.search(title) or re.search(r'/(news|blog|articles?|events?)/',path):return None
+ if not HEARING.search(title+' '+body[:6000]) or not OPEN.search(body[:18000]) or CLOSED.search(body):return None
+ # Prevent silently admitting expired listings with multiple deadline mentions.
+ dates=extract_deadlines(body[:20000])
+ if dates and max(dates)<TODAY.isoformat():return None
+ canonical=page.meta.get('og:url') or url
+ if not canonical.startswith(('http://','https://')):canonical=url
+ if 'news.google.com' in (urllib.parse.urlparse(canonical).hostname or ''):return None
+ uid=hashlib.sha256(canonical.split('?')[0].rstrip('/').encode()).hexdigest()[:20]
+ funding,confidence=funding_info(body[:18000])
+ return {'id':uid,'title':title,'url':canonical,'organisation':urllib.parse.urlsplit(canonical).hostname or source,
+         'source':source,'region':region_from(title+' '+body[:3000],canonical),'field':'Audiology / hearing sciences',
+         'discovered':TODAY.isoformat(),'deadline':None,'deadline_status':'needs_manual_review',
+         'funding':funding,'funding_status':confidence,'verification':'candidate_page_review_needed',
+         'last_verified':TODAY.isoformat(),'review_reason':reason,'summary':re.sub(r'\s+',' ',body)[:420],
+         'vacancy_type':'doctoral_position_candidate'}
 
 def institution_candidates():
  """Rotating targeted discovery, not direct guaranteed monitoring of all institutions."""
@@ -215,30 +242,32 @@ def collect():
   key=url.split('#')[0]
   if key not in unique:unique[key]=src
  limit=max(1,int(CFG.get('max_candidate_pages',55)))
- accepted={};rejected={};errors=[]
+ accepted={};review={};rejected={};errors=[]
  for url,source in list(unique.items())[:limit]:
   try:
-   item,reason=qualify(url,fetch(url),source)
+   page_html=fetch(url)
+   item,reason=qualify(url,page_html,source)
    if item:accepted[item['id']]=item
-   else:rejected[reason]=rejected.get(reason,0)+1
+   else:
+    review_item=review_candidate(url,page_html,source,reason)
+    if review_item:review[review_item['id']]=review_item
+    rejected[reason]=rejected.get(reason,0)+1
   except Exception as err:errors.append({'url':url,'error':str(err)[:150]})
- # Revalidate old accepted entries: never carry forward unverified legacy news records.
- # Keep a previously verified entry only when it was actually rechecked in this run;
- # when source fails, do not claim that opportunity is still open.
- previous={x['url']:x for x in OLD.get('opportunities',[]) if x.get('verification')=='original_page_checked' and x.get('url') and (not x.get('deadline') or x['deadline']>=TODAY.isoformat())}
- for url,old in previous.items():
-  if any(x['url']==url for x in accepted.values()):continue
-  if len(accepted)>=500:break
-  try:
-   fresh,why=qualify(url,fetch(url),old.get('source','Previous verified listing'))
-   if fresh:
-    fresh['discovered']=old.get('discovered',TODAY.isoformat());accepted[fresh['id']]=fresh
-   else:rejected['previous_'+str(why)]=rejected.get('previous_'+str(why),0)+1
-  except Exception as err:errors.append({'url':url,'error':'revalidation: '+str(err)[:130]})
- out={'schema_version':3,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'coverage':'Worldwide: verified source pages only, non-exhaustive','opportunities':sorted(accepted.values(),key=lambda x:(x['deadline'] or '9999-12-31',x['title']))[:500],'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60],'candidate_pages':len(unique),'pages_attempted':min(len(unique),limit),'institution_sources_total':len([s for s in CATALOG.get('sources',[]) if s.get('kind')!='portal']),'institution_sources_checked':len(inst_health),'total_sources_checked':len(health),'note':'Only PhD vacancy pages with an explicit future deadline or rolling applications are displayed. Funding may remain unspecified. Conflicting or missing deadlines are withheld. This feed is not exhaustive.'}
+ # Retain previously verified, unexpired records, even if the source was not sampled today.
+ # Distinguish 'not rechecked' from newly verified; do not assert current availability.
+ previous=[x for x in OLD.get('opportunities',[]) if x.get('verification') in ('original_page_checked','previously_verified_not_rechecked')]
+ for old in previous:
+  if not old.get('url') or (old.get('deadline') and old['deadline']<TODAY.isoformat()):continue
+  if old['id'] in accepted:continue
+  copy=dict(old);copy['verification']='previously_verified_not_rechecked';copy['deadline_status']='recheck_required'
+  accepted[copy['id']]=copy
+ # Review queue is separate from verified feed and must never include previously expired items.
+ for old in OLD.get('review_candidates',[]):
+  if old.get('id') not in review and old.get('last_verified')==TODAY.isoformat():review[old['id']]=old
+ out={'schema_version':3,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'coverage':'Worldwide: verified source pages only, non-exhaustive','opportunities':sorted(accepted.values(),key=lambda x:(x['deadline'] or '9999-12-31',x['title']))[:500],'review_candidates':sorted(review.values(),key=lambda x:x['title'])[:200],'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60],'candidate_pages':len(unique),'pages_attempted':min(len(unique),limit),'institution_sources_total':len([s for s in CATALOG.get('sources',[]) if s.get('kind')!='portal']),'institution_sources_checked':len(inst_health),'total_sources_checked':len(health),'note':'Verified listings and promising vacancy pages needing manual deadline checks are in separate lists. News and generic courses are excluded. Older previously verified listings may need rechecking.'}
  OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n')
- print('Candidates:',len(unique),'verified open:',len(accepted),'rejected:',rejected,'errors:',len(errors))
+ print('Candidates:',len(unique),'active verified/retained:',len(accepted),'review:',len(review),'rejected:',rejected,'errors:',len(errors))
  if not unique and all(x['status']=='error' for x in health):raise SystemExit('All discovery sources failed; feed retained but search not completed')
 
 if __name__=='__main__':collect()

@@ -1,3 +1,17 @@
+# PhD Research Radar v1.5: diagnostic repair
+
+The previous collector rejected every candidate with missing or conflicting deadlines and discarded all old feed entries if they were not revisited. This version:
+
+- Displays verified opportunities in Active Feed.
+- Places plausible original PhD vacancy pages missing a reliable deadline into Review Queue. These are NOT confirmed open and must be checked manually.
+- Retains previously verified unexpired opportunities, visibly marked as needing recheck, rather than silently deleting them on a single unsuccessful discovery run.
+- Continues excluding news, generic degree lists, expired positions, and postdocs.
+- Preserves local application data storage key and sources.
+
+**Deploy:** backup using Settings, replace project files except existing `data/opportunities.json`, commit changes, manually run GitHub Action, and hard refresh the website. The workflow will populate `review_candidates` in addition to `opportunities`. Do not upload an empty JSON file over your live feed.
+
+**Important:** This improves visibility and diagnostics, not coverage guarantees. If `candidate_pages` remains 0, the issue is discovery/blocked search services and the next step is dedicated feeds and parsers.
+
 # PhD Research Radar v1.4: Global Monitoring + Application Reminders
 
 **Drop-in update for `bbkbhattarai/phd-tracker`.** Keep your existing `data/opportunities.json` and any browser storage. Export a backup in the app first.
