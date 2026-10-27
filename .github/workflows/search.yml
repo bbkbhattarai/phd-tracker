@@ -21,6 +21,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      
+      - name: Install Python dependencies
+        run: python -m pip install requests beautifulsoup4
+
 
       - name: Collect public research leads
         run: python scripts/collect.py
