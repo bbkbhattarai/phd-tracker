@@ -25,3 +25,10 @@ A personal PhD lead discovery and application tracker for hearing sciences. **Pr
 - Data does **not** automatically sync across browsers, devices or private/incognito sessions. Clear-site-data actions may wipe local records. Export a JSON backup regularly.
 - Google News result URLs may point to secondary articles and may not resolve directly to a university listing.
 - GitHub Pages hosts public static files. Never commit application notes, personal information or exported backup files.
+
+
+## Worldwide geography update
+The scheduled collector now uses worldwide search queries and additional regional institutional searches. The user interface shows a region selector only for regions represented in the currently displayed results. Unknown institutions appear as **Location unspecified** rather than being assigned incorrectly. Google News RSS cannot guarantee comprehensive worldwide monitoring or reliable live vacancy status. Additional universities in the Sources tab are reference links; to add domains to the scheduled worldwide collector, edit `scripts/sources.json` in GitHub.
+
+### Upgrade existing GitHub Pages site
+Upload these files in place of the originals, preserving their paths, including the hidden `.github` directory. Your personal applications and seen/saved state use the existing `phdradar-state-v2` browser storage key and are not reset. Before upgrading, use Settings > Export backup. After uploading, run the Refresh PhD opportunity leads workflow once, then reload the web app (a hard reload may help).
