@@ -162,6 +162,22 @@
       "url": "https://www.sussex.ac.uk/research/labs/auditory-cognition-group/people",
       "region": "UK",
       "type": "lab-recruitment"
+    },
+    {
+      "id": "edinburgh-acoustics-phd",
+      "name": "University of Edinburgh · Acoustics and Audio Group",
+      "url": "https://www.acoustics.ed.ac.uk/postgrad-opportunities/",
+      "region": "Scotland",
+      "type": "lab-recruitment",
+      "note": "General invitation to discuss a PhD; project and funding must be arranged."
+    },
+    {
+      "id": "nottingham-ntuh-ear",
+      "name": "Nottingham Trent · Hearing Research group",
+      "url": "https://www.ntu.ac.uk/research/groups-and-centres/groups/hearing-research-at-ntu",
+      "region": "UK",
+      "type": "programme",
+      "note": "Studentships normally advertised in autumn; no current vacancy implied."
     }
   ],
   "reference_sources": [
@@ -397,6 +413,64 @@
       "url": "https://www.ru.nl/en",
       "region": "Europe",
       "type": "reference"
+    },
+    {
+      "id": "uk-jobs-ac",
+      "name": "jobs.ac.uk · PhD studentships",
+      "url": "https://www.jobs.ac.uk/search/phds",
+      "region": "UK",
+      "type": "reference",
+      "note": "Major UK vacancy index; access and extraction require an authorized compatible connector."
+    },
+    {
+      "id": "postgrad-studentships",
+      "name": "Postgraduate Studentships · Funding directory",
+      "url": "https://www.postgraduatestudentships.co.uk/funding-opportunities",
+      "region": "UK",
+      "type": "reference"
+    },
+    {
+      "id": "bna-neuroscience",
+      "name": "British Neuroscience Association · Job listings",
+      "url": "https://www.bna.org.uk/education-training/careers/job-listing.html",
+      "region": "UK",
+      "type": "reference"
+    },
+    {
+      "id": "ucl-fund-research",
+      "name": "UCL · Funded research opportunities",
+      "url": "https://www.ucl.ac.uk/study/prospective-students/graduate/funded-research-opportunities",
+      "region": "UK",
+      "type": "reference"
+    },
+    {
+      "id": "manchester-projects",
+      "name": "University of Manchester · PhD project finder",
+      "url": "https://www.manchester.ac.uk/study/postgraduate-research/projects/",
+      "region": "UK",
+      "type": "reference",
+      "note": "May embed FindAPhD search; access not guaranteed"
+    },
+    {
+      "id": "qmu-doctoral",
+      "name": "Queen Margaret University · Research degrees",
+      "url": "https://www.qmu.ac.uk/study-here/postgraduate-research-study/2027/phd",
+      "region": "Scotland",
+      "type": "reference"
+    },
+    {
+      "id": "edinburgh-neuroscience-openings",
+      "name": "Edinburgh Neuroscience · Opportunities",
+      "url": "https://edinburghneuroscience.ed.ac.uk/opportunities",
+      "region": "Scotland",
+      "type": "reference"
+    },
+    {
+      "id": "nottingham-brc-team",
+      "name": "Nottingham BRC · Hearing research team",
+      "url": "https://nottinghambrc.nihr.ac.uk/research/hearing/hearing-team",
+      "region": "UK",
+      "type": "reference"
     }
   ],
   "announcement_sources": [
@@ -482,6 +556,15 @@
       "url": "https://www.southampton.ac.uk/study/postgraduate-research/projects/the-attentive-ear-ai-to-decode-listening-fatigue-from",
       "region": "UK",
       "type": "direct-vacancy"
+    },
+    {
+      "id": "strathclyde-nature-acoustic",
+      "name": "Strathclyde · Nature-inspired acoustic sensors PhD",
+      "title": "PhD in Nature Inspired Acoustic Sensors and Devices",
+      "url": "https://www.strath.ac.uk/studywithus/postgraduateresearchphdopportunities/engineering/electronicelectricalengineering/natureinspiredacousticsensorsdevices/",
+      "region": "Scotland",
+      "type": "direct-vacancy",
+      "fit_note": "Acoustics/electronic sensors, not necessarily audiology. Check research fit."
     }
   ],
   "institution_indexes": [
@@ -516,6 +599,115 @@
       "adapter": "southampton_projects",
       "region": "UK",
       "max_links": 20
+    },
+    {
+      "id": "baa-phd-index",
+      "name": "BAA · PhD opportunities directory",
+      "url": "https://baaudiology.org/careers/phd-opportunities/",
+      "region": "UK",
+      "adapter": "baa_phd",
+      "max_links": 16,
+      "note": "Curated historical adverts; original project page must still be checked. Old listings will not automatically be considered open."
+    },
+    {
+      "id": "nottingham-studentships",
+      "name": "University of Nottingham · Studentship vacancies",
+      "url": "https://jobslive.nottingham.ac.uk/vacancies.aspx?cat=213",
+      "region": "UK",
+      "adapter": "nottingham_studentships",
+      "max_links": 16,
+      "note": "Actual university job board. Doctoral hearing-related vacancies only."
+    },
+    {
+      "id": "strathclyde-research-index",
+      "name": "Strathclyde · Research project opportunities",
+      "url": "https://www.strath.ac.uk/studywithus/postgraduateresearchphdopportunities/",
+      "region": "Scotland",
+      "adapter": "strathclyde_projects",
+      "max_links": 10,
+      "note": "Scotland. Acoustic/audio PhDs may be broader than hearing science; confirm research fit."
+    }
+  ],
+  "monitor_only_sources": [
+    {
+      "id": "rnid-phd-funding",
+      "name": "RNID · PhD Studentships / 2027 funding call",
+      "url": "https://rnid.org.uk/what-we-do/biomedical-research/apply-for-funding/phd-studentships/",
+      "region": "UK",
+      "type": "supervisor_funding",
+      "note": "Funding call generally submitted by host supervisor; not an advertised studentship for direct student application."
+    },
+    {
+      "id": "bsa-research-funding",
+      "name": "British Society of Audiology · Research funding",
+      "url": "https://www.thebsa.org.uk/research/research-funding/",
+      "region": "UK",
+      "type": "research_funding",
+      "note": "Small grants and PhD top-ups; some restricted to BSA members. Not full PhD vacancies."
+    },
+    {
+      "id": "bcig-vacancies",
+      "name": "British Cochlear Implant Group · Vacancies",
+      "url": "https://www.bcig.org.uk/vacancies/",
+      "region": "UK",
+      "type": "clinical_and_research_jobs",
+      "note": "Mostly audiology clinical posts; do not import unless expressly a doctoral recruitment role."
+    },
+    {
+      "id": "baa-vacancies",
+      "name": "British Academy of Audiology · Vacancies",
+      "url": "https://baaudiology.org/careers/vacancies/",
+      "region": "UK",
+      "type": "clinical_and_research_jobs",
+      "note": "Mostly clinical/professional posts; only true PhD adverts can enter opportunity feed."
+    },
+    {
+      "id": "nottingham-brc-hearing",
+      "name": "Nottingham NIHR Biomedical Research Centre · Hearing",
+      "url": "https://nottinghambrc.nihr.ac.uk/research/hearing/68-clinical-hearing-sciences/282-clinical-hearing-sciences",
+      "region": "UK",
+      "type": "research_watch",
+      "note": "Hearing and tinnitus programme. Monitored for changes; not a vacancy feed."
+    },
+    {
+      "id": "qmu-funded-phds",
+      "name": "Queen Margaret University · Funded PhD opportunities",
+      "url": "https://www.qmu.ac.uk/study-here/postgraduate-research-study/graduate-school-and-doctoral-research/funded-phd-opportunities",
+      "region": "Scotland",
+      "type": "research_watch",
+      "note": "Scottish funded PhD competition; only hearing-related awards should be imported."
+    },
+    {
+      "id": "edinburgh-neuro-jobs",
+      "name": "Edinburgh Neuroscience · PhD study and training",
+      "url": "https://edinburghneuroscience.ed.ac.uk/study/phd-study",
+      "region": "Scotland",
+      "type": "research_watch",
+      "note": "University-wide neuroscience directory; hearing relevance needs validation."
+    },
+    {
+      "id": "edinburgh-epi",
+      "name": "University of Edinburgh · Acoustics & Audio PhD",
+      "url": "https://www.acoustics.ed.ac.uk/postgrad-opportunities/",
+      "region": "Scotland",
+      "type": "research_watch",
+      "note": "Group welcomes PhD enquiries; funding not assumed."
+    },
+    {
+      "id": "scotland-strath-studentships",
+      "name": "University of Strathclyde · PhD opportunities",
+      "url": "https://www.strath.ac.uk/studywithus/postgraduateresearchphdopportunities/",
+      "region": "Scotland",
+      "type": "research_watch",
+      "note": "Includes acoustic-engineering positions, which may not concern audiology."
+    },
+    {
+      "id": "qmu-doctoral-casl",
+      "name": "Queen Margaret University · Clinical Audiology, Speech & Language",
+      "url": "https://www.qmu.ac.uk/study-here/postgraduate-research-study/graduate-school-and-doctoral-research/phd-bursary-competition/doctoral-bursaries-clinical-audiology-speech-and-language-research-centre",
+      "region": "Scotland",
+      "type": "research_watch",
+      "note": "Research centre and doctoral bursary information; no open award assumed."
     }
   ]
 }

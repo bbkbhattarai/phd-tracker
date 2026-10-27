@@ -122,7 +122,7 @@ def institution_links(html,base,adapter):
     for a in soup.select('a[href]'):
         url=urljoin(base,a.get('href',''))
         parsed=urlparse(url)
-        if parsed.hostname!=basehost:continue
+        if parsed.hostname!=basehost and adapter!='baa_phd':continue
         path=parsed.path.lower()
         label=a.get_text(' ',strip=True)
         parent=a.find_parent(['article','li','section','div'])
@@ -141,9 +141,20 @@ def institution_links(html,base,adapter):
         elif adapter=='macquarie_scholarships':
             if not ('/scholarship-search/' in path and ('hearing' in slug or 'cochlear' in slug or 'auditory' in slug or 'listening' in slug)):
                 continue
+        elif adapter=='nottingham_studentships':
+            # Restrict to the official job-detail links; do not import a general jobs board.
+            if not ('vacancy.aspx' in path and (PHD.search(title+' '+label) or re.search(r'phd|studentship',block,re.I))):continue
+        elif adapter=='baa_phd':
+            # BAA keeps archived projects indefinitely. Only individual doctoral links,
+            # never the BAA directory itself, are candidates for original-page verification.
+            if not (re.search(r'phd|studentship',title+' '+label+' '+url,re.I) or (HEARING.search(title+' '+label) and 'findaphd.com' in parsed.netloc)):continue
+            if not parsed.scheme in ('https','http'):continue
+        elif adapter=='strathclyde_projects':
+            if not ('/postgraduateresearchphdopportunities/' in path and path.rstrip('/')!='/studywithus/postgraduateresearchphdopportunities'):continue
+            if not re.search(r'hearing|auditory|cochlear|audiology|psychoacoustic|listening|acoustic sensors|acoustics and audio',slug,re.I):continue
         else:continue
-        if not HEARING.search(slug+' '+block):continue
-        if not (PHD.search(slug+' '+block) or adapter in ('macquarie_scholarships','southampton_projects')):continue
+        if not (HEARING.search(slug+' '+block) or (adapter=='strathclyde_projects' and re.search(r'acoustic sensors|acoustics and audio',slug,re.I))):continue
+        if not (PHD.search(slug+' '+block) or adapter in ('macquarie_scholarships','southampton_projects','strathclyde_projects')):continue
         if len(title)<12 or title.lower() in ('more information','read more','apply now'):
             title=label if len(label)>12 else path.rstrip('/').split('/')[-1].replace('-',' ').title()
         key=stable_id(url)
@@ -254,7 +265,7 @@ def check_candidate(item,source,kind='listing'):
     if not title:title=(main.find('h1').get_text(' ',strip=True) if main.find('h1') else url)
     detail,why=classify(title,body,'lab' if kind=='lab' else 'listing',source.get('region','Unspecified'),is_findaphd_project(final))
     if not detail:return None,why
-    detail.update({'id':stable_id(final),'title':title[:230],'url':final,'source':source['name'],'last_checked':TODAY.isoformat(),'first_seen':TODAY.isoformat(),'evidence':'Original institutional page checked; always confirm status and funding with the university', 'recruitment_evidence':excerpt(body),**extraction_details(body)})
+    detail.update({'fit_note':source.get('fit_note'), 'id':stable_id(final),'title':title[:230],'url':final,'source':source['name'],'last_checked':TODAY.isoformat(),'first_seen':TODAY.isoformat(),'evidence':'Original institutional page checked; always confirm status and funding with the university', 'recruitment_evidence':excerpt(body),**extraction_details(body)})
     if re.search(r'\b(?:domestic (?:applicants|students|only)|domestic applicants only|UK students only|home (?:students|applicants) only)\b',body,re.I):
         detail['eligibility_note']='Domestic/home applicants only: check eligibility'
     elif re.search(r'\b(?:domestic,? international|domestic and international|home and international students|international applicants (?:are )?(?:welcome|eligible))\b',body,re.I):
@@ -331,6 +342,27 @@ def run():
                 health.append({'source':source['name'],'status':'no_current_vacancy','found':0,'checked':1,'message':why})
         except Exception as e:
             health.append({'source':source['name'],'status':'error','found':0,'checked':0,'message':str(e)[:180]})
+    # UK professional bodies, grant programmes, and broader university research pages.
+    # These are monitored for reachability and page changes. They DO NOT become
+    # PhD opportunities because a grant or old university programme contains 'PhD'.
+    previous_health={h.get('source'):h for h in prior.get('source_health',[])}
+    for source in config.get('monitor_only_sources',[]):
+        try:
+            html,real=fetch(source['url'])
+            soup=BeautifulSoup(html,'html.parser')
+            for el in soup(['script','style','header','footer','nav']):el.decompose()
+            main=soup.find('main') or soup
+            body=re.sub(r'\s+',' ',main.get_text(' ',strip=True))[:45000]
+            digest=hashlib.sha256(body.encode('utf-8')).hexdigest()[:16]
+            earlier=previous_health.get(source['name'],{}).get('fingerprint')
+            state='watch_changed' if earlier and earlier!=digest else 'watch_checked'
+            health.append({'source':source['name'],'status':state,'found':0,'checked':1,
+                'fingerprint':digest,'url':real,'source_type':source['type'],
+                'message': ('Content changed since last check. Review source for a real PhD vacancy. ' if state=='watch_changed' else '')+
+                           'Monitoring only: '+source.get('note','Not a verified doctoral advertisement')})
+        except Exception as exc:
+            health.append({'source':source['name'],'status':'error','found':0,'checked':0,
+                'source_type':source['type'],'message':str(exc)[:180]})
     # AUDITORY mailing-list recruitment announcements. Reject news/events, skip
     # old announcements, and avoid declaring an advert open without evidence.
     for source in config.get('announcement_sources',[]):
