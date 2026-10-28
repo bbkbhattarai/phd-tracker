@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-28T14:02:51.193299+00:00",
+  "generated_at": "2026-10-28T21:55:57.568432+00:00",
   "opportunities": [
     {
       "category": "advertised_phd",
@@ -436,6 +436,13 @@
       "message": "No relevant project links found; check institution page structure"
     },
     {
+      "source": "Postgraduate Studentships · PhD Funding Opportunities",
+      "status": "no_vacancies_parsed",
+      "found": 0,
+      "checked": 0,
+      "message": "No relevant project links found; check institution page structure"
+    },
+    {
       "source": "UCL · Cochlear Implant Child Outcomes Studentship",
       "status": "verified",
       "found": 1,
@@ -689,13 +696,13 @@
     },
     {
       "source": "Swansea University · Research scholarships",
-      "status": "watch_changed",
+      "status": "watch_checked",
       "found": 0,
       "checked": 1,
       "fingerprint": "26c0bc23c14dc803",
       "url": "https://www.swansea.ac.uk/postgraduate/scholarships/research/",
       "source_type": "funding_watch",
-      "message": "Content changed since last check. Review source for a real PhD vacancy. Monitoring only: Searchable scholarships; require hearing relevance and actual PhD advert."
+      "message": "Monitoring only: Searchable scholarships; require hearing relevance and actual PhD advert."
     },
     {
       "source": "University of Leicester · Funded research opportunities",
@@ -744,6 +751,46 @@
       "url": "https://www.bmh.manchester.ac.uk/study/audiology/postgraduate-research/",
       "source_type": "research_project_index",
       "message": "Monitoring only: Audiology PhD project and funding pages; check individual opportunities."
+    },
+    {
+      "source": "Postgraduate Studentships · PhD and Research Funding overview",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "bdda5062478224b3",
+      "url": "https://www.postgraduatestudentships.co.uk/funding-opportunities/phd-research-funding",
+      "source_type": "phd_funding_watch",
+      "message": "Monitoring only: Broader funding index; may include unrelated subjects and generic degree promotions. Review page changes."
+    },
+    {
+      "source": "University of Warwick · Life Sciences funded studentships",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "453dbbd908087ea2",
+      "url": "https://warwick.ac.uk/fac/sci/lifesci/study/pgr/studentships/",
+      "source_type": "university_studentships_watch",
+      "message": "Monitoring only: Funded life-science doctoral opportunities, check project relevance and eligibility."
+    },
+    {
+      "source": "University of Warwick · Medical School funded research",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "8b3de2e936a011e6",
+      "url": "https://warwick.ac.uk/fac/sci/med/study/researchdegrees/liveadvertsforfullyfundedprojects/",
+      "source_type": "university_studentships_watch",
+      "message": "Monitoring only: Current adverts page may retain old closing dates; only original project details determine if applications are open."
+    },
+    {
+      "source": "University of Warwick · WMG doctoral vacancy index",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "c88dfdc35539fa39",
+      "url": "https://warwick.ac.uk/fac/sci/wmg/study/research-degrees/vacancies/",
+      "source_type": "university_studentships_watch",
+      "message": "Monitoring only: Mainly engineering studentships, monitor only; hearing-related matches require individual verification."
     },
     {
       "source": "AUDITORY research recruitment announcements",
@@ -893,7 +940,7 @@
     "no recruitment evidence": 1
   },
   "page_errors": [],
-  "sources_checked": 91,
+  "sources_checked": 95,
   "regional_counts": {
     "Europe": 3,
     "UK": 4,
@@ -902,5 +949,35 @@
     "Canada": 1,
     "New Zealand": 1,
     "Hong Kong": 1
+  },
+  "search_terms": {
+    "include_phrases": [
+      "hearing",
+      "audiology",
+      "auditory",
+      "auditory neuroscience",
+      "cochlear implant",
+      "psychoacoustics",
+      "speech in noise",
+      "speech-in-noise",
+      "listening effort",
+      "listening fatigue",
+      "binaural hearing",
+      "spatial hearing",
+      "tinnitus",
+      "vestibular",
+      "auditory evoked potentials",
+      "ABR",
+      "ASSR",
+      "CAEP",
+      "hearing aids",
+      "hearing technology",
+      "speech perception",
+      "acoustic signal processing",
+      "audio signal processing",
+      "auditory processing disorder",
+      "hearing loss"
+    ],
+    "exclude_phrases": []
   }
 }
