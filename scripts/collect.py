@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vacancy-first collector v2.4 worldwide. No synthetic opportunities. Missing deadlines stay unverified.
+"""Vacancy-first collector v2.8 worldwide. No synthetic opportunities. Missing deadlines stay unverified.
 Runs in GitHub Actions; archives source-health and previously discovered records.
 """
 import datetime as dt
@@ -20,7 +20,44 @@ SESSION=requests.Session()
 SESSION.headers.update({'User-Agent':'PhDRadarResearchMonitor/2.0 (+public research opportunity discovery; no login; contact repository owner)','Accept':'text/html,application/xhtml+xml'})
 TIMEOUT=18
 MAX_ARCHIVE_PAGES=45
-HEARING=re.compile(r'\b(hearing|auditor(?:y|ily)|audiolog(?:y|ical)|cochlear|psychoacoustics?|speech[- ]in[- ]noise|listening|binaural|spatial hearing|tinnitus|vestibular|implantable hearing|evoked potentials|ABR|ASSR|CAEP|sound perception|speech perception|hearing technology|audio signal processing|acoustic signal processing)\b',re.I)
+# The browser stores draft search terms locally. Only the version committed to
+# scripts/search_terms.json affects scheduled GitHub Actions searches.
+SEARCH_TERMS_FILE = ROOT / 'scripts/search_terms.json'
+DEFAULT_TOPICS = ['hearing', 'auditory', 'audiology', 'cochlear implant', 'psychoacoustics']
+
+def validate_terms(data):
+    result = {}
+    for key in ('include_phrases', 'exclude_phrases'):
+        value = data.get(key, [])
+        if not isinstance(value, list):
+            raise ValueError(f'{key} must be an array')
+        phrases = []
+        for raw in value:
+            if not isinstance(raw, str):
+                raise ValueError(f'{key} can contain only strings')
+            item = re.sub(r'\s+', ' ', raw.strip())
+            if not item or len(item) > 100:
+                continue
+            if item.casefold() not in [x.casefold() for x in phrases]:
+                phrases.append(item)
+        if len(phrases) > 80:
+            raise ValueError(f'{key} cannot contain over 80 phrases')
+        result[key] = phrases
+    if not result['include_phrases']:
+        raise ValueError('At least one research search phrase is required')
+    return result
+
+def phrase_pattern(phrases):
+    # Literal user phrases, never executable regex patterns.
+    pieces = []
+    for phrase in sorted(phrases, key=len, reverse=True):
+        escaped = re.escape(phrase).replace(r'\ ', r'\s+')
+        pieces.append(r'(?<!\w)' + escaped + r'(?!\w)')
+    return re.compile('|'.join(pieces), re.I)
+
+SEARCH_TERMS = validate_terms(json.loads(SEARCH_TERMS_FILE.read_text(encoding='utf-8'))) if SEARCH_TERMS_FILE.exists() else {'include_phrases': DEFAULT_TOPICS, 'exclude_phrases': []}
+HEARING = phrase_pattern(SEARCH_TERMS['include_phrases'])
+OMIT_TOPICS = phrase_pattern(SEARCH_TERMS['exclude_phrases']) if SEARCH_TERMS['exclude_phrases'] else None
 PHD=re.compile(r'\b(ph\.?d\.?|d\.?phil\.?|doctoral|doctorate|studentship|graduate student|research student)\b',re.I)
 EXCLUDE=re.compile(r'\b(postdoc(?:toral)?|research fellow|faculty position|assistant professor|masters? degree|MSc|AuD only)\b',re.I)
 CLOSED_LAB=re.compile(r'\b(?:there are currently no open positions|no (?:current|open|available) (?:phd|doctoral|graduate|student|research) positions|not (?:currently )?(?:accepting|recruiting) (?:new )?(?:phd|graduate|doctoral) students)\b',re.I)
@@ -133,13 +170,13 @@ def institution_links(html,base,adapter):
         if adapter=='bcbl_jobs':
             if not ('phd-position-' in path or 'phd_' in path):continue
         elif adapter=='ucl_studentships':
-            if not ('/phd-studentships/' in path and ('hearing' in slug or 'cochlear' in slug or 'deaf' in slug or 'auditory' in slug)):
+            if not ('/phd-studentships/' in path and HEARING.search(slug)):
                 continue
         elif adapter=='southampton_projects':
             if not ('/study/postgraduate-research/projects/' in path and HEARING.search(title+' '+label)):
                 continue
         elif adapter=='macquarie_scholarships':
-            if not ('/scholarship-search/' in path and ('hearing' in slug or 'cochlear' in slug or 'auditory' in slug or 'listening' in slug)):
+            if not ('/scholarship-search/' in path and HEARING.search(slug)):
                 continue
         elif adapter=='nottingham_studentships':
             # Restrict to the official job-detail links; do not import a general jobs board.
@@ -149,12 +186,18 @@ def institution_links(html,base,adapter):
             # never the BAA directory itself, are candidates for original-page verification.
             if not (re.search(r'phd|studentship',title+' '+label+' '+url,re.I) or (HEARING.search(title+' '+label) and 'findaphd.com' in parsed.netloc)):continue
             if not parsed.scheme in ('https','http'):continue
+        elif adapter=='postgraduate_funding':
+            # A doctoral-only funding index; individual pages use /opportunity/<slug>/<id>.
+            # Advertisements must match a selected research phrase in their own card,
+            # not merely anywhere in the index page or site navigation.
+            if not re.fullmatch(r'/opportunity/[^/]+/\d+/?', path):continue
+            if not HEARING.search(title+' '+label+' '+block):continue
         elif adapter=='strathclyde_projects':
             if not ('/postgraduateresearchphdopportunities/' in path and path.rstrip('/')!='/studywithus/postgraduateresearchphdopportunities'):continue
-            if not re.search(r'hearing|auditory|cochlear|audiology|psychoacoustic|listening|acoustic sensors|acoustics and audio',slug,re.I):continue
+            if not HEARING.search(slug):continue
         else:continue
-        if not (HEARING.search(slug+' '+block) or (adapter=='strathclyde_projects' and re.search(r'acoustic sensors|acoustics and audio',slug,re.I))):continue
-        if not (PHD.search(slug+' '+block) or adapter in ('macquarie_scholarships','southampton_projects','strathclyde_projects')):continue
+        if not HEARING.search(slug+' '+block):continue
+        if not (PHD.search(slug+' '+block) or adapter in ('macquarie_scholarships','southampton_projects','strathclyde_projects','postgraduate_funding')):continue
         if len(title)<12 or title.lower() in ('more information','read more','apply now'):
             title=label if len(label)>12 else path.rstrip('/').split('/')[-1].replace('-',' ').title()
         key=stable_id(url)
@@ -165,6 +208,7 @@ def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=F
     text=(title+' '+content).strip()
     short=text[:18000]
     if EXCLUDE.search(title):return None,'non-doctoral role'
+    if OMIT_TOPICS and OMIT_TOPICS.search(title+' '+content[:650]):return None,'excluded research phrase'
     if not HEARING.search(short):return None,'not hearing-related'
     if not PHD.search(short):return None,'not doctoral'
     if origin=='lab' and CLOSED_LAB.search(short):return None,'lab explicitly reports no open positions'
@@ -263,6 +307,10 @@ def check_candidate(item,source,kind='listing'):
     body=main.get_text(' ',strip=True)[:20000]
     title=item.get('title') or source.get('title') or (soup.title.get_text(' ',strip=True) if soup.title else '')
     if not title:title=(main.find('h1').get_text(' ',strip=True) if main.find('h1') else url)
+    if source.get('adapter') == 'postgraduate_funding' and not re.search(
+        r'\b(?:PhD studentship|doctoral studentship|funded PhD|PhD project|PhD position|doctoral researcher|PhD scholarship|PhD research assistantship)\b',
+        title+' '+body[:1900], re.I):
+        return None, 'generic degree promotion or funding page'
     detail,why=classify(title,body,'lab' if kind=='lab' else 'listing',source.get('region','Unspecified'),is_findaphd_project(final))
     if not detail:return None,why
     detail.update({'fit_note':source.get('fit_note'), 'id':stable_id(final),'title':title[:230],'url':final,'source':source['name'],'last_checked':TODAY.isoformat(),'first_seen':TODAY.isoformat(),'evidence':'Original institutional page checked; always confirm status and funding with the university', 'recruitment_evidence':excerpt(body),**extraction_details(body)})
@@ -445,7 +493,7 @@ def run():
     for rec in list(accepted.values())+list(review.values()):
         key=rec.get('region') or 'Unspecified'
         regional[key]=regional.get(key,0)+1
-    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health),'regional_counts':regional}
+    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health),'regional_counts':regional,'search_terms':{'include_phrases':SEARCH_TERMS['include_phrases'],'exclude_phrases':SEARCH_TERMS['exclude_phrases']}}
     feedfile.parent.mkdir(parents=True,exist_ok=True)
     feedfile.write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n')
     print(f"Verified {len(accepted)}, review {len(review)}, failed sources {sum(x['status']=='error' for x in health)}")

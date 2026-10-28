@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "include_phrases": [
+    "hearing",
+    "audiology",
+    "auditory",
+    "auditory neuroscience",
+    "cochlear implant",
+    "psychoacoustics",
+    "speech in noise",
+    "speech-in-noise",
+    "listening effort",
+    "listening fatigue",
+    "binaural hearing",
+    "spatial hearing",
+    "tinnitus",
+    "vestibular",
+    "auditory evoked potentials",
+    "ABR",
+    "ASSR",
+    "CAEP",
+    "hearing aids",
+    "hearing technology",
+    "speech perception",
+    "acoustic signal processing",
+    "audio signal processing",
+    "auditory processing disorder",
+    "hearing loss"
+  ],
+  "exclude_phrases": []
+}

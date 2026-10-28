@@ -1,38 +1,58 @@
-# PhD Research Radar 2.7 | LinkedIn searches + UK universities
+# PhD Research Radar v2.8
 
-A drop-in update for https://bbkbhattarai.github.io/phd-tracker/ . The GitHub Pages PWA keeps personal application data in the same browser storage key as v2.6 (`phdradar_clean_v2`). The scheduled search collector still runs from `.github/workflows/search.yml`.
+This is a **drop-in GitHub Pages update** for the existing `bbkbhattarai/phd-tracker` site. It does not reset or include `data/opportunities.json`, and it keeps the existing localStorage key (`phdradar_clean_v2`).
 
-## New in 2.7
+## New in v2.8
 
-- **LinkedIn discovery shortcuts**: Ten keyword searches for PhD recruitment posts and LinkedIn Jobs. These open LinkedIn in a new tab. They are **manual, not automatic feed ingestion**. LinkedIn prohibits unauthorized scraping; this app does not request or parse LinkedIn pages from GitHub Actions. Use **Add a post I found** or the **Add an advert URL** button to save promising LinkedIn recruitment notices locally in the review list, with verification required.
-- **15 added university/research-page monitors**: Glasgow, Aberdeen, University of the West of Scotland, Sheffield, Salford (LAURA and Sound Futures), Swansea, Leicester, University of Lancashire, Lancaster University and Manchester. These are checked for reachability/content changes. A changed page is reported in Sources diagnostics rather than automatically presented as a verified open position.
-- **A more discoverable LinkedIn shortcut** on the Needs review screen.
-- **Versioned service-worker cache** so updated code loads properly when GitHub Pages publishes.
+### Editable search criteria
 
-### Why not auto-import LinkedIn posts?
+The **Settings → Search criteria** panel lets you:
 
-LinkedIn's public User Agreement and Help Centre explicitly restrict third-party crawling and automated extraction. The project provides first-party LinkedIn search links and local manual capture. Using an approved API or explicit permission would be required for any future automated import.
+- add, remove, and review research phrases that identify relevant PhD opportunities;
+- optionally add excluded phrases;
+- save draft changes locally, without changing any personal application record;
+- download or copy a valid `search_terms.json` configuration;
+- open the configuration file in GitHub's editor.
 
-### Monitoring levels
+**Important sync boundary:** A public GitHub Actions job cannot read private browser localStorage. New terms **do not change scheduled discovery** until you replace `scripts/search_terms.json` in GitHub, commit to `main`, and run the discovery workflow. Once published, these literal phrases are used by the Python collector to match candidates from its configured sources. Adding a term does not automatically add university websites or unlock restricted sites such as FindAPhD.
 
-`listing_sources`, `direct_vacancies`, `institution_indexes`, `announcement_sources`, and confirmed `lab_sources` can create PhD records after validation. `monitor_only_sources` report page availability/changes **without** creating PhD records. `reference_sources` are directory links only. `linkedin_searches` are **manual search shortcuts**, not GitHub Actions sources.
+Manual LinkedIn search shortcuts additionally include the first 16 research phrases in the current browser draft. LinkedIn remains **manual only**.
 
-Several university pages embed FindAPhD. Those do not give us authorized access to FindAPhD's 403-restricted listings, and are therefore monitored as pages without claims of vacancy extraction.
+### Added UK sources
 
-### Deployment
+- **University of Warwick**: Life Sciences funded studentships, Medical School fully funded research projects, and WMG doctoral vacancies. These are `monitor_only_sources`: page checks and change notices, **not** automatic creation of PhD listings from general funding pages.
+- **Postgraduate Studentships**: the doctoral-funding listings index is now an `institution_indexes` source using the `postgraduate_funding` adapter. It follows only individual `/opportunity/<slug>/<id>` links that match a configured research phrase. Each linked page is read and further screened for a real PhD opening. Generic degree promotions are rejected. A broader funding index is monitored for changes.
 
-1. Back up your saved records from Settings.
-2. Upload the replacement files to the *existing* `bbkbhattarai/phd-tracker` repository, preserving folder paths.
-3. Do not replace the existing `data/opportunities.json` and do not reset browser site data.
-4. Commit to `main`. Visit Sources to see the LinkedIn search panel and the new catalogue.
-5. Run **Discover PhD opportunities** in GitHub Actions to get a fresh `source_health` report from the new university monitors. Then click **Refresh feed** in the app.
+The Postgraduate Studentships site advertises a mixture of Masters, doctoral programmes, general scholarships, and promotional material. Not every item is a research vacancy. The collector may return `no_vacancies_parsed`, `no_current_vacancy`, or a source error if relevant advertisements aren't present or access is restricted.
 
-The configured monitors may return errors if the university blocks automation; source diagnostics will report those rather than claiming zero PhD opportunities. No automatic LinkedIn leads should be expected.
+## Deploy the update
 
-### Validation
+1. Open PhD Radar → Settings and **Export JSON backup**.
+2. Upload the contents of this ZIP to your **existing repository**, preserving relative paths:
+   - root: `index.html`, `app.js`, `style.css`, `sw.js`
+   - scripts: `collect.py`, `sources.json`, **new** `search_terms.json`
+3. Do **not** overwrite your current `data/opportunities.json` or your working `.github/workflows/search.yml`.
+4. Commit all changes to the `main` branch.
+5. Open GitHub Actions → **Discover PhD opportunities** → **Run workflow**.
+6. Once the new feed is published, open your web app and click **Refresh feed**. Check Sources diagnostics for Warwick and Postgraduate Studentships.
 
-- Python source compilation and JS syntax checks.
-- Sources JSON verified, no duplicate IDs.
-- HTML controls and links verified.
-- Offline collector monitoring checks and package integrity.
-- Live GitHub Actions and LinkedIn search availability are not validated by these tests.
+## Change search topics in the future
+
+1. Open **Settings → Search criteria**.
+2. Add or remove phrases; click × to remove. The draft is saved to **this browser** automatically.
+3. Click **Copy JSON** or **Download search_terms.json**.
+4. Open `scripts/search_terms.json` in GitHub (link provided inside the app). Click **Edit**, replace its full content with the copied JSON, and **Commit changes**. You may also upload the downloaded JSON to the `scripts/` directory to replace the existing file.
+5. Start **Discover PhD opportunities** in GitHub Actions, or let the daily scheduled workflow run. When finished, refresh the feed in the app.
+
+If you update only the local browser draft, scheduled discovery stays unchanged. When the GitHub file is updated but GitHub Actions hasn't rerun yet, the app displays **Published, next search pending** when comparing the current feed with the published configuration.
+
+## What remains unchanged
+
+- Application notes, saved leads, statuses and browser-only data.
+- The existing date/funding checks, review queue, and source diagnostics.
+- Existing LinkedIn searches are manual shortcuts; no scraping is performed.
+- The FindAPhD 403 restriction is not bypassed.
+
+## Testing
+
+Eight offline Python tests passed, including term validation, literal matching, date filtering, and Postgraduate Studentships-style listing extraction. JavaScript and Python syntax checks passed. A browser UI test using mocked local JSON confirmed adding/removing phrases, exporting JSON, and saving an opportunity. Live Warwick and Postgraduate Studentships collector runs on GitHub Actions have **not yet been validated**.

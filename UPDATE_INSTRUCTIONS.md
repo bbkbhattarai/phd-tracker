@@ -1,14 +1,19 @@
-# Update existing GitHub Pages app to v2.7
+# Update to v2.8 (keep your existing site and data)
 
-1. Open your current app and **Settings → Export JSON backup**.
-2. Unzip the v2.7 package.
-3. In `bbkbhattarai/phd-tracker`, replace these files in their existing directories:
-   - `index.html`, `app.js`, `style.css`, `sw.js`
-   - `scripts/sources.json`
-   - `README.md` (optional)
-4. **Keep** the existing `scripts/collect.py`, `scripts/requirements.txt` and `.github/workflows/search.yml`, unless you deliberately want to replace them with the identical included versions. Their behaviour does not need to change for LinkedIn search shortcuts and monitored pages.
-5. **Do not overwrite** `data/opportunities.json`. The ZIP intentionally omits it.
-6. Commit to `main`, reopen the app, and open **Sources → LinkedIn: PhD recruitment searches**.
-7. In GitHub Actions, manually run **Discover PhD opportunities** once to check the newly added universities. Then use **Refresh feed** in the app.
+**Replace root files:** `index.html`, `app.js`, `style.css`, `sw.js`.
 
-**Important**: LinkedIn searches are opened manually; no scraping is performed. New university sources are monitored for page changes, not automatically claimed as job adverts. Future dedicated extraction connectors may be added for institutions with accessible project listings.
+**Replace files inside `scripts/`:** `collect.py`, `sources.json`.
+
+**Add this NEW file inside `scripts/`:** `search_terms.json`.
+
+**Keep unchanged:** `data/opportunities.json`, `.github/workflows/search.yml`, `scripts/requirements.txt`, existing saved browser data.
+
+Commit to the `main` branch, then run the existing **Discover PhD opportunities** GitHub Action. Refresh your browser's feed.
+
+## Future term edits
+
+Settings → Search criteria → add/remove phrase → **Copy JSON** → edit `scripts/search_terms.json` on GitHub → paste and commit → run discovery workflow. Browser-only edits do not reach GitHub Actions by themselves. This version is **not** a live server-side settings API.
+
+## New monitoring
+
+Warwick university research/studentship pages = monitored for changes and errors, not auto-vacancy extraction. Postgraduate Studentships PhD-funding index = candidate link extraction with topic matching and individual advert verification, subject to site access. Check source diagnostics after the first run.

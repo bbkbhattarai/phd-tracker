@@ -471,6 +471,22 @@
       "url": "https://nottinghambrc.nihr.ac.uk/research/hearing/hearing-team",
       "region": "UK",
       "type": "reference"
+    },
+    {
+      "id": "warwick-life-sciences-directory",
+      "name": "University of Warwick · PhD research funding and projects",
+      "url": "https://warwick.ac.uk/fac/sci/lifesci/study/pgr/studentships/",
+      "region": "UK",
+      "type": "reference",
+      "note": "University PhD research project pathways, not evidence of a current relevant vacancy."
+    },
+    {
+      "id": "postgradstud-directory",
+      "name": "Postgraduate Studentships · Research funding portal",
+      "url": "https://www.postgraduatestudentships.co.uk/",
+      "region": "UK",
+      "type": "reference",
+      "note": "Funding directory includes Masters and unrelated fields; narrow to actual hearing-related PhDs."
     }
   ],
   "announcement_sources": [
@@ -626,6 +642,15 @@
       "adapter": "strathclyde_projects",
       "max_links": 10,
       "note": "Scotland. Acoustic/audio PhDs may be broader than hearing science; confirm research fit."
+    },
+    {
+      "id": "postgradstud-funding-index",
+      "name": "Postgraduate Studentships · PhD Funding Opportunities",
+      "url": "https://www.postgraduatestudentships.co.uk/funding-opportunities/all/all/all/phd-amp-other-doctoral-studyfunding/all/1",
+      "adapter": "postgraduate_funding",
+      "region": "UK",
+      "max_links": 18,
+      "note": "Doctoral-only index: check hearing-related adverts individually; general course promotions excluded."
     }
   ],
   "monitor_only_sources": [
@@ -828,6 +853,38 @@
       "region": "UK",
       "type": "research_project_index",
       "note": "Audiology PhD project and funding pages; check individual opportunities."
+    },
+    {
+      "id": "postgradstud-phd-funding-overview",
+      "name": "Postgraduate Studentships · PhD and Research Funding overview",
+      "url": "https://www.postgraduatestudentships.co.uk/funding-opportunities/phd-research-funding",
+      "region": "UK",
+      "type": "phd_funding_watch",
+      "note": "Broader funding index; may include unrelated subjects and generic degree promotions. Review page changes."
+    },
+    {
+      "id": "warwick-life-sciences-studentships",
+      "name": "University of Warwick · Life Sciences funded studentships",
+      "url": "https://warwick.ac.uk/fac/sci/lifesci/study/pgr/studentships/",
+      "region": "UK",
+      "type": "university_studentships_watch",
+      "note": "Funded life-science doctoral opportunities, check project relevance and eligibility."
+    },
+    {
+      "id": "warwick-medical-school-studentships",
+      "name": "University of Warwick · Medical School funded research",
+      "url": "https://warwick.ac.uk/fac/sci/med/study/researchdegrees/liveadvertsforfullyfundedprojects/",
+      "region": "UK",
+      "type": "university_studentships_watch",
+      "note": "Current adverts page may retain old closing dates; only original project details determine if applications are open."
+    },
+    {
+      "id": "warwick-wmg-research-vacancies",
+      "name": "University of Warwick · WMG doctoral vacancy index",
+      "url": "https://warwick.ac.uk/fac/sci/wmg/study/research-degrees/vacancies/",
+      "region": "UK",
+      "type": "university_studentships_watch",
+      "note": "Mainly engineering studentships, monitor only; hearing-related matches require individual verification."
     }
   ],
   "linkedin_searches": [
