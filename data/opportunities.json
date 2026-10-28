@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-28T09:46:06.913029+00:00",
+  "generated_at": "2026-10-28T14:02:51.193299+00:00",
   "opportunities": [
     {
       "category": "advertised_phd",
@@ -313,6 +313,26 @@
       "category": "lab_recruiting",
       "deadline": null,
       "funding": "Student funding not confirmed",
+      "region": "Hong Kong",
+      "verification": "recruitment_claim_needs_confirmation",
+      "summary": "The Laboratory for Language, Learning, and the Brain | The Department of Linguistics and Modern Languages, CUHK | Jobs Home Announcements Publications Media MRI People Current Lab alumni Join Us Baby Lab Contact us Join Us Thank you for your interest in joining our lab! See our lab alumni PhD Studies | Postdocs | Others PhD Studies We are accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept MPhil students into the lab. The application deadline is around Nov. Please also apply for the Hong Kong PhD Fellowship Scheme and list CUHK as your first choice for full ",
+      "fit_note": null,
+      "id": "9615099d4799f39461d7",
+      "title": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "url": "https://brain.cuhk.edu.hk/joinus.html",
+      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "last_checked": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept",
+      "intake": null,
+      "supervisor": null,
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For students who are already on campus, filling out this unofficial information form will help me learn more about your background and research goals. PhD students can join the Heinz Lab by applying through the Weldon School of Biomedical Engineering , the Department of Speech, Language, and Hearing Sciences , or through the Integrative Neuroscience track of the PULSe program . Once at Purdue, NIH T32 funding is availab",
@@ -325,26 +345,6 @@
       "first_seen": "2026-10-27",
       "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For",
-      "intake": null,
-      "supervisor": null,
-      "deadline_note": null
-    },
-    {
-      "category": "lab_recruiting",
-      "deadline": null,
-      "funding": "Student funding not confirmed",
-      "region": "Hong Kong",
-      "verification": "recheck_required",
-      "summary": "The Laboratory for Language, Learning, and the Brain | The Department of Linguistics and Modern Languages, CUHK | Jobs Home Announcements Publications Media MRI People Current Lab alumni Join Us Baby Lab Contact us Join Us Thank you for your interest in joining our lab! See our lab alumni PhD Studies | Postdocs | Others PhD Studies We are accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept MPhil students into the lab. The application deadline is around Nov. Please also apply for the Hong Kong PhD Fellowship Scheme and list CUHK as your first choice for full ",
-      "fit_note": null,
-      "id": "9615099d4799f39461d7",
-      "title": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "url": "https://brain.cuhk.edu.hk/joinus.html",
-      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "last_checked": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "evidence": "Original institutional page checked; always confirm status and funding with the university",
-      "recruitment_evidence": "accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept",
       "intake": null,
       "supervisor": null,
       "deadline_note": null
@@ -689,13 +689,13 @@
     },
     {
       "source": "Swansea University · Research scholarships",
-      "status": "watch_checked",
+      "status": "watch_changed",
       "found": 0,
       "checked": 1,
-      "fingerprint": "2a32d38481289d1f",
+      "fingerprint": "26c0bc23c14dc803",
       "url": "https://www.swansea.ac.uk/postgraduate/scholarships/research/",
       "source_type": "funding_watch",
-      "message": "Monitoring only: Searchable scholarships; require hearing relevance and actual PhD advert."
+      "message": "Content changed since last check. Review source for a real PhD vacancy. Monitoring only: Searchable scholarships; require hearing relevance and actual PhD advert."
     },
     {
       "source": "University of Leicester · Funded research opportunities",
@@ -846,10 +846,9 @@
     },
     {
       "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "status": "error",
-      "found": 0,
-      "checked": 0,
-      "message": "HTTPSConnectionPool(host='brain.cuhk.edu.hk', port=443): Max retries exceeded with url: /joinus.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='brain"
+      "status": "review_lead",
+      "found": 1,
+      "checked": 1
     },
     {
       "source": "CUHK · Auditory Neuroscience Group",
@@ -894,7 +893,7 @@
     "no recruitment evidence": 1
   },
   "page_errors": [],
-  "sources_checked": 90,
+  "sources_checked": 91,
   "regional_counts": {
     "Europe": 3,
     "UK": 4,
