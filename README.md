@@ -1,42 +1,38 @@
-# PhD Research Radar v2.6: UK & Scotland Research Sources
+# PhD Research Radar 2.7 | LinkedIn searches + UK universities
 
-This is a **drop-in update** to the working v2.5 static GitHub Pages app. It keeps the same local browser storage key (`phdradar_clean_v2`) and its JSON feed format (`schema_version: 2`).
+A drop-in update for https://bbkbhattarai.github.io/phd-tracker/ . The GitHub Pages PWA keeps personal application data in the same browser storage key as v2.6 (`phdradar_clean_v2`). The scheduled search collector still runs from `.github/workflows/search.yml`.
 
-## Newly monitored sources
+## New in 2.7
 
-- British Academy of Audiology (BAA): PhD Opportunities directory, individual original-project link verification; BAA professional vacancies watched for updates.
-- University of Nottingham: official studentship vacancies index (`jobslive.nottingham.ac.uk/vacancies.aspx?cat=213`), restricted to hearing-relevant doctoral advertisements.
-- Strathclyde: postgraduate research index and a nature-inspired acoustic sensors doctoral advertisement (broader than clinical audiology; fit is labelled).
-- University of Edinburgh Acoustics and Audio Group: PhD recruitment enquiries with availability and funding unconfirmed.
-- RNID: PhD studentship **funding scheme** (normally supervisor-applied); monitored for updates, never automatically displayed as a student-level job.
-- British Society of Audiology (BSA): small grants, research funding and PhD top-ups; monitored only, not a full-funded PhD vacancy feed.
-- British Cochlear Implant Group (BCIG): professional vacancy page; monitored for changes, not automatically treated as PhD recruitment.
-- Nottingham NIHR Biomedical Research Centre Hearing theme, Queen Margaret University funded PhDs and CASL, Edinburgh Neuroscience, and Scottish university opportunities: monitored for changes.
+- **LinkedIn discovery shortcuts**: Ten keyword searches for PhD recruitment posts and LinkedIn Jobs. These open LinkedIn in a new tab. They are **manual, not automatic feed ingestion**. LinkedIn prohibits unauthorized scraping; this app does not request or parse LinkedIn pages from GitHub Actions. Use **Add a post I found** or the **Add an advert URL** button to save promising LinkedIn recruitment notices locally in the review list, with verification required.
+- **15 added university/research-page monitors**: Glasgow, Aberdeen, University of the West of Scotland, Sheffield, Salford (LAURA and Sound Futures), Swansea, Leicester, University of Lancashire, Lancaster University and Manchester. These are checked for reachability/content changes. A changed page is reported in Sources diagnostics rather than automatically presented as a verified open position.
+- **A more discoverable LinkedIn shortcut** on the Needs review screen.
+- **Versioned service-worker cache** so updated code loads properly when GitHub Pages publishes.
 
-Additional references: jobs.ac.uk, Postgraduate Studentships, BNA, UCL funded PhDs, Manchester project finder, Edinburgh Neuroscience listings, QMU PhD pathways, and Nottingham's hearing research team.
+### Why not auto-import LinkedIn posts?
 
-## Why some sources only show in Sources
+LinkedIn's public User Agreement and Help Centre explicitly restrict third-party crawling and automated extraction. The project provides first-party LinkedIn search links and local manual capture. Using an approved API or explicit permission would be required for any future automated import.
 
-Funding bodies and societies publish grants and clinical jobs as well as research recruitment, and degree directories are not open jobs. To prevent the earlier issue with irrelevant results, these are checked for content changes and shown in the Sources diagnostics, not represented as open PhD positions. A changed research page means **review required**, not an opening confirmed.
+### Monitoring levels
 
-The index collectors parse eligible individual links, then attempt to read the original advert. If the original listing denies automated access, this is reported as an error rather than invented data. BAA's directory includes older projects and links to FindAPhD, which may still deny automated requests with HTTP 403.
+`listing_sources`, `direct_vacancies`, `institution_indexes`, `announcement_sources`, and confirmed `lab_sources` can create PhD records after validation. `monitor_only_sources` report page availability/changes **without** creating PhD records. `reference_sources` are directory links only. `linkedin_searches` are **manual search shortcuts**, not GitHub Actions sources.
 
-## Scottish coverage
+Several university pages embed FindAPhD. Those do not give us authorized access to FindAPhD's 403-restricted listings, and are therefore monitored as pages without claims of vacancy extraction.
 
-Scotland has its own regional filter when Scottish listings exist. The **UK** filter also includes Scotland. University of Nottingham is in England; Scottish sources are provided separately.
+### Deployment
 
-## Deploy to existing GitHub Pages
+1. Back up your saved records from Settings.
+2. Upload the replacement files to the *existing* `bbkbhattarai/phd-tracker` repository, preserving folder paths.
+3. Do not replace the existing `data/opportunities.json` and do not reset browser site data.
+4. Commit to `main`. Visit Sources to see the LinkedIn search panel and the new catalogue.
+5. Run **Discover PhD opportunities** in GitHub Actions to get a fresh `source_health` report from the new university monitors. Then click **Refresh feed** in the app.
 
-1. Open your existing app and **Settings > Export JSON backup**.
-2. Download and unzip this update.
-3. Replace `app.js`, `index.html`, `style.css`, `sw.js`, `scripts/collect.py` and `scripts/sources.json` with the matching files in this package. The package includes the other unchanged website assets and workflow for convenience.
-4. **Keep the live `data/opportunities.json`.** This ZIP deliberately does not contain it, so historical records and source-change comparisons survive.
-5. Keep your working `.github/workflows/search.yml` (it already installs requirements before calling `collect.py`).
-6. Commit the files to `main`. Open the website and refresh; **Sources** should show the expanded catalogue immediately.
-7. Run **Discover PhD opportunities** once in GitHub Actions and **Refresh feed** inside the app to see search results and per-source status.
+The configured monitors may return errors if the university blocks automation; source diagnostics will report those rather than claiming zero PhD opportunities. No automatic LinkedIn leads should be expected.
 
-Browser-installed PWAs may cache static files until an update; this release bumps the service worker cache to `phd-radar-rebuild-v2.6`.
+### Validation
 
-## Validation
-
-Offline extraction and pipeline regression tests, Python bytecode compilation, JavaScript syntax checking, browser UI smoke test (when available), and ZIP integrity verification. Live automated visits from GitHub Actions are **not** guaranteed: each monitored source reports success, no matching adverts, an extraction problem, or an HTTP/access error.
+- Python source compilation and JS syntax checks.
+- Sources JSON verified, no duplicate IDs.
+- HTML controls and links verified.
+- Offline collector monitoring checks and package integrity.
+- Live GitHub Actions and LinkedIn search availability are not validated by these tests.

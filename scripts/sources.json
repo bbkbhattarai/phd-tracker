@@ -708,6 +708,178 @@
       "region": "Scotland",
       "type": "research_watch",
       "note": "Research centre and doctoral bursary information; no open award assumed."
+    },
+    {
+      "id": "glasgow-neuro",
+      "name": "University of Glasgow · Neuroscience & Psychology PhD projects",
+      "url": "https://www.gla.ac.uk/postgraduate/research/neuroscience/",
+      "region": "Scotland",
+      "type": "research_project_index",
+      "note": "Official Glasgow PhD project page; many projects are general course proposals rather than funded vacancies."
+    },
+    {
+      "id": "glasgow-scholarships",
+      "name": "University of Glasgow · PGR scholarships and funding",
+      "url": "https://www.gla.ac.uk/research/ourresearchenvironment/prs/scholarshipsandfunding/",
+      "region": "Scotland",
+      "type": "funding_watch",
+      "note": "Scholarship schemes are not automatically advertised doctoral jobs."
+    },
+    {
+      "id": "aberdeen-phds",
+      "name": "University of Aberdeen · PhD opportunities index",
+      "url": "https://www.abdn.ac.uk/study/postgraduate-research/phds/",
+      "region": "Scotland",
+      "type": "embedded_listing_watch",
+      "note": "FindAPhD-powered listing embedded on Aberdeen site; no direct extraction while FindAPhD is blocked."
+    },
+    {
+      "id": "uws-studentships",
+      "name": "University of the West of Scotland · Research studentships",
+      "url": "https://www.uws.ac.uk/study/research-degrees/studentships",
+      "region": "Scotland",
+      "type": "funding_watch",
+      "note": "Scholarship and doctoral funding page, no individual vacancy without separate advertisement."
+    },
+    {
+      "id": "sheffield-hearing",
+      "name": "University of Sheffield · Hearing and Balance opportunities",
+      "url": "https://sheffield.ac.uk/hearing/opportunities",
+      "region": "UK",
+      "type": "lab_enquiries_watch",
+      "note": "Hearing research group invites PhD enquiries; listed current roles may be postdoctoral only."
+    },
+    {
+      "id": "sheffield-phd",
+      "name": "University of Sheffield · Health PhD opportunities",
+      "url": "https://sheffield.ac.uk/health/study/postgraduate/phd-opportunities-projects",
+      "region": "UK",
+      "type": "embedded_listing_watch",
+      "note": "Current PhD index uses FindAPhD; page changes monitored, not claimed as parsed vacancies."
+    },
+    {
+      "id": "salford-acoustics",
+      "name": "University of Salford · Acoustics doctoral opportunities",
+      "url": "https://acoustics.salford.ac.uk/study/acoustic-phd-opportunities/",
+      "region": "UK",
+      "type": "doctoral_programme_watch",
+      "note": "LAURA and Sound Futures doctoral pathways, not a specific open vacancy."
+    },
+    {
+      "id": "salford-soundfutures",
+      "name": "Salford · Sustainable Sound Futures doctoral recruitment",
+      "url": "https://soundfutures.salford.ac.uk/apply/",
+      "region": "UK",
+      "type": "funding_watch",
+      "note": "2027 project list scheduled for 2 November 2026; currently says not accepting applications."
+    },
+    {
+      "id": "salford-laura",
+      "name": "Salford · LAURA aural diversity PhD recruitment",
+      "url": "https://laura.salford.ac.uk/apply/apply-for-a-phd/",
+      "region": "UK",
+      "type": "funding_watch",
+      "note": "Page explicitly states last application cycle closed; monitor for next call."
+    },
+    {
+      "id": "swansea-research",
+      "name": "Swansea University · Research scholarships",
+      "url": "https://www.swansea.ac.uk/postgraduate/scholarships/research/",
+      "region": "UK",
+      "type": "funding_watch",
+      "note": "Searchable scholarships; require hearing relevance and actual PhD advert."
+    },
+    {
+      "id": "leicester-funded",
+      "name": "University of Leicester · Funded research opportunities",
+      "url": "https://le.ac.uk/study/research-degrees/funded-opportunities",
+      "region": "UK",
+      "type": "studentship_index_watch",
+      "note": "Current funded studentships; do not classify unrelated subject positions as hearing science."
+    },
+    {
+      "id": "lancashire-audiology",
+      "name": "University of Lancashire · Audiology",
+      "url": "https://www.lancashire.ac.uk/audiology",
+      "region": "UK",
+      "type": "research_reference_watch",
+      "note": "Audiology university department; not verified as an individual PhD vacancy board."
+    },
+    {
+      "id": "lancashire-research",
+      "name": "University of Lancashire · PhD research studentship information",
+      "url": "https://www.star.uclan.ac.uk/phd-studentships-and-postgraduate-study/",
+      "region": "UK",
+      "type": "research_reference_watch",
+      "note": "This available project list is mainly physics/astronomy and must not become irrelevant audiology PhD opportunities."
+    },
+    {
+      "id": "lancaster-speech",
+      "name": "Lancaster University · Neuroscience of Speech and Action Lab",
+      "url": "https://wp.lancs.ac.uk/nosalab/research-projects/",
+      "region": "UK",
+      "type": "research_lab_watch",
+      "note": "Lancaster University is distinct from University of Lancashire; project summaries are not automatically recruitment calls."
+    },
+    {
+      "id": "manchester-audiology",
+      "name": "University of Manchester · Audiology doctoral research",
+      "url": "https://www.bmh.manchester.ac.uk/study/audiology/postgraduate-research/",
+      "region": "UK",
+      "type": "research_project_index",
+      "note": "Audiology PhD project and funding pages; check individual opportunities."
+    }
+  ],
+  "linkedin_searches": [
+    {
+      "name": "PhD auditory neuroscience",
+      "query": "\"PhD\" \"auditory neuroscience\"",
+      "type": "posts"
+    },
+    {
+      "name": "PhD audiology and hearing science",
+      "query": "\"PhD\" \"audiology\"",
+      "type": "posts"
+    },
+    {
+      "name": "Cochlear implant PhD recruitment",
+      "query": "\"PhD\" \"cochlear implant\"",
+      "type": "posts"
+    },
+    {
+      "name": "Psychoacoustics PhD studentships",
+      "query": "\"PhD\" \"psychoacoustics\"",
+      "type": "posts"
+    },
+    {
+      "name": "Hearing science funded studentship",
+      "query": "\"funded PhD\" \"hearing\"",
+      "type": "posts"
+    },
+    {
+      "name": "EEG ABR auditory PhD",
+      "query": "\"PhD\" \"EEG\" \"auditory\"",
+      "type": "posts"
+    },
+    {
+      "name": "Recruiting doctoral students",
+      "query": "\"recruiting PhD students\" \"hearing\"",
+      "type": "posts"
+    },
+    {
+      "name": "PhD research assistantships",
+      "query": "\"PhD research assistantship\" \"auditory\"",
+      "type": "posts"
+    },
+    {
+      "name": "LinkedIn Jobs: auditory PhD",
+      "query": "PhD auditory hearing",
+      "type": "jobs"
+    },
+    {
+      "name": "LinkedIn Jobs: cochlear and hearing",
+      "query": "cochlear implant PhD",
+      "type": "jobs"
     }
   ]
 }
