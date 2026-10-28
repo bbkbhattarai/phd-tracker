@@ -1,9 +1,9 @@
 'use strict';
-const APP_VERSION='2.8.0', STORE='phdradar_clean_v2';
+const APP_VERSION='2.9.0', STORE='phdradar_clean_v2';
 const $=id=>document.getElementById(id);
-const initial=()=>({seen:{},saved:{},applications:{},customSources:[],reminderDays:14,manual:{},searchDraft:null});
+const initial=()=>({seen:{},saved:{},applications:{},customSources:[],reminderDays:14,manual:{},searchDraft:null, profileDraft:null, selectedProfileId:'hearing-science'});
 function readState(){try{const x=JSON.parse(localStorage.getItem(STORE));return {...initial(),...(x||{})}}catch{return initial()}}
-let state=readState(), feed={opportunities:[],review_queue:[],source_health:[]}, catalog={}, publishedTerms={include_phrases:[],exclude_phrases:[]}, tab='discover';
+let state=readState(), feed={opportunities:[],review_queue:[],source_health:[]}, catalog={}, publishedProfiles={schema_version:1,profiles:[]}, githubToken='',syncBusy=false,syncTimer=null, syncRevision=0, tab='discover';
 const save=()=>localStorage.setItem(STORE,JSON.stringify(state));
 const escaped=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today=()=>new Date().toISOString().slice(0,10);
@@ -27,14 +27,16 @@ function card(x){
    x.supervisor?`Contact / PI: ${x.supervisor}`:null,
    x.fit_note?`Research fit: ${x.fit_note}`:null,
    x.posted_at?`Announcement date: ${x.posted_at}`:null,
+   x.profile_matches?.length?`Search match: ${x.profile_matches.map(m=>m.name+' ('+m.tier+')').join(', ')}`:null,
    app?`Application: ${app.stage}`:null].filter(Boolean);
  return `<article class="card"><div class="card-top"><div class="pills"><span class="pill ${x.category==='lab_recruiting'?'lab':''}">${x.category==='lab_recruiting'?'Lab recruiting':'Advertised PhD'}</span><span class="pill ${verified?'ok':'warn'}">${verified?'Deadline found':'Check availability'}</span><span class="pill">${escaped(x.region)}</span></div>${!seen?'<span class="pill ok">New</span>':''}</div>
  <h3>${escaped(x.title)}</h3><p class="lead-evidence">${escaped(evidence)}</p><div class="meta">${fields.map(f=>`<span>${escaped(f)}</span>`).join('')}</div>
  <div class="actions"><button data-act="save" data-id="${escaped(x.id)}">${saved?'♥ Saved':'♡ Save'}</button><button data-act="mark" data-id="${escaped(x.id)}">${seen?'✓ Seen':'Mark seen'}</button><button data-act="edit" data-id="${escaped(x.id)}">Track application</button>${x.url?`<a href="${escaped(x.url)}" target="_blank" rel="noopener noreferrer">Original page ↗</a>`:''}</div></article>`
 }
-function filter(items){const reg=$('region').value,cat=$('category').value,q=$('query').value.trim().toLowerCase(),seen=$('seenFilter').value;return items.filter(x=>(reg==='all'||(x.region===reg||(reg==='UK'&&x.region==='Scotland')))&&(cat==='all'||x.category===cat)&&(!q||(x.title+' '+x.source+' '+x.summary).toLowerCase().includes(q))&&(seen==='all'||(seen==='new'?!state.seen[x.id]:!!state.seen[x.id])))}
+function filter(items){const reg=$('region').value,cat=$('category').value,q=$('query').value.trim().toLowerCase(),seen=$('seenFilter').value,profile=$('matchProfile').value;return items.filter(x=>(reg==='all'||(x.region===reg||(reg==='UK'&&x.region==='Scotland')))&&(cat==='all'||x.category===cat)&&(profile==='all'||x.profile_matches?.some(m=>m.id===profile))&&(!q||(x.title+' '+x.source+' '+x.summary).toLowerCase().includes(q))&&(seen==='all'||(seen==='new'?!state.seen[x.id]:!!state.seen[x.id])))}
 function cardsTo(id,rows,empty){$(id).innerHTML=rows.length?rows.map(card).join(''):`<div class="empty"><b>${escaped(empty)}</b><span>Check feed status and source diagnostics, or adjust filters.</span></div>`}
-function render(){const open=active(),rev=reviews(),all=allRecords();$('metricFeed').textContent=open.filter(x=>x.category==='advertised_phd').length;$('metricLabs').textContent=[...open,...rev].filter(x=>x.category==='lab_recruiting').length;$('metricReview').textContent=rev.length;
+function render(){const open=active(),rev=reviews(),all=allRecords();
+const profileOptions=new Map([...open,...rev].flatMap(x=>(x.profile_matches||[]).map(m=>[m.id,m.name])));const profileSel=$('matchProfile'),priorProfile=profileSel.value;profileSel.innerHTML='<option value="all">All search profiles</option>'+[...profileOptions].map(([id,name])=>`<option value="${escaped(id)}">${escaped(name)}</option>`).join('');profileSel.value=profileOptions.has(priorProfile)?priorProfile:'all';$('metricFeed').textContent=open.filter(x=>x.category==='advertised_phd').length;$('metricLabs').textContent=[...open,...rev].filter(x=>x.category==='lab_recruiting').length;$('metricReview').textContent=rev.length;
 const due=Object.values(state.applications).filter(a=>a.deadline&&daysLeft(a.deadline)>=0&&daysLeft(a.deadline)<=Number(state.reminderDays)).length;$('metricDue').textContent=due;
 $('navCount').textContent=`${open.length}`;$('reviewCount').textContent=`${rev.length}`;$('reviewPrompt').hidden=rev.length===0;$('reviewPromptCount').textContent=String(rev.length);$('savedCount').textContent=`${Object.keys(state.saved).length}`;
 const regionSelect=$('region'),old=regionSelect.value;let regions=[...new Set([...open,...rev].map(x=>x.region).filter(x=>x&&x!=='Unspecified'))].sort();if(regions.includes('Scotland')&&!regions.includes('UK'))regions.push('UK');regions.sort();if([...open,...rev].some(x=>x.region==='Unspecified'))regions.push('Unspecified');regionSelect.innerHTML='<option value="all">Worldwide</option>'+regions.map(x=>`<option value="${escaped(x)}">${escaped(x)}</option>`).join('');regionSelect.value=regions.includes(old)?old:'all';
@@ -68,48 +70,109 @@ function renderLinkedInSearches(){
 function renderSources(){let monitored=[...(catalog.announcement_sources||[]),...(catalog.direct_vacancies||[]),...(catalog.institution_indexes||[]),...(catalog.listing_sources||[]),...(catalog.lab_sources||[]).filter(x=>x.type==='lab-recruitment')];let watches=(catalog.monitor_only_sources||[]);let references=[...(catalog.lab_sources||[]).filter(x=>x.type!=='lab-recruitment'),...(catalog.reference_sources||[])];renderLinkedInSearches();$('sourceResults').innerHTML=`<h3>Vacancy & lab recruitment connectors (${monitored.length})</h3><p class="help">These pages are checked for individual PhD advertisements or specific student recruitment. Blocked or outdated pages are identified in diagnostics.</p><div class="source-list">${monitored.map(x=>sourceLine(x)).join('')}</div><h3>Research funding & professional-body watch (${watches.length})</h3><p class="help">These sites are checked for changes, but calls for grants, clinical jobs and general programme information are NOT automatically classified as open PhD studentships. A changed page appears in the source diagnostics for review.</p><div class="source-list">${watches.map(x=>sourceLine(x)).join('')}</div><h3>Worldwide research directory (${references.length})</h3><p class="help">Research and degree programme websites for exploration. These are not scanned for new PhD vacancies unless they have a corresponding monitored connector.</p><div class="source-list">${references.map(x=>sourceLine(x)).join('')}</div><h3>My added sources (${state.customSources.length})</h3><div class="source-list">${state.customSources.length?state.customSources.map(x=>sourceLine(x,true)).join(''):'<div class="source-row">No custom sources yet.</div>'}</div>`;
 let health=feed.source_health||[];const changed=health.filter(h=>h.status==='watch_changed');$('healthResults').innerHTML=(changed.length?'<h3>Research or funding pages changed ('+changed.length+')</h3><p class="help">These are changes to monitored pages, not verified new PhD openings. Check the original page.</p><div class="source-list">'+changed.map(h=>'<div class="source-row"><div><b>'+escaped(h.source)+'</b><span>'+escaped(h.message||'Source content updated')+'</span></div></div>').join('')+'</div>':'')+'<h3>Search-source diagnostics</h3><div class="source-list">'+(health.length?health.map(h=>`<div class="source-row"><div><b>${escaped(h.source)}</b><span>${escaped(h.status)} · ${h.found||0} links found · ${h.checked||0} pages checked${h.message?' · '+escaped(h.message):''}</span></div></div>`).join(''):'<div class="source-row">No source-check results yet. Run GitHub Actions.</div>')+'</div>';renderDiagnostics()}
 async function fetchJson(path){let u=path+'?t='+Date.now();let r=await fetch(u,{cache:'no-store'});if(!r.ok)throw Error(path+' returned HTTP '+r.status);return r.json()}
-async function refresh(){const btn=$('refresh');btn.disabled=true;const n=$('notice');n.className='notice';n.textContent='Loading published feed…';try{let data=await fetchJson('data/opportunities.json');if(!Array.isArray(data.opportunities))throw Error('Feed schema missing opportunities array');feed=data;$('lastUpdated').textContent=data.generated_at?'Published '+new Date(data.generated_at).toLocaleString():'Feed has not run';const count=(data.opportunities||[]).length,rev=(data.review_queue||[]).length,errors=(data.source_health||[]).filter(x=>x.status==='error').length,changed=(data.source_health||[]).filter(x=>x.status==='watch_changed').length;n.textContent=`Feed loaded: ${count} advertised openings · ${rev} review leads · ${(data.source_health||[]).length} monitored sources reported · ${errors} failed checks${changed?' · '+changed+' research/funding pages changed':''}. ${data.generated_at?'Published '+new Date(data.generated_at).toLocaleString(): 'No collection yet.'}`;if(!count&&!rev)n.className='notice warning';if(!count&&rev)n.textContent+=' Check Needs review for doctoral recruitment notices lacking confirmed deadlines.';if(!count&&rev&&tab==='discover')setTab('review');}catch(e){n.className='notice warning';n.textContent='Unable to load opportunity feed: '+e.message+'. Existing saved data remains available.'}finally{btn.disabled=false;render();renderSearchTerms()}}
+async function refresh(){const btn=$('refresh');btn.disabled=true;const n=$('notice');n.className='notice';n.textContent='Loading published feed…';try{let data=await fetchJson('data/opportunities.json');if(!Array.isArray(data.opportunities))throw Error('Feed schema missing opportunities array');feed=data;$('lastUpdated').textContent=data.generated_at?'Published '+new Date(data.generated_at).toLocaleString():'Feed has not run';const count=(data.opportunities||[]).length,rev=(data.review_queue||[]).length,errors=(data.source_health||[]).filter(x=>x.status==='error').length,changed=(data.source_health||[]).filter(x=>x.status==='watch_changed').length;n.textContent=`Feed loaded: ${count} advertised openings · ${rev} review leads · ${(data.source_health||[]).length} monitored sources reported · ${errors} failed checks${changed?' · '+changed+' research/funding pages changed':''}. ${data.generated_at?'Published '+new Date(data.generated_at).toLocaleString(): 'No collection yet.'}`;if(!count&&!rev)n.className='notice warning';if(!count&&rev)n.textContent+=' Check Needs review for doctoral recruitment notices lacking confirmed deadlines.';if(!count&&rev&&tab==='discover')setTab('review');}catch(e){n.className='notice warning';n.textContent='Unable to load opportunity feed: '+e.message+'. Existing saved data remains available.'}finally{btn.disabled=false;render();renderProfiles()}}
 function setTab(t){tab=t;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('visible',p.id===t));}
 
-// Search criteria are kept in local browser storage until exported to the repo.
-// A GitHub Actions runner cannot read private browser localStorage.
-function cleanPhrases(items){
- if(!Array.isArray(items))return [];
- const seen=new Set(),out=[];
- for(const item of items){if(typeof item!=='string')continue;
-  const s=item.replace(/\s+/g,' ').trim();const id=s.toLocaleLowerCase();
-  if(!s||s.length>100||seen.has(id))continue;seen.add(id);out.push(s);
-  if(out.length>=80)break;
- }return out;
+// v2.9 Search profiles: locally editable, optionally auto-committed to GitHub.
+// GitHub credentials remain in JS memory only. No browser storage or backups.
+const REGION_OPTIONS=['UK','Scotland','Europe','USA','Canada','Australia','New Zealand','Hong Kong','Asia'];
+const CATEGORY_OPTIONS=['advertised_phd','lab_recruiting'];
+const PROFILE_KEYS=['core_phrases','related_phrases','exploratory_phrases','exclude_phrases'];
+const GITHUB_REPO='bbkbhattarai/phd-tracker';
+const GITHUB_CONFIG='scripts/search_profiles.json';
+function cleanPhrases(items){if(!Array.isArray(items))return [];const out=[],seen=new Set();for(const raw of items){if(typeof raw!=='string')continue;const s=raw.replace(/\s+/g,' ').trim();if(!s||s.length>100||seen.has(s.toLowerCase()))continue;out.push(s);seen.add(s.toLowerCase());if(out.length>=80)break;}return out;}
+function normalizeTerms(x){return {schema_version:1,include_phrases:cleanPhrases(x?.include_phrases),exclude_phrases:cleanPhrases(x?.exclude_phrases)};}
+function cleanProfiles(x){const arr=Array.isArray(x?.profiles)?x.profiles:[];return {schema_version:1,profiles:arr.slice(0,12).map(p=>({
+ id:String(p.id||'new').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,50),name:String(p.name||'Research area').slice(0,80),enabled:!!p.enabled,
+ match_level:['focused','balanced','exploratory'].includes(p.match_level)?p.match_level:'focused',
+ ...Object.fromEntries(PROFILE_KEYS.map(k=>[k,cleanPhrases(p[k])])),
+ categories:CATEGORY_OPTIONS.filter(k=>(p.categories||CATEGORY_OPTIONS).includes(k)),
+ regions:REGION_OPTIONS.filter(k=>(p.regions||[]).includes(k))
+ }))};}
+function fallbackProfiles(){const terms=normalizeTerms({include_phrases:['hearing','audiology','auditory','cochlear implant','psychoacoustics'],exclude_phrases:[]});return cleanProfiles({profiles:[{id:'hearing-science',name:'Audiology & Hearing Sciences',enabled:true,match_level:'focused',core_phrases:terms.include_phrases,exclude_phrases:terms.exclude_phrases,related_phrases:[],exploratory_phrases:[],categories:CATEGORY_OPTIONS,regions:[]}]});}
+function currentProfiles(){return cleanProfiles(state.profileDraft||publishedProfiles);}
+function profilesEqual(a,b){return JSON.stringify(cleanProfiles(a))===JSON.stringify(cleanProfiles(b));}
+function selectedProfile(){const profiles=currentProfiles().profiles;return profiles.find(p=>p.id===state.selectedProfileId)||profiles[0];}
+function currentTerms(){const active=currentProfiles().profiles.filter(p=>p.enabled);return {include_phrases:[...new Set(active.flatMap(p=>[...p.core_phrases,...(['balanced','exploratory'].includes(p.match_level)?p.related_phrases:[]),...(p.match_level==='exploratory'?p.exploratory_phrases:[])]))],exclude_phrases:[]};}
+function downloadJsonFile(value,filename){const blob=new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(u),1200);}
+function profileDirty(){return !profilesEqual(currentProfiles(),publishedProfiles);}
+function showProfilesMessage(message){$('profileMessage').textContent=message;}
+function renderProfiles(){const d=currentProfiles(),cur=selectedProfile();const status=$('profilesStatus');if(!cur){status.textContent='No profile available';return;}
+ const dirty=profileDirty();status.textContent=dirty?(githubToken?'Changes pending publication':'Saved locally · not yet published'):'Published criteria';status.classList.toggle('unsynced',dirty);
+ const selector=$('profileSelect');selector.innerHTML=d.profiles.map(p=>`<option value="${escaped(p.id)}">${escaped(p.name)}${p.enabled?'':' (paused)'}</option>`).join('');selector.value=cur.id;state.selectedProfileId=cur.id;
+ $('profileName').value=cur.name;$('profileLevel').value=cur.match_level;$('profileEnabled').checked=cur.enabled;
+ $('typeAdvertised').checked=cur.categories.includes('advertised_phd');$('typeLab').checked=cur.categories.includes('lab_recruiting');
+ $('profileRegions').innerHTML=REGION_OPTIONS.map(r=>`<label class="profile-inline"><input type="checkbox" data-profile-region="${escaped(r)}" ${cur.regions.includes(r)?'checked':''}>${escaped(r)}</label>`).join('');
+ const sections=[['core_phrases','Level 1 · Focused','Specific topics and exact research terms. Always active when the profile is enabled.'],['related_phrases','Level 2 · Related','Adjacent research areas. Used at Related and Exploratory breadth.'],['exploratory_phrases','Level 3 · Exploratory','Broader topics. Used only when Exploratory breadth is selected.'],['exclude_phrases','Exclusions','Reject matches for this profile containing these phrases.']];
+ $('profileTermGroups').innerHTML=sections.map(([key,title,hint])=>`<section class="level-group"><h4>${title}</h4><p class="help">${hint}</p><div class="term-chips">${cur[key].map((term,i)=>`<span class="term-chip">${escaped(term)}<button aria-label="Remove ${escaped(term)}" data-profile-remove="${key}" data-index="${i}" type="button">×</button></span>`).join('')||'<span class="help">No phrases yet.</span>'}</div><form class="term-add" data-profile-add="${key}"><div><input aria-label="Add ${title} phrase" maxlength="100" placeholder="Enter a research phrase" required><button type="submit" class="secondary">+ Add</button></div></form></section>`).join('');
+ $('githubStatus').textContent=githubToken?'Connected for this tab':'Not connected';$('githubStatus').classList.toggle('unsynced',!githubToken);
 }
-function normalizeTerms(x){return {schema_version:1,include_phrases:cleanPhrases(x?.include_phrases||[]),exclude_phrases:cleanPhrases(x?.exclude_phrases||[])};}
-function termsMatch(a,b){const norm=x=>JSON.stringify([...(x||[])].map(v=>v.trim().toLowerCase()).sort());return norm(a?.include_phrases)===norm(b?.include_phrases)&&norm(a?.exclude_phrases)===norm(b?.exclude_phrases)}
-function currentTerms(){return normalizeTerms(state.searchDraft||publishedTerms)}
-function downloadJsonFile(value,filename){const blob=new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'});const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(u),1400)}
-function renderSearchTerms(){const d=currentTerms();for(const [id,key] of [['includedTerms','include_phrases'],['excludedTerms','exclude_phrases']]){
- const target=$(id);if(!target)return;
- target.innerHTML=d[key].length?d[key].map((phrase,i)=>`<span class="term-chip">${escaped(phrase)}<button type="button" data-remove-term="${escaped(key)}" data-idx="${i}" aria-label="Remove ${escaped(phrase)}" title="Remove phrase">×</button></span>`).join(''):'<span class="help">No exclusions</span>';
- }
- const dirty=!termsMatch(d,publishedTerms);const status=$('searchTermsStatus');
- const pending=feed.search_terms?.include_phrases&&!termsMatch(feed.search_terms,publishedTerms);
- status.textContent=dirty?'Local edits not yet published':pending?'Published, next search pending':'Matches published GitHub criteria';status.classList.toggle('unsynced',dirty||pending);
- $('searchTermsMessage').textContent=dirty?'Saved locally. Download the JSON and replace scripts/search_terms.json in GitHub to affect scheduled searches.':pending?'The published configuration changed. Run Discover PhD opportunities in GitHub Actions, then refresh the feed.':'This matches the published search criteria. Changes to the scheduled collector require committing the JSON file in GitHub.';
+function validateClientProfiles(data){const d=cleanProfiles(data);if(!d.profiles.length)throw Error('Create at least one search profile.');
+ if(!d.profiles.some(p=>p.enabled))throw Error('At least one profile must be enabled.');
+ for(const p of d.profiles){if(!p.id||!p.name.trim())throw Error('Profile name and identifier are required.');if(p.enabled&&!p.core_phrases.length)throw Error('An enabled profile must contain a Level 1 research phrase.');if(!p.categories.length)throw Error('Each profile needs at least one opportunity category.');}
+ if(new Set(d.profiles.map(p=>p.id)).size!==d.profiles.length)throw Error('Duplicate profile IDs');return d;
 }
-function updateLocalTerms(key,change){const value=currentTerms();change(value[key]);if(!value.include_phrases.length){alert('Keep at least one research phrase.');return false;}state.searchDraft=normalizeTerms(value);save();renderSearchTerms();renderLinkedInSearches();return true;}
-function termAdd(formId,inputId,key){$(formId).addEventListener('submit',e=>{e.preventDefault();const input=$(inputId),newPhrase=input.value.trim().replace(/\s+/g,' ');if(!newPhrase)return;
-  if(currentTerms()[key].some(x=>x.toLowerCase()===newPhrase.toLowerCase())){input.value='';return;}
-  if(currentTerms()[key].length>=80){alert('Maximum 80 phrases per list.');return;}
-  updateLocalTerms(key,arr=>arr.push(newPhrase));input.value='';input.focus();
- });}
-termAdd('addIncludedForm','addIncludedInput','include_phrases');
-termAdd('addExcludedForm','addExcludedInput','exclude_phrases');
-document.addEventListener('click',e=>{const btn=e.target.closest('[data-remove-term]');if(!btn)return;const key=btn.dataset.removeTerm,idx=Number(btn.dataset.idx);if(!['include_phrases','exclude_phrases'].includes(key))return;updateLocalTerms(key,arr=>arr.splice(idx,1));});
-$('downloadSearchTerms').onclick=()=>downloadJsonFile(currentTerms(),'search_terms.json');
-$('copySearchTerms').onclick=()=>{const data=JSON.stringify(currentTerms(),null,2)+'\n';if(navigator.clipboard?.writeText){navigator.clipboard.writeText(data).then(()=>{$('searchTermsMessage').textContent='Copied JSON. Paste it into scripts/search_terms.json in GitHub and commit to main.'}).catch(()=>downloadJsonFile(currentTerms(),'search_terms.json'))}else{downloadJsonFile(currentTerms(),'search_terms.json')}};
-$('restorePublishedTerms').onclick=()=>{if(!confirm('Discard your local search-phrase changes and restore the published criteria?'))return;state.searchDraft=null;save();renderSearchTerms();renderLinkedInSearches();};
-
+function applyProfileEdit(fn){const data=currentProfiles(),cur=data.profiles.find(p=>p.id===selectedProfile()?.id);if(!cur)return;fn(cur);
+ try{validateClientProfiles(data)}catch(e){alert(e.message);renderProfiles();return false;}
+ state.profileDraft=data;save();syncRevision++;renderProfiles();renderLinkedInSearches();queueProfileSync();return true;}
+function applyStructuralEdit(fn){const data=currentProfiles();fn(data.profiles);try{validateClientProfiles(data)}catch(e){alert(e.message);return false;}
+ state.profileDraft=data;save();syncRevision++;renderProfiles();renderLinkedInSearches();queueProfileSync();return true;}
+function queueProfileSync(){if(!githubToken){showProfilesMessage('Saved locally. Connect GitHub to publish future changes automatically.');return;}
+ showProfilesMessage('Changed locally. Publishing to GitHub…');clearTimeout(syncTimer);syncTimer=setTimeout(()=>publishProfiles(),900);}
+function githubRequest(path,opts={}){return fetch('https://api.github.com'+path,{...opts,headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+githubToken,'X-GitHub-Api-Version':'2022-11-28',...(opts.headers||{})},cache:'no-store'});}
+function encodeBase64Utf8(content){const bytes=new TextEncoder().encode(content);let ascii='';for(const b of bytes)ascii+=String.fromCharCode(b);return btoa(ascii);}
+function decodeBase64Utf8(content){const bytes=Uint8Array.from(atob(content.replace(/\s/g,'')),x=>x.charCodeAt(0));return new TextDecoder().decode(bytes);}
+async function githubCurrentConfig(){const res=await githubRequest(`/repos/${GITHUB_REPO}/contents/${GITHUB_CONFIG}?ref=main`);if(!res.ok)throw Error('GitHub configuration read failed (HTTP '+res.status+'). Confirm repository access and token permissions.');
+ const meta=await res.json();if(!meta.sha||!meta.content)throw Error('GitHub did not return the configuration file.');return {sha:meta.sha,data:cleanProfiles(JSON.parse(decodeBase64Utf8(meta.content)))};}
+async function publishProfiles(){if(!githubToken){showProfilesMessage('Connect GitHub first. You can download the search-profile JSON if you prefer manual setup.');return;}
+ if(syncBusy){clearTimeout(syncTimer);syncTimer=setTimeout(()=>publishProfiles(),700);return;}
+ if(!profileDirty()){showProfilesMessage('Configuration already matches the published profile file.');return;}
+ let revision=syncRevision;syncBusy=true;$('publishNow').disabled=true;
+ try{const snapshot=validateClientProfiles(currentProfiles());const remote=await githubCurrentConfig();
+  if(!profilesEqual(remote.data,publishedProfiles)&&!profilesEqual(remote.data,snapshot))throw Error('The GitHub profile file changed elsewhere. Reload published profiles before overwriting it.');
+  if(profilesEqual(remote.data,snapshot)){publishedProfiles=snapshot;state.profileDraft=null;save();showProfilesMessage('GitHub already contains these settings.');return;}
+  const body={message:'Update PhD Radar search profiles',branch:'main',sha:remote.sha,content:encodeBase64Utf8(JSON.stringify(snapshot,null,2)+'\n')};
+  const res=await githubRequest(`/repos/${GITHUB_REPO}/contents/${GITHUB_CONFIG}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!res.ok){let explanation='';try{explanation=(await res.json()).message||''}catch{}throw Error('GitHub refused the update (HTTP '+res.status+'). '+explanation);}
+  publishedProfiles=snapshot;if(syncRevision===revision){state.profileDraft=null;save();}
+  showProfilesMessage('Published to GitHub. The configuration change triggers a fresh discovery run. Personal application records were not uploaded.');
+ }catch(e){showProfilesMessage('Not published: '+e.message+'. Your changes remain saved locally.');$('profilesStatus').classList.add('unsynced');$('profilesStatus').textContent='Publication failed';}
+ finally{syncBusy=false;$('publishNow').disabled=false;renderProfiles();if(syncRevision!==revision&&githubToken)queueProfileSync();}
+}
+$('profileSelect').addEventListener('change',e=>{state.selectedProfileId=e.target.value;save();renderProfiles();});
+$('profileName').addEventListener('change',e=>applyProfileEdit(p=>p.name=e.target.value.trim()));
+$('profileLevel').addEventListener('change',e=>applyProfileEdit(p=>p.match_level=e.target.value));
+$('profileEnabled').addEventListener('change',e=>applyProfileEdit(p=>p.enabled=e.target.checked));
+$('typeAdvertised').addEventListener('change',e=>applyProfileEdit(p=>p.categories=e.target.checked?[...new Set([...p.categories,'advertised_phd'])]:p.categories.filter(x=>x!=='advertised_phd')));
+$('typeLab').addEventListener('change',e=>applyProfileEdit(p=>p.categories=e.target.checked?[...new Set([...p.categories,'lab_recruiting'])]:p.categories.filter(x=>x!=='lab_recruiting')));
+$('profileRegions').addEventListener('change',e=>{const box=e.target.closest('[data-profile-region]');if(!box)return;applyProfileEdit(p=>p.regions=box.checked?[...new Set([...p.regions,box.dataset.profileRegion])]:p.regions.filter(x=>x!==box.dataset.profileRegion));});
+$('profileTermGroups').addEventListener('submit',e=>{const form=e.target.closest('[data-profile-add]');if(!form)return;e.preventDefault();const key=form.dataset.profileAdd,input=form.querySelector('input'),phrase=input.value.trim().replace(/\s+/g,' ');if(!PROFILE_KEYS.includes(key)||!phrase)return;
+ applyProfileEdit(p=>{if(!p[key].some(x=>x.toLowerCase()===phrase.toLowerCase()))p[key].push(phrase)});});
+$('profileTermGroups').addEventListener('click',e=>{const btn=e.target.closest('[data-profile-remove]');if(!btn)return;const key=btn.dataset.profileRemove,i=Number(btn.dataset.index);if(PROFILE_KEYS.includes(key))applyProfileEdit(p=>p[key].splice(i,1));});
+$('createProfile').onclick=()=>{if(currentProfiles().profiles.length>=12){alert('Maximum 12 profiles');return;}
+ const name=prompt('Name your new research profile','New research area');if(!name?.trim())return;
+ const id='research-'+Date.now().toString(36);const result=applyStructuralEdit(list=>list.push({id,name:name.trim().slice(0,80),enabled:false,match_level:'focused',core_phrases:[],related_phrases:[],exploratory_phrases:[],exclude_phrases:[],categories:[...CATEGORY_OPTIONS],regions:[]}));if(result){state.selectedProfileId=id;save();renderProfiles();}};
+$('duplicateProfile').onclick=()=>{if(currentProfiles().profiles.length>=12){alert('Maximum 12 profiles');return;}const src=selectedProfile();const id='research-'+Date.now().toString(36);if(applyStructuralEdit(list=>list.push({...src,id,name:src.name+' (copy)',enabled:false}))){state.selectedProfileId=id;save();renderProfiles();}};
+$('deleteProfile').onclick=()=>{const selected=selectedProfile();if(currentProfiles().profiles.length===1){alert('Keep at least one profile');return;}if(!confirm('Delete profile "'+selected.name+'"?'))return;
+ if(applyStructuralEdit(list=>list.splice(list.findIndex(p=>p.id===selected.id),1))){state.selectedProfileId=currentProfiles().profiles[0].id;save();renderProfiles();}};
+$('downloadProfiles').onclick=()=>downloadJsonFile(currentProfiles(),'search_profiles.json');
+$('resetProfiles').onclick=()=>{if(!confirm('Discard local profile edits and restore the published configuration?'))return;state.profileDraft=null;save();syncRevision++;renderProfiles();showProfilesMessage('Restored the published configuration.');};
+$('publishNow').onclick=publishProfiles;
+$('connectGitHub').onclick=async()=>{if(location.hostname!=='bbkbhattarai.github.io'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){
+ alert('For safety, connect GitHub only on the official PhD Radar site or local development site.');return;}
+ const token=$('githubToken').value.trim();if(!token){alert('Enter your fine-grained GitHub token.');return;}
+ githubToken=token;$('githubToken').value='';$('connectGitHub').disabled=true;$('githubStatus').textContent='Checking credentials…';
+ try{const me=await githubRequest('/user');if(!me.ok)throw Error('GitHub authentication failed ('+me.status+').');
+  const current=await githubCurrentConfig();if(!profilesEqual(current.data,publishedProfiles)){
+   if(state.profileDraft){githubToken='';throw Error('Published GitHub configuration differs from this page. Reload the app to review before connecting.');}
+   publishedProfiles=current.data;
+  }
+  renderProfiles();showProfilesMessage('Connected for this tab. Future profile edits publish automatically.');if(profileDirty())queueProfileSync();
+ }catch(e){githubToken='';$('githubStatus').textContent='Not connected';showProfilesMessage(e.message+'. No token was saved.');}
+ finally{$('connectGitHub').disabled=false;renderProfiles();}};
+$('disconnectGitHub').onclick=()=>{githubToken='';clearTimeout(syncTimer);renderProfiles();showProfilesMessage('Disconnected. Your profile changes stay in this browser until published.');};
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
-for(let id of ['category','region','reviewRegion','seenFilter','query'])$(id).addEventListener(id==='query'?'input':'change',render);
+for(let id of ['category','region','reviewRegion','seenFilter','matchProfile','query'])$(id).addEventListener(id==='query'?'input':'change',render);
 $('refresh').addEventListener('click',refresh);
 $('goReview').addEventListener('click',()=>{setTab('review');document.querySelector('.tabs').scrollIntoView({behavior:'smooth',block:'start'});});
 $('viewErrors').addEventListener('click',()=>{setTab('sources');$('sourceDiagnosticsTop').scrollIntoView({behavior:'smooth',block:'start'});});
@@ -127,9 +190,10 @@ $('addSource').onclick=()=>{let name=$('sourceName').value.trim(),url=$('sourceU
 $('reminderDays').value=state.reminderDays;$('reminderDays').onchange=e=>{state.reminderDays=Number(e.target.value);save();render()};
 $('migrateOld').onclick=()=>{try{const raw=localStorage.getItem('phdradar-state-v2');if(!raw){alert('No earlier PhD Radar records found in this browser and website address. Use Import JSON backup instead.');return}const old=JSON.parse(raw),copy={...state};let migrated=0;for(const [id,v] of Object.entries(old.records||{})){const x=(old.savedListings||{})[id]||(old.manual||[]).find(y=>(y.id||'manual-'+y.url)===id)||{id,title:id,source:'Previous version'};const item=normalize({...x,id});if(v.saved){copy.saved[id]=item;migrated++}if(v.status&&v.status!=='Not started'||v.notes||v.deadline||v.supervisor){copy.applications[id]={title:item.title,stage:v.status||'Interested',notes:v.notes||'',deadline:v.deadline||item.deadline||'',supervisor:v.supervisor||''};copy.saved[id]=item;migrated++}}for(const [id,v] of Object.entries(old.seen||{})){if(v)copy.seen[id]=today()}for(const x of old.sources||[]){if(x.url&&!copy.customSources.some(s=>s.url===x.url))copy.customSources.push({id:'old-'+copy.customSources.length,name:x.name||x.url,url:x.url,region:'Worldwide',type:'reference'})}state=copy;save();render();alert('Old records imported: '+migrated+' saved/application entries. Please export a new backup.')}catch(e){alert('Migration failed: '+e.message)}};
 $('export').onclick=()=>{let blob=new Blob([JSON.stringify({version:APP_VERSION,exported_at:new Date().toISOString(),state},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='phd-radar-backup-'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
-$('import').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text()),incoming=data.state||data;const combined={...state};if(incoming.saved)combined.saved={...combined.saved,...incoming.saved};if(incoming.applications)combined.applications={...combined.applications,...incoming.applications};if(incoming.seen)combined.seen={...combined.seen,...incoming.seen};if(incoming.customSources)combined.customSources=[...combined.customSources,...incoming.customSources];if(incoming.searchDraft)combined.searchDraft=normalizeTerms(incoming.searchDraft);if(Array.isArray(incoming.opportunities)){for(const x of incoming.opportunities){if(x.saved||x.favorite)combined.saved[x.id||x.url]=normalize(x)}}state=combined;save();render();renderSearchTerms();alert('Import completed. Please check your saved items.')}catch(err){alert('Import failed: '+err.message)}e.target.value=''};
+$('import').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text()),incoming=data.state||data;const combined={...state};if(incoming.saved)combined.saved={...combined.saved,...incoming.saved};if(incoming.applications)combined.applications={...combined.applications,...incoming.applications};if(incoming.seen)combined.seen={...combined.seen,...incoming.seen};if(incoming.customSources)combined.customSources=[...combined.customSources,...incoming.customSources];if(incoming.profileDraft)combined.profileDraft=cleanProfiles(incoming.profileDraft);else if(incoming.searchDraft&&!combined.profileDraft){const t=normalizeTerms(incoming.searchDraft),c=cleanProfiles(publishedProfiles);if(c.profiles.length){c.profiles[0].core_phrases=t.include_phrases;c.profiles[0].exclude_phrases=t.exclude_phrases;combined.profileDraft=c;}}if(Array.isArray(incoming.opportunities)){for(const x of incoming.opportunities){if(x.saved||x.favorite)combined.saved[x.id||x.url]=normalize(x)}}state=combined;save();render();renderProfiles();alert('Import completed. Please check your saved items.')}catch(err){alert('Import failed: '+err.message)}e.target.value=''};
 (async()=>{
  try{catalog=await fetchJson('scripts/sources.json')}catch(e){console.warn('Sources unavailable',e)}
- try{publishedTerms=normalizeTerms(await fetchJson('scripts/search_terms.json'))}catch(e){console.warn('Published search terms unavailable',e);publishedTerms=normalizeTerms({include_phrases:['hearing','audiology','auditory','cochlear implant','psychoacoustics'],exclude_phrases:[]});}
- renderSearchTerms();await refresh();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+ try{publishedProfiles=cleanProfiles(await fetchJson('scripts/search_profiles.json'))}catch(e){console.warn('Published search profiles unavailable',e);publishedProfiles=fallbackProfiles();}
+ if(!state.profileDraft&&state.searchDraft){const old=normalizeTerms(state.searchDraft);const candidate=cleanProfiles(publishedProfiles);if(candidate.profiles.length){candidate.profiles[0].core_phrases=old.include_phrases;candidate.profiles[0].exclude_phrases=old.exclude_phrases;state.profileDraft=candidate;state.searchDraft=null;save();}}
+ renderProfiles();await refresh();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 })();

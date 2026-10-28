@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "hearing-science",
+      "name": "Audiology & Hearing Sciences",
+      "enabled": true,
+      "match_level": "focused",
+      "core_phrases": [
+        "hearing",
+        "audiology",
+        "auditory",
+        "auditory neuroscience",
+        "cochlear implant",
+        "psychoacoustics",
+        "speech in noise",
+        "speech-in-noise",
+        "listening effort",
+        "listening fatigue",
+        "binaural hearing",
+        "spatial hearing",
+        "tinnitus",
+        "vestibular",
+        "auditory evoked potentials",
+        "ABR",
+        "ASSR",
+        "CAEP",
+        "hearing aids",
+        "hearing technology",
+        "speech perception",
+        "acoustic signal processing",
+        "audio signal processing",
+        "auditory processing disorder",
+        "hearing loss"
+      ],
+      "related_phrases": [
+        "sensory neuroscience",
+        "auditory cognition",
+        "neural signal processing",
+        "auditory attention",
+        "speech and language neuroscience"
+      ],
+      "exploratory_phrases": [
+        "neuroengineering",
+        "brain-computer interface",
+        "sensory processing",
+        "cognitive neuroscience",
+        "computational neuroscience"
+      ],
+      "exclude_phrases": [],
+      "regions": [],
+      "categories": [
+        "advertised_phd",
+        "lab_recruiting"
+      ]
+    },
+    {
+      "id": "neuroscience",
+      "name": "Broader Neuroscience (example)",
+      "enabled": false,
+      "match_level": "balanced",
+      "core_phrases": [
+        "auditory neuroscience",
+        "sensory neuroscience",
+        "neuroengineering"
+      ],
+      "related_phrases": [
+        "cognitive neuroscience",
+        "neural circuits",
+        "electrophysiology"
+      ],
+      "exploratory_phrases": [
+        "brain imaging",
+        "neuroscience",
+        "neural interfaces"
+      ],
+      "exclude_phrases": [
+        "clinical trial coordinator"
+      ],
+      "regions": [],
+      "categories": [
+        "advertised_phd",
+        "lab_recruiting"
+      ]
+    }
+  ]
+}

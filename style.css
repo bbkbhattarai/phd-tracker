@@ -24,3 +24,9 @@
 .term-chip button:hover{background:#dcebec}.term-add{margin:8px 0 24px}.term-add>div{display:flex;gap:9px;margin:9px 0}.term-add button{white-space:nowrap}
 .terms-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:18px 0}.terms-actions a{font-size:13px}
 @media(max-width:600px){.terms-head{display:block}.config-status{display:inline-block;margin-top:10px}.term-add>div{flex-direction:column}.terms-actions button{width:100%}}
+
+/* v2.9 adaptive profiles / lightweight GitHub sync */
+.profile-toolbar,.gh-row{display:flex;flex-wrap:wrap;align-items:end;gap:9px;margin:15px 0 20px}.profile-toolbar select{max-width:410px;flex:1 1 210px}.profile-toolbar button{white-space:nowrap}.profile-two{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin:17px 0}.profile-inline{display:flex;flex-direction:row;align-items:center;gap:8px;font-weight:600;font-size:13px;margin:10px 0}.profile-inline input{width:16px;height:16px;min-width:16px}.profile-field{border:1px solid var(--line);border-radius:12px;padding:12px 15px}.profile-field legend{font-weight:700;color:var(--ink);padding:0 4px}.region-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px}.level-group{margin:16px 0;border-top:1px solid var(--line);padding-top:16px}.level-group h4{margin:0}.level-group p{margin:5px 0}.term-chip-remove{border:0;background:none;cursor:pointer}.gh-row label{flex:1 1 240px}.gh-row button{margin-bottom:1px}.profile-status-ok{background:#dcf4e8!important;color:#165f47!important}.gh-connect{background:#f7fbfb}@media(max-width:700px){.profile-two{grid-template-columns:1fr}.profile-toolbar>*{flex:1 1 auto}.gh-row>*{width:100%}}
+
+/* v2.9: responsive profile selector in the opportunity filters */
+.filters{grid-template-columns:repeat(auto-fit,minmax(165px,1fr))}

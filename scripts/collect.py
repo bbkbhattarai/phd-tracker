@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vacancy-first collector v2.8 worldwide. No synthetic opportunities. Missing deadlines stay unverified.
+"""Vacancy-first collector v2.9 with multi-profile matching. No synthetic opportunities. Missing deadlines stay unverified.
 Runs in GitHub Actions; archives source-health and previously discovered records.
 """
 import datetime as dt
@@ -56,8 +56,79 @@ def phrase_pattern(phrases):
     return re.compile('|'.join(pieces), re.I)
 
 SEARCH_TERMS = validate_terms(json.loads(SEARCH_TERMS_FILE.read_text(encoding='utf-8'))) if SEARCH_TERMS_FILE.exists() else {'include_phrases': DEFAULT_TOPICS, 'exclude_phrases': []}
-HEARING = phrase_pattern(SEARCH_TERMS['include_phrases'])
-OMIT_TOPICS = phrase_pattern(SEARCH_TERMS['exclude_phrases']) if SEARCH_TERMS['exclude_phrases'] else None
+# Search profiles are GitHub-synced settings. Every recorded match is explicitly
+# grounded in a literal phrase; no semantic matching is fabricated.
+PROFILES_FILE=ROOT/'scripts/search_profiles.json'
+LEVELS=('focused','balanced','exploratory')
+REGIONS=('UK','Scotland','Europe','USA','Canada','Australia','New Zealand','Hong Kong','Asia')
+CATEGORIES=('advertised_phd','lab_recruiting')
+
+def validate_profiles(data):
+    if not isinstance(data,dict) or not isinstance(data.get('profiles'),list):
+        raise ValueError('search_profiles.json must contain profiles array')
+    if len(data['profiles'])>12:raise ValueError('Maximum 12 profiles')
+    out=[];seen=set()
+    for raw in data['profiles']:
+        if not isinstance(raw,dict):raise ValueError('Invalid profile')
+        profile_id=raw.get('id')
+        if not isinstance(profile_id,str) or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,49}',profile_id):raise ValueError('Invalid profile ID')
+        if profile_id in seen:raise ValueError('Duplicate profile ID')
+        seen.add(profile_id)
+        name=raw.get('name','')
+        if not isinstance(name,str) or not (1<=len(name.strip())<=80):raise ValueError('Invalid profile name')
+        level=raw.get('match_level','focused')
+        if level not in LEVELS:raise ValueError('Unknown search level')
+        fields={}
+        for key in ('core_phrases','related_phrases','exploratory_phrases','exclude_phrases'):
+            value=raw.get(key,[])
+            if not isinstance(value,list):raise ValueError(key+' must be an array')
+            fields[key]=validate_terms({'include_phrases':value or ['placeholder'], 'exclude_phrases':[]})['include_phrases'] if value else []
+            if any(not isinstance(x,str) for x in value):raise ValueError(key+' requires strings')
+        cats=raw.get('categories',list(CATEGORIES));regs=raw.get('regions',[])
+        if not isinstance(cats,list) or not cats or any(x not in CATEGORIES for x in cats):raise ValueError('Invalid categories')
+        if not isinstance(regs,list) or any(x not in REGIONS for x in regs):raise ValueError('Invalid regions')
+        if raw.get('enabled',False) and not fields['core_phrases']:raise ValueError('Enabled profile needs core phrases')
+        out.append({'id':profile_id,'name':name.strip(),'enabled':bool(raw.get('enabled',False)),
+          'match_level':level,'regions':list(dict.fromkeys(regs)),'categories':list(dict.fromkeys(cats)),**fields})
+    if not any(p['enabled'] for p in out):raise ValueError('Enable at least one profile')
+    return {'schema_version':1,'profiles':out}
+
+if PROFILES_FILE.exists():
+    SEARCH_PROFILES=validate_profiles(json.loads(PROFILES_FILE.read_text(encoding='utf-8')))
+else:
+    SEARCH_PROFILES=validate_profiles({'profiles':[{'id':'legacy','name':'Imported phrases',
+        'enabled':True,'core_phrases':SEARCH_TERMS['include_phrases'],
+        'exclude_phrases':SEARCH_TERMS['exclude_phrases']}]})
+
+def level_phrases(p):
+    keys=['core_phrases']
+    if p['match_level'] in ('balanced','exploratory'):keys.append('related_phrases')
+    if p['match_level']=='exploratory':keys.append('exploratory_phrases')
+    return [x for k in keys for x in p[k]]
+
+def match_profiles(text, category, found_region):
+    matched=[]
+    for p in SEARCH_PROFILES['profiles']:
+        if not p['enabled'] or category not in p['categories']:continue
+        if p['regions'] and found_region!='Unspecified' and not (
+            found_region in p['regions'] or (found_region=='Scotland' and 'UK' in p['regions'])):continue
+        if p['exclude_phrases'] and phrase_pattern(p['exclude_phrases']).search(text):continue
+        for tier,score in (('core_phrases',100),('related_phrases',70),('exploratory_phrases',40)):
+            if tier=='related_phrases' and p['match_level']=='focused':continue
+            if tier=='exploratory_phrases' and p['match_level']!='exploratory':continue
+            items=p[tier]
+            if not items:continue
+            found=phrase_pattern(items).search(text)
+            if found:
+                matched.append({'id':p['id'],'name':p['name'],'tier':tier.replace('_phrases',''),
+                    'matched_phrase':found.group(0), 'score':score})
+                break
+    return matched
+
+ACTIVE_PHRASES=[term for p in SEARCH_PROFILES['profiles'] if p['enabled'] for term in level_phrases(p)]
+HEARING=phrase_pattern(ACTIVE_PHRASES)
+OMIT_TOPICS=None  # Exclusions apply per profile, never globally across all profiles.
+
 PHD=re.compile(r'\b(ph\.?d\.?|d\.?phil\.?|doctoral|doctorate|studentship|graduate student|research student)\b',re.I)
 EXCLUDE=re.compile(r'\b(postdoc(?:toral)?|research fellow|faculty position|assistant professor|masters? degree|MSc|AuD only)\b',re.I)
 CLOSED_LAB=re.compile(r'\b(?:there are currently no open positions|no (?:current|open|available) (?:phd|doctoral|graduate|student|research) positions|not (?:currently )?(?:accepting|recruiting) (?:new )?(?:phd|graduate|doctoral) students)\b',re.I)
@@ -208,8 +279,7 @@ def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=F
     text=(title+' '+content).strip()
     short=text[:18000]
     if EXCLUDE.search(title):return None,'non-doctoral role'
-    if OMIT_TOPICS and OMIT_TOPICS.search(title+' '+content[:650]):return None,'excluded research phrase'
-    if not HEARING.search(short):return None,'not hearing-related'
+    if not HEARING.search(short):return None,'no configured research phrase matched'
     if not PHD.search(short):return None,'not doctoral'
     if origin=='lab' and CLOSED_LAB.search(short):return None,'lab explicitly reports no open positions'
     if origin!='lab' and re.search(r'\b(?:applications? (?:are )?closed|this position has been filled|studentship (?:is )?closed)\b',short[:3500],re.I):return None,'vacancy explicitly closed'
@@ -222,10 +292,13 @@ def classify(title,content,origin='listing',fallback='Unspecified',is_findaphd=F
         if not re.search(r'\b(recruiting|seeking|looking for|positions? (?:are )?available|join (?:the|our) lab|accepting (?:new )?(?:graduate|phd)|graduate students? (?:are )?welcome|currently recruiting|currently emphasizing recruitment|open to consider applications from prospective ph\.?d\.? students|ph\.?d\.? students?\b.{0,45}currently recruiting)\b',short,re.I):
             return None,'no explicit lab recruitment'
     else: category='advertised_phd'
+    matches=match_profiles(short[:9500],category,fallback if fallback not in ('Unspecified','Worldwide') else region(short))
+    if not matches:return None,'not matched by an enabled search profile'
     status='deadline_verified' if dl else 'review_required'
     # Lab research grants are not proof a graduate student has funded support.
     fund=funding(short) if origin!='lab' else ('Student funding mentioned; verify terms' if re.search(r'(?:ph\.?d\.?|graduate (?:student|assistant)).{0,80}(?:funded|funding|stipend|scholarship|assistantship)',short,re.I) else 'Student funding not confirmed')
-    return {'category':category,'deadline':dl,'funding':fund,'region':fallback if fallback not in ('Unspecified','Worldwide') else region(short),'verification':status,'summary':re.sub(r'\s+',' ',content)[:700]},None
+    return {'category':category,'deadline':dl,'funding':fund,'region':fallback if fallback not in ('Unspecified','Worldwide') else region(short),'verification':status,'summary':re.sub(r'\s+',' ',content)[:700],
+            'profile_matches':matches,'relevance_score':max(m['score'] for m in matches)},None
 
 
 # The research-list archive is independent of FindAPhD and has public, individually
@@ -493,7 +566,7 @@ def run():
     for rec in list(accepted.values())+list(review.values()):
         key=rec.get('region') or 'Unspecified'
         regional[key]=regional.get(key,0)+1
-    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health),'regional_counts':regional,'search_terms':{'include_phrases':SEARCH_TERMS['include_phrases'],'exclude_phrases':SEARCH_TERMS['exclude_phrases']}}
+    output={'schema_version':2,'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'opportunities':list(accepted.values()),'review_queue':list(review.values()),'source_health':health,'rejected_reasons':rejected,'page_errors':errors[:60], 'sources_checked':sum(h.get('checked',0) for h in health),'regional_counts':regional,'search_profiles':SEARCH_PROFILES, 'search_terms':{'include_phrases':ACTIVE_PHRASES,'exclude_phrases':[]}}
     feedfile.parent.mkdir(parents=True,exist_ok=True)
     feedfile.write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n')
     print(f"Verified {len(accepted)}, review {len(review)}, failed sources {sum(x['status']=='error' for x in health)}")

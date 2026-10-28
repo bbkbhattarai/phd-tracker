@@ -1,58 +1,66 @@
-# PhD Research Radar v2.8
+# PhD Research Radar v2.9 | Adaptive Search Profiles
 
-This is a **drop-in GitHub Pages update** for the existing `bbkbhattarai/phd-tracker` site. It does not reset or include `data/opportunities.json`, and it keeps the existing localStorage key (`phdradar_clean_v2`).
+This is a **drop-in update** for the existing GitHub Pages repository `bbkbhattarai/phd-tracker`, not a new hosting service. Personal application records, notes, saved opportunities and reviewed flags remain browser-local under the **unchanged** `phdradar_clean_v2` storage key.
 
-## New in v2.8
+## New: reusable profiles and relevance levels
 
-### Editable search criteria
+In **Settings → Adaptive search profiles**, create up to 12 independent research profiles. Each has:
 
-The **Settings → Search criteria** panel lets you:
+- Name and enable/disable control.
+- **Focused**: exact literal phrase matching against Level 1 core phrases.
+- **Related**: core plus Level 2 phrases.
+- **Exploratory**: core, related and Level 3 phrases.
+- Excluded phrases, geographical scope, and opportunity categories (advertised PhD / recruiting PhD lab).
 
-- add, remove, and review research phrases that identify relevant PhD opportunities;
-- optionally add excluded phrases;
-- save draft changes locally, without changing any personal application record;
-- download or copy a valid `search_terms.json` configuration;
-- open the configuration file in GitHub's editor.
+All enabled profiles are combined by the scheduled collector, and accepted records include `profile_matches` and `relevance_score`. An additional **Research profile** dropdown on the main Opportunities screen filters records by profile. A disabled second example profile shows how to add other disciplines without changing the existing hearing-science profile.
 
-**Important sync boundary:** A public GitHub Actions job cannot read private browser localStorage. New terms **do not change scheduled discovery** until you replace `scripts/search_terms.json` in GitHub, commit to `main`, and run the discovery workflow. Once published, these literal phrases are used by the Python collector to match candidates from its configured sources. Adding a term does not automatically add university websites or unlock restricted sites such as FindAPhD.
+**Search breadth is a deterministic phrase rule, not AI relevance inference.** Profiles change filtering and evaluation of candidates on already integrated sources; they cannot make unsupported sites searchable, turn general articles into recruitable positions, or bypass FindAPhD's HTTP 403 access restrictions. The collector still screens for PhD or doctoral recruitment. New qualification levels, job types and true dynamic source discovery would require separate extensions.
 
-Manual LinkedIn search shortcuts additionally include the first 16 research phrases in the current browser draft. LinkedIn remains **manual only**.
+## New: automatic GitHub publication while connected
 
-### Added UK sources
+To avoid copying JSON manually, v2.9 can publish configuration edits directly to GitHub using the official repository Contents API:
 
-- **University of Warwick**: Life Sciences funded studentships, Medical School fully funded research projects, and WMG doctoral vacancies. These are `monitor_only_sources`: page checks and change notices, **not** automatic creation of PhD listings from general funding pages.
-- **Postgraduate Studentships**: the doctoral-funding listings index is now an `institution_indexes` source using the `postgraduate_funding` adapter. It follows only individual `/opportunity/<slug>/<id>` links that match a configured research phrase. Each linked page is read and further screened for a real PhD opening. Generic degree promotions are rejected. A broader funding index is monitored for changes.
+1. Create a **fine-grained GitHub personal access token** with **only** `bbkbhattarai/phd-tracker` selected under *Repository access* and **Contents: Read and write** under *Repository permissions*. Use a short expiration date. No `Workflows` permission is necessary because the app never edits workflow files.
+2. In **Settings → Automatic GitHub synchronization**, paste it and select **Connect for this session**.
+3. Add/remove a phrase, toggle a region, change the research profile level, or create a new profile. The browser saves the new profile locally and, while connected, attempts to commit `scripts/search_profiles.json` automatically after a short debounce. If the commit fails, the edit remains local and the app shows an error; use **Publish changes now** to retry.
+4. The included `.github/workflows/search.yml` now listens for **pushes to `scripts/search_profiles.json`** as well as the existing scheduled/manual events. A successful authorized GitHub configuration commit therefore starts the collector automatically. When the workflow finishes, refresh the public feed in the app.
 
-The Postgraduate Studentships site advertises a mixture of Masters, doctoral programmes, general scholarships, and promotional material. Not every item is a research vacancy. The collector may return `no_vacancies_parsed`, `no_current_vacancy`, or a source error if relevant advertisements aren't present or access is restricted.
+**Security model:** The token remains in JavaScript memory for the open page only. It is never stored in localStorage, included in backups, added to published configuration, or passed to the Python collector. Reloading or closing the tab disconnects it; you must connect again next session. This is a deliberate limitation of a static-only website. For a genuinely permanent, one-time connection across sessions, the project would need a carefully configured **GitHub App or OAuth backend** (e.g. a restricted Cloudflare Worker) that stores credentials server-side and authenticates the owner. Do **not** put a GitHub token in code, `search_profiles.json`, GitHub Actions YAML, or a public source file.
 
-## Deploy the update
+The client-side sync is implemented and tested with **simulated** GitHub API responses. It has **not been tested against your authenticated GitHub account**, so actual browser permissions, token policy and network CORS behavior must be verified after deployment. A failed connection does not modify the remote repository.
 
-1. Open PhD Radar → Settings and **Export JSON backup**.
-2. Upload the contents of this ZIP to your **existing repository**, preserving relative paths:
-   - root: `index.html`, `app.js`, `style.css`, `sw.js`
-   - scripts: `collect.py`, `sources.json`, **new** `search_terms.json`
-3. Do **not** overwrite your current `data/opportunities.json` or your working `.github/workflows/search.yml`.
-4. Commit all changes to the `main` branch.
-5. Open GitHub Actions → **Discover PhD opportunities** → **Run workflow**.
-6. Once the new feed is published, open your web app and click **Refresh feed**. Check Sources diagnostics for Warwick and Postgraduate Studentships.
+## Files to deploy
 
-## Change search topics in the future
+Upload/update these paths in the existing repository, keeping the same folders:
 
-1. Open **Settings → Search criteria**.
-2. Add or remove phrases; click × to remove. The draft is saved to **this browser** automatically.
-3. Click **Copy JSON** or **Download search_terms.json**.
-4. Open `scripts/search_terms.json` in GitHub (link provided inside the app). Click **Edit**, replace its full content with the copied JSON, and **Commit changes**. You may also upload the downloaded JSON to the `scripts/` directory to replace the existing file.
-5. Start **Discover PhD opportunities** in GitHub Actions, or let the daily scheduled workflow run. When finished, refresh the feed in the app.
+- `index.html`, `app.js`, `style.css`, `sw.js`
+- `scripts/collect.py`
+- **New:** `scripts/search_profiles.json`
+- **Update:** `.github/workflows/search.yml` (this is required to react to profile changes)
 
-If you update only the local browser draft, scheduled discovery stays unchanged. When the GitHub file is updated but GitHub Actions hasn't rerun yet, the app displays **Published, next search pending** when comparing the current feed with the published configuration.
+Leave these as they are unless you need to restore them: `scripts/sources.json`, `scripts/requirements.txt`, `data/opportunities.json`, `manifest.webmanifest`, `assets/`. In particular, **do not overwrite the current populated `data/opportunities.json`**. The update package deliberately excludes the feed.
 
-## What remains unchanged
+After committing v2.9, manually trigger **Discover PhD opportunities** once to test the new collector configuration. Subsequent browser-edited profile commits, when GitHub synchronization is connected, will cause new runs automatically.
 
-- Application notes, saved leads, statuses and browser-only data.
-- The existing date/funding checks, review queue, and source diagnostics.
-- Existing LinkedIn searches are manual shortcuts; no scraping is performed.
-- The FindAPhD 403 restriction is not bypassed.
+### Optional manual backup
 
-## Testing
+The Settings screen can export `search_profiles.json` if you don't want to connect GitHub. You can still upload the JSON yourself. The existing personal backup/restore mechanism is independent and preserved.
 
-Eight offline Python tests passed, including term validation, literal matching, date filtering, and Postgraduate Studentships-style listing extraction. JavaScript and Python syntax checks passed. A browser UI test using mocked local JSON confirmed adding/removing phrases, exporting JSON, and saving an opportunity. Live Warwick and Postgraduate Studentships collector runs on GitHub Actions have **not yet been validated**.
+## Known limitations
+
+- Browser-only saved applications/notes do not sync across devices.
+- FindAPhD pages previously returned HTTP 403 and remain blocked by their access control.
+- LinkedIn posts are manual search shortcuts, not a scheduled scraper.
+- Source discovery still depends on the maintained `sources.json` connectors. Editing a profile doesn't install new scrapers or add unsupported sites.
+- The collector continues to look for doctoral recruiting evidence. Configuring unrelated subjects works on existing accessible recruiting pages, but supporting other qualification levels (e.g. Masters, postdoc, faculty jobs) will require new category-specific verification rules.
+- Changing profiles doesn't alter past personal saved records. Old public records may remain in the review queue pending re-check.
+- GitHub Actions schedules can be delayed. New search results become visible after the Actions collector commits the feed and Pages serves it.
+
+## Validation performed
+
+- Python collector compilation and eleven offline unit tests, including all three profile matching levels, region/category restrictions and profile-specific exclusions.
+- JavaScript syntax and offline Chromium browser UI checks for editing, switching profiles, export and preserving saved listings.
+- Simulated GitHub API browser test: token connection, automatic Contents API PUT after a change, JSON payload, and absence of token in browser-local storage.
+- ZIP integrity validation.
+
+No live source crawling or authenticated GitHub write was run as part of this package build.
