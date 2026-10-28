@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-28T08:40:46.997469+00:00",
+  "generated_at": "2026-10-28T09:46:06.913029+00:00",
   "opportunities": [
     {
       "category": "advertised_phd",
@@ -313,26 +313,6 @@
       "category": "lab_recruiting",
       "deadline": null,
       "funding": "Student funding not confirmed",
-      "region": "Hong Kong",
-      "verification": "recruitment_claim_needs_confirmation",
-      "summary": "The Laboratory for Language, Learning, and the Brain | The Department of Linguistics and Modern Languages, CUHK | Jobs Home Announcements Publications Media MRI People Current Lab alumni Join Us Baby Lab Contact us Join Us Thank you for your interest in joining our lab! See our lab alumni PhD Studies | Postdocs | Others PhD Studies We are accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept MPhil students into the lab. The application deadline is around Nov. Please also apply for the Hong Kong PhD Fellowship Scheme and list CUHK as your first choice for full ",
-      "fit_note": null,
-      "id": "9615099d4799f39461d7",
-      "title": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "url": "https://brain.cuhk.edu.hk/joinus.html",
-      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "last_checked": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "evidence": "Original institutional page checked; always confirm status and funding with the university",
-      "recruitment_evidence": "accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept",
-      "intake": null,
-      "supervisor": null,
-      "deadline_note": null
-    },
-    {
-      "category": "lab_recruiting",
-      "deadline": null,
-      "funding": "Student funding not confirmed",
       "region": "USA",
       "verification": "recruitment_claim_needs_confirmation",
       "summary": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For students who are already on campus, filling out this unofficial information form will help me learn more about your background and research goals. PhD students can join the Heinz Lab by applying through the Weldon School of Biomedical Engineering , the Department of Speech, Language, and Hearing Sciences , or through the Integrative Neuroscience track of the PULSe program . Once at Purdue, NIH T32 funding is availab",
@@ -345,6 +325,26 @@
       "first_seen": "2026-10-27",
       "evidence": "Original institutional page checked; always confirm status and funding with the university",
       "recruitment_evidence": "Join the Lab We are always looking for highly motivated and focused students (undergrad and grad [MS, AuD, and PhD]) and post-docs to join the lab. Please contact Mike Heinz directly to discuss your interests and background (attach CV, and describe your interests in our lab). For",
+      "intake": null,
+      "supervisor": null,
+      "deadline_note": null
+    },
+    {
+      "category": "lab_recruiting",
+      "deadline": null,
+      "funding": "Student funding not confirmed",
+      "region": "Hong Kong",
+      "verification": "recheck_required",
+      "summary": "The Laboratory for Language, Learning, and the Brain | The Department of Linguistics and Modern Languages, CUHK | Jobs Home Announcements Publications Media MRI People Current Lab alumni Join Us Baby Lab Contact us Join Us Thank you for your interest in joining our lab! See our lab alumni PhD Studies | Postdocs | Others PhD Studies We are accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept MPhil students into the lab. The application deadline is around Nov. Please also apply for the Hong Kong PhD Fellowship Scheme and list CUHK as your first choice for full ",
+      "fit_note": null,
+      "id": "9615099d4799f39461d7",
+      "title": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "url": "https://brain.cuhk.edu.hk/joinus.html",
+      "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
+      "last_checked": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "evidence": "Original institutional page checked; always confirm status and funding with the university",
+      "recruitment_evidence": "accepting PhD students for the upcoming academic year. It is possible to apply directly to the PhD program in Linguistics or Psychology with only an undergraduate degree. We do not accept",
       "intake": null,
       "supervisor": null,
       "deadline_note": null
@@ -598,6 +598,154 @@
       "message": "Monitoring only: Research centre and doctoral bursary information; no open award assumed."
     },
     {
+      "source": "University of Glasgow · Neuroscience & Psychology PhD projects",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "6b53f99f2beb4640",
+      "url": "https://www.gla.ac.uk/postgraduate/research/neuroscience/",
+      "source_type": "research_project_index",
+      "message": "Monitoring only: Official Glasgow PhD project page; many projects are general course proposals rather than funded vacancies."
+    },
+    {
+      "source": "University of Glasgow · PGR scholarships and funding",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "4afc0bd714b0ae6b",
+      "url": "https://www.gla.ac.uk/research/ourresearchenvironment/prs/scholarshipsandfunding/",
+      "source_type": "funding_watch",
+      "message": "Monitoring only: Scholarship schemes are not automatically advertised doctoral jobs."
+    },
+    {
+      "source": "University of Aberdeen · PhD opportunities index",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "d469688f2c598362",
+      "url": "https://www.abdn.ac.uk/study/postgraduate-research/phds/",
+      "source_type": "embedded_listing_watch",
+      "message": "Monitoring only: FindAPhD-powered listing embedded on Aberdeen site; no direct extraction while FindAPhD is blocked."
+    },
+    {
+      "source": "University of the West of Scotland · Research studentships",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "79ba2ca2d0ceb104",
+      "url": "https://www.uws.ac.uk/study/research-degrees/studentships",
+      "source_type": "funding_watch",
+      "message": "Monitoring only: Scholarship and doctoral funding page, no individual vacancy without separate advertisement."
+    },
+    {
+      "source": "University of Sheffield · Hearing and Balance opportunities",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "1c8bd2ec47186cb3",
+      "url": "https://sheffield.ac.uk/hearing/opportunities",
+      "source_type": "lab_enquiries_watch",
+      "message": "Monitoring only: Hearing research group invites PhD enquiries; listed current roles may be postdoctoral only."
+    },
+    {
+      "source": "University of Sheffield · Health PhD opportunities",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "95728cb93a7d2439",
+      "url": "https://sheffield.ac.uk/health/study/postgraduate/phd-opportunities-projects",
+      "source_type": "embedded_listing_watch",
+      "message": "Monitoring only: Current PhD index uses FindAPhD; page changes monitored, not claimed as parsed vacancies."
+    },
+    {
+      "source": "University of Salford · Acoustics doctoral opportunities",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "689a498b791da912",
+      "url": "https://acoustics.salford.ac.uk/study/acoustic-phd-opportunities/",
+      "source_type": "doctoral_programme_watch",
+      "message": "Monitoring only: LAURA and Sound Futures doctoral pathways, not a specific open vacancy."
+    },
+    {
+      "source": "Salford · Sustainable Sound Futures doctoral recruitment",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "9084113fe81d3395",
+      "url": "https://soundfutures.salford.ac.uk/apply/",
+      "source_type": "funding_watch",
+      "message": "Monitoring only: 2027 project list scheduled for 2 November 2026; currently says not accepting applications."
+    },
+    {
+      "source": "Salford · LAURA aural diversity PhD recruitment",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "5327b9c111855f23",
+      "url": "https://laura.salford.ac.uk/apply/apply-for-a-phd/",
+      "source_type": "funding_watch",
+      "message": "Monitoring only: Page explicitly states last application cycle closed; monitor for next call."
+    },
+    {
+      "source": "Swansea University · Research scholarships",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "2a32d38481289d1f",
+      "url": "https://www.swansea.ac.uk/postgraduate/scholarships/research/",
+      "source_type": "funding_watch",
+      "message": "Monitoring only: Searchable scholarships; require hearing relevance and actual PhD advert."
+    },
+    {
+      "source": "University of Leicester · Funded research opportunities",
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "source_type": "studentship_index_watch",
+      "message": "403 Client Error: Forbidden for url: https://le.ac.uk/study/research-degrees/funded-opportunities"
+    },
+    {
+      "source": "University of Lancashire · Audiology",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "ca80b4865c6755a2",
+      "url": "https://www.lancashire.ac.uk/subjects/audiology",
+      "source_type": "research_reference_watch",
+      "message": "Monitoring only: Audiology university department; not verified as an individual PhD vacancy board."
+    },
+    {
+      "source": "University of Lancashire · PhD research studentship information",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "7fe7a4201d67f1bf",
+      "url": "https://www.star.uclan.ac.uk/phd-studentships-and-postgraduate-study/",
+      "source_type": "research_reference_watch",
+      "message": "Monitoring only: This available project list is mainly physics/astronomy and must not become irrelevant audiology PhD opportunities."
+    },
+    {
+      "source": "Lancaster University · Neuroscience of Speech and Action Lab",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "c51867e6c089595b",
+      "url": "https://wp.lancs.ac.uk/nosalab/research-projects/",
+      "source_type": "research_lab_watch",
+      "message": "Monitoring only: Lancaster University is distinct from University of Lancashire; project summaries are not automatically recruitment calls."
+    },
+    {
+      "source": "University of Manchester · Audiology doctoral research",
+      "status": "watch_checked",
+      "found": 0,
+      "checked": 1,
+      "fingerprint": "14957c82f8ef0ad5",
+      "url": "https://www.bmh.manchester.ac.uk/study/audiology/postgraduate-research/",
+      "source_type": "research_project_index",
+      "message": "Monitoring only: Audiology PhD project and funding pages; check individual opportunities."
+    },
+    {
       "source": "AUDITORY research recruitment announcements",
       "status": "ok",
       "found": 42,
@@ -698,9 +846,10 @@
     },
     {
       "source": "CUHK Hong Kong · Language, Learning and Brain Lab",
-      "status": "review_lead",
-      "found": 1,
-      "checked": 1
+      "status": "error",
+      "found": 0,
+      "checked": 0,
+      "message": "HTTPSConnectionPool(host='brain.cuhk.edu.hk', port=443): Max retries exceeded with url: /joinus.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='brain"
     },
     {
       "source": "CUHK · Auditory Neuroscience Group",
@@ -745,7 +894,7 @@
     "no recruitment evidence": 1
   },
   "page_errors": [],
-  "sources_checked": 77,
+  "sources_checked": 90,
   "regional_counts": {
     "Europe": 3,
     "UK": 4,
